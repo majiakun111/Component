@@ -16,6 +16,8 @@
 		5BBE608A1C81E108006D0595 /* CALayer+Aniamtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60871C81E108006D0595 /* CALayer+Aniamtion.m */; };
 		5BBE608B1C81E108006D0595 /* NSObject+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60891C81E108006D0595 /* NSObject+Notification.m */; };
 		5BBE60911C81E492006D0595 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60901C81E492006D0595 /* Test.m */; };
+		5BBE60991C81F3EC006D0595 /* NSObject+MethodSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60961C81F3EC006D0595 /* NSObject+MethodSafe.m */; };
+		5BBE609A1C81F3EC006D0595 /* NSObject+SwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60981C81F3EC006D0595 /* NSObject+SwizzleMethod.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,10 @@
 		5BBE60891C81E108006D0595 /* NSObject+Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notification.m"; sourceTree = "<group>"; };
 		5BBE608F1C81E492006D0595 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = ../../../Test.h; sourceTree = "<group>"; };
 		5BBE60901C81E492006D0595 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Test.m; path = ../../../Test.m; sourceTree = "<group>"; };
+		5BBE60951C81F3EC006D0595 /* NSObject+MethodSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MethodSafe.h"; sourceTree = "<group>"; };
+		5BBE60961C81F3EC006D0595 /* NSObject+MethodSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MethodSafe.m"; sourceTree = "<group>"; };
+		5BBE60971C81F3EC006D0595 /* NSObject+SwizzleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SwizzleMethod.h"; sourceTree = "<group>"; };
+		5BBE60981C81F3EC006D0595 /* NSObject+SwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SwizzleMethod.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,10 @@
 		5BBE60851C81E108006D0595 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				5BBE60951C81F3EC006D0595 /* NSObject+MethodSafe.h */,
+				5BBE60961C81F3EC006D0595 /* NSObject+MethodSafe.m */,
+				5BBE60971C81F3EC006D0595 /* NSObject+SwizzleMethod.h */,
+				5BBE60981C81F3EC006D0595 /* NSObject+SwizzleMethod.m */,
 				5BBE60881C81E108006D0595 /* NSObject+Notification.h */,
 				5BBE60891C81E108006D0595 /* NSObject+Notification.m */,
 				5BBE60861C81E108006D0595 /* CALayer+Aniamtion.h */,
@@ -173,11 +183,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BBE606E1C809EAF006D0595 /* ViewController.m in Sources */,
+				5BBE60991C81F3EC006D0595 /* NSObject+MethodSafe.m in Sources */,
 				5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */,
 				5BBE608A1C81E108006D0595 /* CALayer+Aniamtion.m in Sources */,
 				5BBE60911C81E492006D0595 /* Test.m in Sources */,
 				5BBE60681C809EAF006D0595 /* main.m in Sources */,
 				5BBE608B1C81E108006D0595 /* NSObject+Notification.m in Sources */,
+				5BBE609A1C81F3EC006D0595 /* NSObject+SwizzleMethod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
