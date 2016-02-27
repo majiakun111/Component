@@ -7,8 +7,9 @@
 //
 
 #import "CALayer+Aniamtion.h"
-#import "NSObject+Notification.h"
 #import <objc/runtime.h>
+#import "NSObject+Notification.h"
+#import "NSObject+SwizzleMethod.h"
 
 @interface CALayer ()
 
@@ -23,18 +24,21 @@
 
 @implementation CALayer (Aniamtion)
 
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self swizzleMethod:@selector(addAnimation:forKey:) withMethod:@selector(hook_addAnimation:forKey:) forClass:[self class]];
+    });
+}
+
 - (void)addAnimation:(nonnull CAAnimation *)animation
               forKey:(nullable NSString *)key
        completeBlock:(nullable CompleteBlock)completeBlock
 {
     self.completeBlcok = completeBlock;
-    self.animation = animation;
-    self.key = key;
-    
-    [animation setDelegate:self];
+
     [self addAnimation:animation forKey:key];
-    
-    [self addObserver];
 }
 
 - (void)doAniamtion
@@ -77,7 +81,18 @@
     return objc_getAssociatedObject(self, @selector(key));
 }
 
-#pragma mark - Observer
+#pragma mark - PrivateMethod
+
+- (void)hook_addAnimation:(CAAnimation *)animation forKey:(NSString *)key
+{
+    self.animation = animation;
+    self.key = key;
+
+    [animation setDelegate:self];
+    [self hook_addAnimation:animation forKey:key];
+    
+    [self addObserver];
+}
 
 - (void)addObserver
 {
@@ -96,6 +111,15 @@
 - (void)willEnterForeground:(NSNotification *)natification
 {
     [self doAniamtion];
+}
+
+- (void)stopAniamtion
+{
+    self.animation = nil;
+    self.key = nil;
+    self.completeBlcok = nil;
+    
+    [self removeObserver];
 }
 
 #pragma mark - AnimationDelegate

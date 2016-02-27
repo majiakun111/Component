@@ -18,4 +18,6 @@ typedef void (^CompleteBlock)(void);
               forKey:(nullable NSString *)key
        completeBlock:(nullable CompleteBlock)completeBlock;
 
+- (void)stopAniamtion;
+
 @end

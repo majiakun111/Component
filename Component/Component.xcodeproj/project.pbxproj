@@ -13,8 +13,11 @@
 		5BBE60711C809EAF006D0595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE606F1C809EAF006D0595 /* Main.storyboard */; };
 		5BBE60731C809EAF006D0595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE60721C809EAF006D0595 /* Assets.xcassets */; };
 		5BBE60761C809EAF006D0595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE60741C809EAF006D0595 /* LaunchScreen.storyboard */; };
-		5BBE60831C809EBF006D0595 /* NSObject+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE607F1C809EBF006D0595 /* NSObject+Notification.m */; };
-		5BBE60841C809EBF006D0595 /* CALayer+Aniamtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60821C809EBF006D0595 /* CALayer+Aniamtion.m */; };
+		5BBE608A1C81E108006D0595 /* CALayer+Aniamtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60871C81E108006D0595 /* CALayer+Aniamtion.m */; };
+		5BBE608B1C81E108006D0595 /* NSObject+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60891C81E108006D0595 /* NSObject+Notification.m */; };
+		5BBE608E1C81E347006D0595 /* NSObject+MethodSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE608D1C81E347006D0595 /* NSObject+MethodSafe.m */; };
+		5BBE60911C81E492006D0595 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60901C81E492006D0595 /* Test.m */; };
+		5BBE60941C81E4FB006D0595 /* NSObject+SwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60931C81E4FB006D0595 /* NSObject+SwizzleMethod.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +31,16 @@
 		5BBE60721C809EAF006D0595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BBE60751C809EAF006D0595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BBE60771C809EAF006D0595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5BBE607E1C809EBF006D0595 /* NSObject+Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Notification.h"; sourceTree = "<group>"; };
-		5BBE607F1C809EBF006D0595 /* NSObject+Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notification.m"; sourceTree = "<group>"; };
-		5BBE60811C809EBF006D0595 /* CALayer+Aniamtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Aniamtion.h"; sourceTree = "<group>"; };
-		5BBE60821C809EBF006D0595 /* CALayer+Aniamtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Aniamtion.m"; sourceTree = "<group>"; };
+		5BBE60861C81E108006D0595 /* CALayer+Aniamtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Aniamtion.h"; sourceTree = "<group>"; };
+		5BBE60871C81E108006D0595 /* CALayer+Aniamtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Aniamtion.m"; sourceTree = "<group>"; };
+		5BBE60881C81E108006D0595 /* NSObject+Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Notification.h"; sourceTree = "<group>"; };
+		5BBE60891C81E108006D0595 /* NSObject+Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notification.m"; sourceTree = "<group>"; };
+		5BBE608C1C81E347006D0595 /* NSObject+MethodSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+MethodSafe.h"; path = "../../../../NSObject+MethodSafe.h"; sourceTree = "<group>"; };
+		5BBE608D1C81E347006D0595 /* NSObject+MethodSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MethodSafe.m"; path = "../../../../NSObject+MethodSafe.m"; sourceTree = "<group>"; };
+		5BBE608F1C81E492006D0595 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = ../../../Test.h; sourceTree = "<group>"; };
+		5BBE60901C81E492006D0595 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Test.m; path = ../../../Test.m; sourceTree = "<group>"; };
+		5BBE60921C81E4FB006D0595 /* NSObject+SwizzleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SwizzleMethod.h"; path = "../../../../NSObject+SwizzleMethod.h"; sourceTree = "<group>"; };
+		5BBE60931C81E4FB006D0595 /* NSObject+SwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SwizzleMethod.m"; path = "../../../../NSObject+SwizzleMethod.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +73,13 @@
 		5BBE60651C809EAF006D0595 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				5BBE607D1C809EBF006D0595 /* Notification */,
-				5BBE60801C809EBF006D0595 /* Animation */,
+				5BBE60851C81E108006D0595 /* Foundation */,
 				5BBE60691C809EAF006D0595 /* AppDelegate.h */,
 				5BBE606A1C809EAF006D0595 /* AppDelegate.m */,
 				5BBE606C1C809EAF006D0595 /* ViewController.h */,
 				5BBE606D1C809EAF006D0595 /* ViewController.m */,
+				5BBE608F1C81E492006D0595 /* Test.h */,
+				5BBE60901C81E492006D0595 /* Test.m */,
 				5BBE606F1C809EAF006D0595 /* Main.storyboard */,
 				5BBE60721C809EAF006D0595 /* Assets.xcassets */,
 				5BBE60741C809EAF006D0595 /* LaunchScreen.storyboard */,
@@ -87,22 +97,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5BBE607D1C809EBF006D0595 /* Notification */ = {
+		5BBE60851C81E108006D0595 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				5BBE607E1C809EBF006D0595 /* NSObject+Notification.h */,
-				5BBE607F1C809EBF006D0595 /* NSObject+Notification.m */,
+				5BBE60881C81E108006D0595 /* NSObject+Notification.h */,
+				5BBE60891C81E108006D0595 /* NSObject+Notification.m */,
+				5BBE60861C81E108006D0595 /* CALayer+Aniamtion.h */,
+				5BBE60871C81E108006D0595 /* CALayer+Aniamtion.m */,
+				5BBE608C1C81E347006D0595 /* NSObject+MethodSafe.h */,
+				5BBE608D1C81E347006D0595 /* NSObject+MethodSafe.m */,
+				5BBE60921C81E4FB006D0595 /* NSObject+SwizzleMethod.h */,
+				5BBE60931C81E4FB006D0595 /* NSObject+SwizzleMethod.m */,
 			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
-		5BBE60801C809EBF006D0595 /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				5BBE60811C809EBF006D0595 /* CALayer+Aniamtion.h */,
-				5BBE60821C809EBF006D0595 /* CALayer+Aniamtion.m */,
-			);
-			path = Animation;
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,11 +182,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BBE60831C809EBF006D0595 /* NSObject+Notification.m in Sources */,
 				5BBE606E1C809EAF006D0595 /* ViewController.m in Sources */,
+				5BBE608E1C81E347006D0595 /* NSObject+MethodSafe.m in Sources */,
 				5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */,
-				5BBE60841C809EBF006D0595 /* CALayer+Aniamtion.m in Sources */,
+				5BBE608A1C81E108006D0595 /* CALayer+Aniamtion.m in Sources */,
+				5BBE60911C81E492006D0595 /* Test.m in Sources */,
 				5BBE60681C809EAF006D0595 /* main.m in Sources */,
+				5BBE608B1C81E108006D0595 /* NSObject+Notification.m in Sources */,
+				5BBE60941C81E4FB006D0595 /* NSObject+SwizzleMethod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +340,7 @@
 				5BBE607C1C809EAF006D0595 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
