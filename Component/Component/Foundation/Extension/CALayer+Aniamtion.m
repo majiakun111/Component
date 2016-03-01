@@ -28,7 +28,7 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self swizzleMethod:@selector(addAnimation:forKey:) withMethod:@selector(hook_addAnimation:forKey:) forClass:[self class]];
+        [self swizzleMethod:@selector(addAnimation:forKey:) withMethod:@selector(hook_addAnimation:forKey:)];
     });
 }
 

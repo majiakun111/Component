@@ -11,22 +11,12 @@
 
 @implementation NSObject (SwizzleMethod)
 
-- (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel
+- (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel 
 {
-    return [self swizzleMethod:originalSel withMethod:swizzledSel forClass:[self class]];
+    return [[self class] swizzleMethod:originalSel withMethod:swizzledSel];
 }
 
 + (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel
-{
-    return [self swizzleMethod:originalSel withMethod:swizzledSel forClass:[self class]];
-}
-
-- (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel forClass:(Class)class
-{
-    return [[self class] swizzleMethod:originalSel withMethod:swizzledSel forClass:class];
-}
-
-+ (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel forClass:(Class)class
 {
     Method originalMethod = class_getInstanceMethod(self, originalSel);
     if (!originalMethod) {

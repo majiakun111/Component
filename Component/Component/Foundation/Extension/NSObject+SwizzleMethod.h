@@ -13,7 +13,4 @@
 + (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel;
 - (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel;
 
-+ (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel forClass:(Class)class;
-- (BOOL)swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel forClass:(Class)class;
-
 @end

@@ -46,10 +46,12 @@ int smartFunction(id sel,SEL fun,...)
 
 + (void)load
 {
+#if !DEBUG
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self swizzleMethod:@selector(forwardingTargetForSelector:) withMethod:@selector(safeForwardingTargetForSelector:)];
     });
+#endif
 }
 
 - (id)safeForwardingTargetForSelector:(SEL)sel
