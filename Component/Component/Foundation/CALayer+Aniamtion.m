@@ -41,12 +41,15 @@
     [self addAnimation:animation forKey:key];
 }
 
-- (void)doAniamtion
+- (void)stopAniamtion
 {
     [self removeAnimationForKey:self.key];
     
-    [self.animation setDelegate:self];
-    [self addAnimation:self.animation forKey:self.key];
+    self.animation = nil;
+    self.key = nil;
+    self.completeBlcok = nil;
+    
+    [self removeObserver];
 }
 
 #pragma mark - property
@@ -113,13 +116,12 @@
     [self doAniamtion];
 }
 
-- (void)stopAniamtion
+- (void)doAniamtion
 {
-    self.animation = nil;
-    self.key = nil;
-    self.completeBlcok = nil;
+    [self removeAnimationForKey:self.key];
     
-    [self removeObserver];
+    [self.animation setDelegate:self];
+    [self addAnimation:self.animation forKey:self.key];
 }
 
 #pragma mark - AnimationDelegate
