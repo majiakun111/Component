@@ -34,6 +34,10 @@
         return;
     }
     
+    if ([object isKindOfClass:[NSNull class]]) {
+        object = @"";
+    }
+    
     [self safe_setObject:object forKey:key];
 }
 

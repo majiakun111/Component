@@ -12,6 +12,7 @@
 		5B24E3451C87D9AE00F1A521 /* SwizzleCollectionMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3441C87D9AE00F1A521 /* SwizzleCollectionMethod.m */; };
 		5B24E3481C87EC2000F1A521 /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3471C87EC2000F1A521 /* NSMutableDictionary+Safe.m */; };
 		5B24E39E1C87ED5B00F1A521 /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E39D1C87ED5B00F1A521 /* NSDictionary+Safe.m */; };
+		5B24E3A11C883B4E00F1A521 /* NSTimer+Weak.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3A01C883B4E00F1A521 /* NSTimer+Weak.m */; };
 		5BBE60681C809EAF006D0595 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60671C809EAF006D0595 /* main.m */; };
 		5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE606A1C809EAF006D0595 /* AppDelegate.m */; };
 		5BBE606E1C809EAF006D0595 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE606D1C809EAF006D0595 /* ViewController.m */; };
@@ -35,6 +36,8 @@
 		5B24E3471C87EC2000F1A521 /* NSMutableDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Safe.m"; sourceTree = "<group>"; };
 		5B24E39C1C87ED5B00F1A521 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safe.h"; sourceTree = "<group>"; };
 		5B24E39D1C87ED5B00F1A521 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Safe.m"; sourceTree = "<group>"; };
+		5B24E39F1C883B4E00F1A521 /* NSTimer+Weak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Weak.h"; sourceTree = "<group>"; };
+		5B24E3A01C883B4E00F1A521 /* NSTimer+Weak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Weak.m"; sourceTree = "<group>"; };
 		5BBE60631C809EAF006D0595 /* Component.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Component.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE60671C809EAF006D0595 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BBE60691C809EAF006D0595 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				5BBE610A1C85536E006D0595 /* NSObject+Notification.m */,
 				5BBE610B1C85536E006D0595 /* NSObject+SwizzleMethod.h */,
 				5BBE610C1C85536E006D0595 /* NSObject+SwizzleMethod.m */,
+				5B24E39F1C883B4E00F1A521 /* NSTimer+Weak.h */,
+				5B24E3A01C883B4E00F1A521 /* NSTimer+Weak.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				5B24E3481C87EC2000F1A521 /* NSMutableDictionary+Safe.m in Sources */,
 				5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */,
 				5BBE610D1C85536E006D0595 /* CALayer+Aniamtion.m in Sources */,
+				5B24E3A11C883B4E00F1A521 /* NSTimer+Weak.m in Sources */,
 				5BBE60681C809EAF006D0595 /* main.m in Sources */,
 				5B24E39E1C87ED5B00F1A521 /* NSDictionary+Safe.m in Sources */,
 			);
