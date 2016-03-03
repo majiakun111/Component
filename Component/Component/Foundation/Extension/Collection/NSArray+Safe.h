@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSArray<__covariant ObjectType> (Safe)
+@interface NSArray (Safe)
 
 @end

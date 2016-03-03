@@ -8,25 +8,21 @@
 
 #import "NSArray+Safe.h"
 #import "NSObject+SwizzleMethod.h"
-#import <objc/runtime.h>
-
-@interface NSArray ()
-
-@end
+#import "SwizzleCollectionMethod.h"
 
 @implementation NSArray (Safe)
 
 + (void)load
 {
-//#if !DEBUG
+#if !DEBUG
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         Class arrayI = NSClassFromString(@"__NSArrayI");
-        [arrayI IOrM_swizzleMethod:@selector(objectAtIndex:) withMethod:@selector(safe_objectAtIndex:) ];
+        [SwizzleCollectionMethod swizzleCollectionMethod:@selector(objectAtIndex:) withMethod:@selector(safe_objectAtIndex:) forClass:arrayI];
         [self swizzleMethod:@selector(arrayByAddingObject:) withMethod:@selector(safe_arrayByAddingObject:)];
         [self swizzleMethod:@selector(indexOfObject:inRange:) withMethod:@selector(safe_indexOfObject:inRange:)];
     });
-//#endif
+#endif
 }
 
 - (id)safe_objectAtIndex:(NSInteger)index
@@ -56,35 +52,6 @@
     }
     
     return [self safe_indexOfObject:object inRange:range];
-}
-
-#pragma mark - PrivateMethod
-
-+ (BOOL)IOrM_swizzleMethod:(SEL)originalSel withMethod:(SEL)swizzledSel
-{
-    Method originalMethod = class_getInstanceMethod(self, originalSel);
-    if (!originalMethod) {
-        return NO;
-    }
-    
-    Method swizzleMethod = class_getInstanceMethod(self, swizzledSel);
-    if (!swizzleMethod) {
-        return NO;
-    }
-    
-    BOOL result = class_addMethod(self,
-                                  originalSel,
-                                  class_getMethodImplementation(self, swizzledSel),
-                                  method_getTypeEncoding(swizzleMethod));
-    if (result) {
-        const char *type = method_getTypeEncoding(swizzleMethod);
-        class_replaceMethod(self, originalSel, class_getMethodImplementation(self, swizzledSel), type);
-    }
-    else {
-        method_exchangeImplementations(originalMethod, swizzleMethod);
-    }
-    
-    return YES;
 }
 
 @end
