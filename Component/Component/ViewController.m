@@ -21,9 +21,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
-    [arr addObject:nil];
-    
 //    _aniamtionView = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 50, 50)];
 //    [_aniamtionView setBackgroundColor:[UIColor redColor]];
 //    [self.view addSubview:_aniamtionView];
