@@ -1,0 +1,45 @@
+//
+//  TableViewHeaderView.m
+//  Component
+//
+//  Created by Ansel on 16/3/7.
+//  Copyright © 2016年 PingAn. All rights reserved.
+//
+
+#import "TableViewHeaderOrFooterView.h"
+
+@implementation TableViewHeaderOrFooterView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self buildUI];
+    }
+    
+    return self;
+}
+
+- (void)buildUI
+{
+    
+}
+
+- (void)updateUI
+{
+
+}
+
+#pragma mark - property
+
+- (void)setItem:(__kindof HeaderOrFooterViewItem *)item
+{
+    if (_item != item) {
+        _item = nil;
+        _item = item;
+        
+        [self updateUI];
+    }
+}
+
+@end

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SizeDefine.h"
 
 @class RefreshView;
 @class LoadMoreView;
 
-@interface RefreshViewController : UIViewController<UIScrollViewDelegate>
+@interface RefreshViewController : UIViewController <UIScrollViewDelegate>
 {
     RefreshView *_refreshHeaderView;
     LoadMoreView *_loadMoreFooterView;

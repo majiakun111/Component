@@ -14,9 +14,6 @@
 #define OFFSET_THRESHOLD 65.0
 #define INSET  60.0f
 
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
-
 @interface RefreshViewController ()
 
 @property (nonatomic, assign) CGFloat currentContentOffsetY; //保存加载之前 scrollView的 contentOffsetY
