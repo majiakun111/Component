@@ -7,7 +7,7 @@
 //
 
 #import "TestTableViewController.h"
-#import "SectionItem.h"
+#import "TableViewSectionItem.h"
 #import "TestTableViewCellItem.h"
 #import "TestTableViewCell.h"
 #import "TestTableViewHeaderOrFooterViewItem.h"
@@ -21,7 +21,7 @@
     if (self) {
         self.sectionItems = [[NSMutableArray alloc] init];
         
-        SectionItem *sectionItem = [[SectionItem alloc] init];
+        TableViewSectionItem *sectionItem = [[TableViewSectionItem alloc] init];
         TestTableViewHeaderOrFooterViewItem *headerViewItem = [[TestTableViewHeaderOrFooterViewItem alloc] init];
         [headerViewItem setTitle:@"head"];
         headerViewItem.height = 20.0f;

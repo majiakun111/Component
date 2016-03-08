@@ -1,19 +1,21 @@
 //
-//  TableViewHeaderView.m
+//  CollectionViewReusableView.m
 //  Component
 //
 //  Created by Ansel on 16/3/7.
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "TableViewHeaderOrFooterView.h"
+#import "ReusableView.h"
+#import "ReusableViewItem.h"
 
-@implementation TableViewHeaderOrFooterView
+@implementation ReusableView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+    {
         [self buildUI];
     }
     
@@ -27,12 +29,12 @@
 
 - (void)updateUI
 {
-
+    
 }
 
 #pragma mark - property
 
-- (void)setItem:(__kindof HeaderOrFooterViewItem *)item
+- (void)setItem:(__kindof ReusableViewItem *)item
 {
     if (_item != item) {
         _item = nil;
@@ -41,5 +43,6 @@
         [self updateUI];
     }
 }
+
 
 @end

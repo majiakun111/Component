@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class CellItem;
+@class TableViewCellItem;
 @class HeaderOrFooterViewItem;
 
 @interface TableViewRelativeHeightHelper : NSObject
 
-- (CGFloat)getCellHeightWithItem:(CellItem *)item cellClass:(Class)cellClass;
+- (CGFloat)getCellHeightWithItem:(TableViewCellItem *)item cellClass:(Class)cellClass;
 
 - (CGFloat)getHeaderOrFooterHeightWithItem:(HeaderOrFooterViewItem *)item headerClass:(Class)headerClass;
 

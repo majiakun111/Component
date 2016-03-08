@@ -6,14 +6,16 @@
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "SectionItem.h"
+#import "TableViewSectionItem.h"
 
-@implementation SectionItem
+@implementation TableViewSectionItem
 
-- (NSMutableArray<__kindof CellItem *> *)cellItems {
+- (NSMutableArray<__kindof TableViewCellItem *> *)cellItems
+{
     if (_cellItems == nil) {
         _cellItems = [NSMutableArray array];
     }
+    
     return _cellItems;
 }
 

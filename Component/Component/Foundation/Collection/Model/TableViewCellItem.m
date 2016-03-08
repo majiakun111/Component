@@ -10,4 +10,14 @@
 
 @implementation TableViewCellItem
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _height = 40.0f;
+    }
+    
+    return self;
+}
+
 @end

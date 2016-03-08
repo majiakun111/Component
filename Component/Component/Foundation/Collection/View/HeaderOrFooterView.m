@@ -1,15 +1,15 @@
 //
-//  CollectionViewCell.m
+//  TableViewHeaderView.m
 //  Component
 //
-//  Created by Ansel on 16/3/4.
+//  Created by Ansel on 16/3/7.
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "CollectionViewCell.h"
-#import "CollectionViewCellItem.h"
+#import "HeaderOrFooterView.h"
+#import "HeaderOrFooterViewItem.h"
 
-@implementation CollectionViewCell
+@implementation HeaderOrFooterView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -28,12 +28,12 @@
 
 - (void)updateUI
 {
-    
+
 }
 
 #pragma mark - property
 
-- (void)setItem:(__kindof CollectionViewCellItem *)item
+- (void)setItem:(__kindof HeaderOrFooterViewItem *)item
 {
     if (_item != item) {
         _item = nil;

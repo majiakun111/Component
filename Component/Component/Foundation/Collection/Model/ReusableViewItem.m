@@ -1,20 +1,20 @@
 //
-//  HeaderOrFooterItem.m
+//  CollectionViewReusableViewItem.m
 //  Component
 //
-//  Created by Ansel on 16/3/4.
+//  Created by Ansel on 16/3/8.
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "HeaderOrFooterViewItem.h"
+#import "ReusableViewItem.h"
 
-@implementation HeaderOrFooterViewItem
+@implementation ReusableViewItem
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        _height = 0.0f;
+        _size = CGSizeZero;
     }
     
     return self;

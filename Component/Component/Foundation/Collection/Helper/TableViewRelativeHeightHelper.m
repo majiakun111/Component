@@ -13,12 +13,12 @@
 
 @implementation TableViewRelativeHeightHelper
 
-- (CGFloat)getCellHeightWithItem:(CellItem *)item cellClass:(Class)cellClass
+- (CGFloat)getCellHeightWithItem:(TableViewCellItem *)item cellClass:(Class)cellClass
 {
     CGFloat height = 0.0;
     
-    if ([cellClass isSubclassOfClass:[TableViewCell class]]) {
-        height = [(TableViewCellItem *)item height];
+    if ([item respondsToSelector:@selector(height)]) {
+        height = [item height];
     }
     
     return height;
@@ -26,7 +26,13 @@
 
 - (CGFloat)getHeaderOrFooterHeightWithItem:(HeaderOrFooterViewItem *)item headerClass:(Class)headerClass
 {
-    return item.height;
+    CGFloat height = 0.0;
+    
+    if ([item respondsToSelector:@selector(height)]) {
+        height = [item height];
+    }
+    
+    return height;
 }
 
 @end

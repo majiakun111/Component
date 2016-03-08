@@ -6,9 +6,9 @@
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "CellItem.h"
+#import <UIKit/UIKit.h>
 
-@interface TableViewCellItem : CellItem
+@interface TableViewCellItem : NSObject
 
 @property (nonatomic, assign) CGFloat height;
 

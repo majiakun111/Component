@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CellItem;
+@class TableViewCellItem;
 
 @protocol TableViewCellDelegate <NSObject>
 @optional
@@ -17,7 +17,7 @@
 
 @interface TableViewCell : UITableViewCell
 
-@property (nonatomic, strong) __kindof CellItem *item; //通常是 __kindof  TableViewCellItem
+@property (nonatomic, strong) __kindof TableViewCellItem *item; //通常是 __kindof  TableViewCellItem
 
 @property (nonatomic, weak) id <TableViewCellDelegate> delegate;
 

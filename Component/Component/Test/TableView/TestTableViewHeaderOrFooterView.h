@@ -6,8 +6,8 @@
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "TableViewHeaderOrFooterView.h"
+#import "HeaderOrFooterView.h"
 
-@interface TestTableViewHeaderOrFooterView : TableViewHeaderOrFooterView
+@interface TestTableViewHeaderOrFooterView : HeaderOrFooterView
 
 @end

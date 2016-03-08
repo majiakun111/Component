@@ -8,6 +8,7 @@
 
 #import "TableViewCell.h"
 #import "CommonDefine.h"
+#import "TableViewCellItem.h"
 
 @implementation TableViewCell
 
@@ -33,7 +34,7 @@
 
 #pragma mark - property
 
-- (void)setItem:(__kindof CellItem *)item
+- (void)setItem:(__kindof TableViewCellItem *)item
 {
     if (_item != item) {
         _item = nil;

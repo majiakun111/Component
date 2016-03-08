@@ -10,4 +10,14 @@
 
 @implementation CollectionViewCellItem
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _size = CGSizeMake(100, 100);
+    }
+    
+    return self;
+}
+
 @end

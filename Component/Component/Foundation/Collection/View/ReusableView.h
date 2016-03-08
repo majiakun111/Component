@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class ReusableViewItem;
+
 //header 和 footer
-@interface CollectionViewReusableView : UICollectionReusableView
+@interface ReusableView : UICollectionReusableView
+
+@property (nonatomic, strong) __kindof ReusableViewItem *item;
+
+- (void)buildUI;
+
+- (void)updateUI;
 
 @end

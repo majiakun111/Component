@@ -10,7 +10,7 @@
 
 @class HeaderOrFooterViewItem;
 
-@interface TableViewHeaderOrFooterView : UIView
+@interface HeaderOrFooterView : UIView
 
 @property (nonatomic, strong) __kindof HeaderOrFooterViewItem *item;
 

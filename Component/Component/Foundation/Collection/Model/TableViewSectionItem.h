@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HeaderOrFooterViewItem.h"
 
-@class CellItem;
+@class TableViewCellItem;
+@class HeaderOrFooterViewItem;
 
-@interface SectionItem : NSObject
+@interface TableViewSectionItem : NSObject
 
 @property (nonatomic, strong) __kindof HeaderOrFooterViewItem *headerViewItem;
-@property (nonatomic, strong) NSMutableArray<__kindof CellItem *> *cellItems;
+@property (nonatomic, strong) NSMutableArray<__kindof TableViewCellItem *> *cellItems;
 @property (nonatomic, strong) __kindof HeaderOrFooterViewItem *footerViewItem;
 
 @end

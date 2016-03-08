@@ -7,10 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CollectionViewCellItem.h"
+
+@protocol CollectionViewCellDelegate <NSObject>
+@optional
+
+@end
+
+@class CollectionViewCellItem;
 
 @interface CollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) __kindof CollectionViewCellItem *item;
+
+@property (nonatomic, weak) id <CollectionViewCellDelegate> delegate;
+
+- (void)buildUI;
+
+- (void)updateUI;
 
 @end
