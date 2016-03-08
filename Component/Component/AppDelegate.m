@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "TestTableViewController.h"
+#import "TestCollectionViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +20,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    TestTableViewController *rootViewController = [[TestTableViewController alloc] init];
+    TestCollectionViewController *rootViewController = [[TestCollectionViewController alloc] init];
     UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     self.window.rootViewController = rootNavigationController;
     

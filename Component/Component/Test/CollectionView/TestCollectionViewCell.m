@@ -1,25 +1,25 @@
 //
-//  TestTableViewCell.m
+//  TestCollectionViewCell.m
 //  Component
 //
-//  Created by Ansel on 16/3/7.
+//  Created by Ansel on 16/3/8.
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "TestTableViewCell.h"
-#import "TestTableViewCellItem.h"
+#import "TestCollectionViewCell.h"
+#import "TestCollectionViewCellItem.h"
 
-@interface TestTableViewCell ()
+@interface TestCollectionViewCell ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
-@implementation TestTableViewCell
+@implementation TestCollectionViewCell
 
 - (void)buildUI
 {
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     [_titleLabel setBackgroundColor:[UIColor yellowColor]];
     [_titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     
@@ -30,8 +30,9 @@
 {
     [super updateUI];
     
-    TestTableViewCellItem *item = self.item;
+    TestCollectionViewCellItem *item = self.item;
     self.titleLabel.text = [item title];
 }
+
 
 @end

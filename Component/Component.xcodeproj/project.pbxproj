@@ -52,6 +52,9 @@
 		5BF78E3D1C8F284F00648444 /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E361C8F284F00648444 /* TestTableViewController.m */; };
 		5BF78E3E1C8F284F00648444 /* TestTableViewHeaderOrFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E381C8F284F00648444 /* TestTableViewHeaderOrFooterView.m */; };
 		5BF78E3F1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E3A1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m */; };
+		5BF78E441C8F29F000648444 /* TestCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E431C8F29F000648444 /* TestCollectionViewCell.m */; };
+		5BF78E471C8F2A4D00648444 /* TestCollectionViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E461C8F2A4D00648444 /* TestCollectionViewCellItem.m */; };
+		5BF78E4A1C8F2ABC00648444 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E491C8F2ABC00648444 /* TestCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,6 +150,12 @@
 		5BF78E381C8F284F00648444 /* TestTableViewHeaderOrFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewHeaderOrFooterView.m; sourceTree = "<group>"; };
 		5BF78E391C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewHeaderOrFooterViewItem.h; sourceTree = "<group>"; };
 		5BF78E3A1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewHeaderOrFooterViewItem.m; sourceTree = "<group>"; };
+		5BF78E421C8F29F000648444 /* TestCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewCell.h; sourceTree = "<group>"; };
+		5BF78E431C8F29F000648444 /* TestCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewCell.m; sourceTree = "<group>"; };
+		5BF78E451C8F2A4D00648444 /* TestCollectionViewCellItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewCellItem.h; sourceTree = "<group>"; };
+		5BF78E461C8F2A4D00648444 /* TestCollectionViewCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewCellItem.m; sourceTree = "<group>"; };
+		5BF78E481C8F2ABC00648444 /* TestCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewController.h; sourceTree = "<group>"; };
+		5BF78E491C8F2ABC00648444 /* TestCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +373,7 @@
 		5BF78E2F1C8F284F00648444 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				5BF78E411C8F29CE00648444 /* CollectionView */,
 				5BF78E301C8F284F00648444 /* TableView */,
 			);
 			path = Test;
@@ -384,6 +394,19 @@
 				5BF78E3A1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		5BF78E411C8F29CE00648444 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5BF78E421C8F29F000648444 /* TestCollectionViewCell.h */,
+				5BF78E431C8F29F000648444 /* TestCollectionViewCell.m */,
+				5BF78E451C8F2A4D00648444 /* TestCollectionViewCellItem.h */,
+				5BF78E461C8F2A4D00648444 /* TestCollectionViewCellItem.m */,
+				5BF78E481C8F2ABC00648444 /* TestCollectionViewController.h */,
+				5BF78E491C8F2ABC00648444 /* TestCollectionViewController.m */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,6 +484,7 @@
 				5BF78E3E1C8F284F00648444 /* TestTableViewHeaderOrFooterView.m in Sources */,
 				5B24E3AB1C88447300F1A521 /* LoadMoreView.m in Sources */,
 				5B24E49E1C896C7C00F1A521 /* RefreshViewController+LoadingTips.m in Sources */,
+				5BF78E4A1C8F2ABC00648444 /* TestCollectionViewController.m in Sources */,
 				5B24E49F1C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.m in Sources */,
 				5B24E49B1C896C7C00F1A521 /* BaseLoadingTips.m in Sources */,
 				5BF78E3D1C8F284F00648444 /* TestTableViewController.m in Sources */,
@@ -495,8 +519,10 @@
 				5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */,
 				5BF78E2E1C8F1CAE00648444 /* CollectionViewSectionItem.m in Sources */,
 				5BBE610D1C85536E006D0595 /* CALayer+Aniamtion.m in Sources */,
+				5BF78E471C8F2A4D00648444 /* TestCollectionViewCellItem.m in Sources */,
 				5B24E3A11C883B4E00F1A521 /* NSTimer+Weak.m in Sources */,
 				5BBE60681C809EAF006D0595 /* main.m in Sources */,
+				5BF78E441C8F29F000648444 /* TestCollectionViewCell.m in Sources */,
 				5B24E39E1C87ED5B00F1A521 /* NSDictionary+Safe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

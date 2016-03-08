@@ -35,10 +35,15 @@
     [self mapItemClassToViewClass];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    self.collectionView.contentInset = UIEdgeInsetsZero;
+}
+
 - (void)buildUI
 {
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    
+
     [self buildCollectionView];
 }
 
@@ -52,12 +57,12 @@
         rect = CGRectMake(0, STATUS_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:self.collectionViewFlowLayout];
-    [_collectionView setBackgroundColor:[UIColor clearColor]];
-    [_collectionView setDelegate:self];
-    [_collectionView setDataSource:self];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:self.collectionViewFlowLayout];
+    [self.collectionView  setBackgroundColor:[UIColor redColor]];
+    [self.collectionView  setDelegate:self];
+    [self.collectionView  setDataSource:self];
     
-    [self.view addSubview:_collectionView];
+    [self.view addSubview:self.collectionView];
 }
 
 - (void)mapCellClass:(Class)cellClass cellItemClass:(Class)cellItemClass
@@ -151,8 +156,8 @@
 {
     CollectionViewCellItem *item = nil;
     do {
-        CollectionViewSectionItem *sectionItem = [self sectionItemForSectionIndex:indexPath.row];
-        if (sectionItem) {
+        CollectionViewSectionItem *sectionItem = [self sectionItemForSectionIndex:indexPath.section];
+        if (!sectionItem) {
             break;
         }
         
@@ -236,12 +241,14 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [self.sectionItems count];
+    CGFloat sections = [self.sectionItems count];
+    return sections;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self numOfRowsInSection:section];
+    CGFloat rows = [self numOfRowsInSection:section];
+    return rows;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -267,7 +274,7 @@
     ReusableView *reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:reuseableViewIdentifier forIndexPath:indexPath];
     [reusableView setItem:item];
     
-    return reusableView;
+    return reusableView ? reusableView : [[ReusableView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -278,26 +285,6 @@
 }
 
 #pragma mark --UICollectionViewDelegateFlowLayout
-
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
-    return item.inset;
-}
-
-//调整列的间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
-    return item.minimumInteritemSpacing;
-}
-
-//调整行的间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
-    return item.minimumLineSpacing;
-}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -320,5 +307,24 @@
     return size;
 }
 
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
+    return item.inset;
+}
+
+//调整列的间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
+    return item.minimumInteritemSpacing;
+}
+
+//调整行的间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
+    return item.minimumLineSpacing;
+}
 
 @end
