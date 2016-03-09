@@ -37,6 +37,8 @@
 
 - (void)viewDidLayoutSubviews
 {
+    [super viewDidLayoutSubviews];
+    
     self.collectionView.contentInset = UIEdgeInsetsZero;
 }
 
@@ -58,7 +60,7 @@
     }
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:self.collectionViewFlowLayout];
-    [self.collectionView  setBackgroundColor:[UIColor redColor]];
+    [self.collectionView  setBackgroundColor:[UIColor clearColor]];
     [self.collectionView  setDelegate:self];
     [self.collectionView  setDataSource:self];
     

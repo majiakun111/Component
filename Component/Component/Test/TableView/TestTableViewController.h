@@ -6,8 +6,8 @@
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "TableViewController.h"
+#import "RemoteTableViewController.h"
 
-@interface TestTableViewController : TableViewController
+@interface TestTableViewController : RemoteTableViewController
 
 @end

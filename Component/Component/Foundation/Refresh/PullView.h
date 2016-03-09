@@ -24,6 +24,9 @@ typedef enum{
 #define REAL_WIDTH 94.0f //(image + label 及他们之间的间隙 所占的大小)
 #define ANIMATION_TIME 0.2
 
+#define OFFSET_THRESHOLD 65.0
+#define INSET  60.0f
+
 @interface PullView : UIView
 {
     UILabel *_statusLabel;
@@ -42,8 +45,16 @@ typedef enum{
 @property (nonatomic, copy) NSString *pullingStatusText;
 @property (nonatomic, copy) NSString *loadingStatusText;
 
+@property (nonatomic, weak) __kindof UIScrollView *scrollView;
+
 - (id)initWithFrame:(CGRect)frame arrowImage:(NSString *)arrowImagName;
 
+- (void)buildUI;
+
 - (void)setState:(EGOPullState)aState;
+
+- (void)scrollViewContentSizeDidChange:(NSDictionary *)change;
+- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change;
+- (void)scrollViewPanStateDidChange:(NSDictionary *)change;
 
 @end

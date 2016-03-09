@@ -6,8 +6,8 @@
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "CollectionViewController.h"
+#import "RemoteCollectionViewController.h"
 
-@interface TestCollectionViewController : CollectionViewController
+@interface TestCollectionViewController : RemoteCollectionViewController
 
 @end

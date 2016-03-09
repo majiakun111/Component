@@ -28,14 +28,7 @@
 		5B24E3AB1C88447300F1A521 /* LoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3A41C88447300F1A521 /* LoadMoreView.m */; };
 		5B24E3AC1C88447300F1A521 /* PullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3A61C88447300F1A521 /* PullView.m */; };
 		5B24E3AD1C88447300F1A521 /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3A81C88447300F1A521 /* RefreshView.m */; };
-		5B24E3AE1C88447300F1A521 /* RefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3AA1C88447300F1A521 /* RefreshViewController.m */; };
 		5B24E3B11C88449900F1A521 /* UIView+Coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3B01C88449900F1A521 /* UIView+Coordinate.m */; };
-		5B24E49B1C896C7C00F1A521 /* BaseLoadingTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E48F1C896C7C00F1A521 /* BaseLoadingTips.m */; };
-		5B24E49C1C896C7C00F1A521 /* BaseNetworkErrorTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E4911C896C7C00F1A521 /* BaseNetworkErrorTips.m */; };
-		5B24E49D1C896C7C00F1A521 /* BaseNotDataTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E4931C896C7C00F1A521 /* BaseNotDataTips.m */; };
-		5B24E49E1C896C7C00F1A521 /* RefreshViewController+LoadingTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E4951C896C7C00F1A521 /* RefreshViewController+LoadingTips.m */; };
-		5B24E49F1C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E4971C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.m */; };
-		5B24E4A01C896C7C00F1A521 /* RefreshViewController+NotDataTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E4991C896C7C00F1A521 /* RefreshViewController+NotDataTips.m */; };
 		5BBE60681C809EAF006D0595 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60671C809EAF006D0595 /* main.m */; };
 		5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE606A1C809EAF006D0595 /* AppDelegate.m */; };
 		5BBE60731C809EAF006D0595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE60721C809EAF006D0595 /* Assets.xcassets */; };
@@ -46,6 +39,9 @@
 		5BBE61121C85536E006D0595 /* NSObject+SwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE610C1C85536E006D0595 /* NSObject+SwizzleMethod.m */; };
 		5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C21D1C8FC22F00FBF149 /* TestReuseableView.m */; };
 		5BC8C2211C8FC23C00FBF149 /* TestReusableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C2201C8FC23C00FBF149 /* TestReusableViewItem.m */; };
+		5BC8C22C1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C22B1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m */; };
+		5BC8C22F1C9087C300FBF149 /* RemoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C22E1C9087C300FBF149 /* RemoteTableViewController.m */; };
+		5BC8C2321C908E2200FBF149 /* RemoteCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C2311C908E2200FBF149 /* RemoteCollectionViewController.m */; };
 		5BF78E281C8F0DF700648444 /* ReusableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E271C8F0DF700648444 /* ReusableViewItem.m */; };
 		5BF78E2B1C8F168100648444 /* CollectionViewRelativeSizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E2A1C8F168100648444 /* CollectionViewRelativeSizeHelper.m */; };
 		5BF78E2E1C8F1CAE00648444 /* CollectionViewSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E2D1C8F1CAE00648444 /* CollectionViewSectionItem.m */; };
@@ -104,23 +100,8 @@
 		5B24E3A61C88447300F1A521 /* PullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullView.m; sourceTree = "<group>"; };
 		5B24E3A71C88447300F1A521 /* RefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshView.h; sourceTree = "<group>"; };
 		5B24E3A81C88447300F1A521 /* RefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshView.m; sourceTree = "<group>"; };
-		5B24E3A91C88447300F1A521 /* RefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshViewController.h; sourceTree = "<group>"; };
-		5B24E3AA1C88447300F1A521 /* RefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshViewController.m; sourceTree = "<group>"; };
 		5B24E3AF1C88449900F1A521 /* UIView+Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Coordinate.h"; sourceTree = "<group>"; };
 		5B24E3B01C88449900F1A521 /* UIView+Coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Coordinate.m"; sourceTree = "<group>"; };
-		5B24E48E1C896C7C00F1A521 /* BaseLoadingTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLoadingTips.h; sourceTree = "<group>"; };
-		5B24E48F1C896C7C00F1A521 /* BaseLoadingTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLoadingTips.m; sourceTree = "<group>"; };
-		5B24E4901C896C7C00F1A521 /* BaseNetworkErrorTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetworkErrorTips.h; sourceTree = "<group>"; };
-		5B24E4911C896C7C00F1A521 /* BaseNetworkErrorTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetworkErrorTips.m; sourceTree = "<group>"; };
-		5B24E4921C896C7C00F1A521 /* BaseNotDataTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNotDataTips.h; sourceTree = "<group>"; };
-		5B24E4931C896C7C00F1A521 /* BaseNotDataTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNotDataTips.m; sourceTree = "<group>"; };
-		5B24E4941C896C7C00F1A521 /* RefreshViewController+LoadingTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RefreshViewController+LoadingTips.h"; sourceTree = "<group>"; };
-		5B24E4951C896C7C00F1A521 /* RefreshViewController+LoadingTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RefreshViewController+LoadingTips.m"; sourceTree = "<group>"; };
-		5B24E4961C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RefreshViewController+NetworkErrorTips.h"; sourceTree = "<group>"; };
-		5B24E4971C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RefreshViewController+NetworkErrorTips.m"; sourceTree = "<group>"; };
-		5B24E4981C896C7C00F1A521 /* RefreshViewController+NotDataTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RefreshViewController+NotDataTips.h"; sourceTree = "<group>"; };
-		5B24E4991C896C7C00F1A521 /* RefreshViewController+NotDataTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RefreshViewController+NotDataTips.m"; sourceTree = "<group>"; };
-		5B24E49A1C896C7C00F1A521 /* TipsDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsDefine.h; sourceTree = "<group>"; };
 		5BBE60631C809EAF006D0595 /* Component.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Component.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE60671C809EAF006D0595 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BBE60691C809EAF006D0595 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -140,6 +121,12 @@
 		5BC8C21D1C8FC22F00FBF149 /* TestReuseableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReuseableView.m; sourceTree = "<group>"; };
 		5BC8C21F1C8FC23C00FBF149 /* TestReusableViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestReusableViewItem.h; sourceTree = "<group>"; };
 		5BC8C2201C8FC23C00FBF149 /* TestReusableViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReusableViewItem.m; sourceTree = "<group>"; };
+		5BC8C22A1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+RefreshAndLoadMore.h"; sourceTree = "<group>"; };
+		5BC8C22B1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+RefreshAndLoadMore.m"; sourceTree = "<group>"; };
+		5BC8C22D1C9087C300FBF149 /* RemoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteTableViewController.h; sourceTree = "<group>"; };
+		5BC8C22E1C9087C300FBF149 /* RemoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteTableViewController.m; sourceTree = "<group>"; };
+		5BC8C2301C908E2200FBF149 /* RemoteCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteCollectionViewController.h; sourceTree = "<group>"; };
+		5BC8C2311C908E2200FBF149 /* RemoteCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteCollectionViewController.m; sourceTree = "<group>"; };
 		5BF78E261C8F0DF700648444 /* ReusableViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReusableViewItem.h; sourceTree = "<group>"; };
 		5BF78E271C8F0DF700648444 /* ReusableViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableViewItem.m; sourceTree = "<group>"; };
 		5BF78E291C8F168100648444 /* CollectionViewRelativeSizeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewRelativeSizeHelper.h; sourceTree = "<group>"; };
@@ -193,6 +180,10 @@
 				5B15A2481C89E0D800764E8C /* TableViewController.m */,
 				5B15A2591C89E1FF00764E8C /* CollectionViewController.h */,
 				5B15A25A1C89E1FF00764E8C /* CollectionViewController.m */,
+				5BC8C22D1C9087C300FBF149 /* RemoteTableViewController.h */,
+				5BC8C22E1C9087C300FBF149 /* RemoteTableViewController.m */,
+				5BC8C2301C908E2200FBF149 /* RemoteCollectionViewController.h */,
+				5BC8C2311C908E2200FBF149 /* RemoteCollectionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -273,35 +264,14 @@
 			children = (
 				5B24E3A51C88447300F1A521 /* PullView.h */,
 				5B24E3A61C88447300F1A521 /* PullView.m */,
-				5B24E3A31C88447300F1A521 /* LoadMoreView.h */,
-				5B24E3A41C88447300F1A521 /* LoadMoreView.m */,
 				5B24E3A71C88447300F1A521 /* RefreshView.h */,
 				5B24E3A81C88447300F1A521 /* RefreshView.m */,
-				5B24E3A91C88447300F1A521 /* RefreshViewController.h */,
-				5B24E3AA1C88447300F1A521 /* RefreshViewController.m */,
-				5B24E48D1C896C7C00F1A521 /* Tips */,
+				5B24E3A31C88447300F1A521 /* LoadMoreView.h */,
+				5B24E3A41C88447300F1A521 /* LoadMoreView.m */,
+				5BC8C22A1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.h */,
+				5BC8C22B1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m */,
 			);
 			path = Refresh;
-			sourceTree = "<group>";
-		};
-		5B24E48D1C896C7C00F1A521 /* Tips */ = {
-			isa = PBXGroup;
-			children = (
-				5B24E4941C896C7C00F1A521 /* RefreshViewController+LoadingTips.h */,
-				5B24E4951C896C7C00F1A521 /* RefreshViewController+LoadingTips.m */,
-				5B24E4961C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.h */,
-				5B24E4971C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.m */,
-				5B24E4981C896C7C00F1A521 /* RefreshViewController+NotDataTips.h */,
-				5B24E4991C896C7C00F1A521 /* RefreshViewController+NotDataTips.m */,
-				5B24E49A1C896C7C00F1A521 /* TipsDefine.h */,
-				5B24E48E1C896C7C00F1A521 /* BaseLoadingTips.h */,
-				5B24E48F1C896C7C00F1A521 /* BaseLoadingTips.m */,
-				5B24E4901C896C7C00F1A521 /* BaseNetworkErrorTips.h */,
-				5B24E4911C896C7C00F1A521 /* BaseNetworkErrorTips.m */,
-				5B24E4921C896C7C00F1A521 /* BaseNotDataTips.h */,
-				5B24E4931C896C7C00F1A521 /* BaseNotDataTips.m */,
-			);
-			path = Tips;
 			sourceTree = "<group>";
 		};
 		5BBE605A1C809EAF006D0595 = {
@@ -488,22 +458,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BC8C2321C908E2200FBF149 /* RemoteCollectionViewController.m in Sources */,
 				5B15A2521C89E15700764E8C /* TableViewSectionItem.m in Sources */,
 				5B15A25E1C89E25000764E8C /* CollectionViewCell.m in Sources */,
 				5B15A2661C8A85DD00764E8C /* TableViewCellItem.m in Sources */,
 				5BF78E3E1C8F284F00648444 /* TestTableViewHeaderOrFooterView.m in Sources */,
 				5B24E3AB1C88447300F1A521 /* LoadMoreView.m in Sources */,
-				5B24E49E1C896C7C00F1A521 /* RefreshViewController+LoadingTips.m in Sources */,
 				5BF78E4A1C8F2ABC00648444 /* TestCollectionViewController.m in Sources */,
-				5B24E49F1C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.m in Sources */,
-				5B24E49B1C896C7C00F1A521 /* BaseLoadingTips.m in Sources */,
 				5BF78E3D1C8F284F00648444 /* TestTableViewController.m in Sources */,
 				5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */,
 				5B15A2DB1C8DB9CD00764E8C /* ReusableView.m in Sources */,
 				5B24E3B11C88449900F1A521 /* UIView+Coordinate.m in Sources */,
-				5B24E49D1C896C7C00F1A521 /* BaseNotDataTips.m in Sources */,
 				5B15A25B1C89E1FF00764E8C /* CollectionViewController.m in Sources */,
-				5B24E49C1C896C7C00F1A521 /* BaseNetworkErrorTips.m in Sources */,
 				5BF78E3F1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m in Sources */,
 				5B15A24A1C89E0D800764E8C /* TableViewController.m in Sources */,
 				5B15A2D21C8D787500764E8C /* HeaderOrFooterView.m in Sources */,
@@ -520,14 +486,14 @@
 				5B15A2691C8A85ED00764E8C /* CollectionViewCellItem.m in Sources */,
 				5BC8C2211C8FC23C00FBF149 /* TestReusableViewItem.m in Sources */,
 				5B24E3AC1C88447300F1A521 /* PullView.m in Sources */,
-				5B24E4A01C896C7C00F1A521 /* RefreshViewController+NotDataTips.m in Sources */,
 				5B15A2581C89E19C00764E8C /* HeaderOrFooterViewItem.m in Sources */,
 				5BF78E3C1C8F284F00648444 /* TestTableViewCellItem.m in Sources */,
 				5BBE61121C85536E006D0595 /* NSObject+SwizzleMethod.m in Sources */,
 				5B24E3421C87D8AB00F1A521 /* NSMutableArray+Safe.m in Sources */,
 				5B24E3481C87EC2000F1A521 /* NSMutableDictionary+Safe.m in Sources */,
+				5BC8C22C1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m in Sources */,
 				5B15A24F1C89E12200764E8C /* TableViewCell.m in Sources */,
-				5B24E3AE1C88447300F1A521 /* RefreshViewController.m in Sources */,
+				5BC8C22F1C9087C300FBF149 /* RemoteTableViewController.m in Sources */,
 				5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */,
 				5BF78E2E1C8F1CAE00648444 /* CollectionViewSectionItem.m in Sources */,
 				5BBE610D1C85536E006D0595 /* CALayer+Aniamtion.m in Sources */,

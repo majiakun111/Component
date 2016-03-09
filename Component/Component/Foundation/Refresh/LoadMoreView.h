@@ -8,6 +8,14 @@
 
 #import "PullView.h"
 
+typedef void (^LoadingBlock)();
+
 @interface LoadMoreView : PullView
+
+@property (nonatomic, assign) BOOL hasMore;
+
++ (instancetype)loadMoreWithFrame:(CGRect)frame loadingBlock:(LoadingBlock)loadingBlock;
+
+- (void)stopLoading;
 
 @end

@@ -15,10 +15,12 @@
 
 @implementation TestCollectionViewController
 
-- (instancetype)init
+
+-(void)doRefresh
 {
-    self = [super init];
-    if (self) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.collectionView.refreshView stopRefreshing];
+        
         self.sectionItems = [[NSMutableArray alloc] init];
         
         CollectionViewSectionItem *sectionItem = [[CollectionViewSectionItem alloc] init];
@@ -43,9 +45,28 @@
         [sectionItem setCellItems:cellItems];
         
         [self.sectionItems addObject:sectionItem];
-    }
+        
+        [self reloadData];
+    });
+}
+
+- (void)loadMore
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.collectionView.loadMoreView stopLoading];
+        
+        for (int i = 101; i < 200; i++) {
+            TestCollectionViewCellItem *cellItem =  [[TestCollectionViewCellItem alloc] init];
+            [cellItem setTitle:[NSString stringWithFormat:@"%d", i]];
+            cellItem.size = CGSizeMake(80, 80);
+            
+            [[[self.sectionItems lastObject] cellItems] addObject:cellItem];
+        }
+        
+        [self reloadData];
+    });
     
-    return self;
 }
 
 - (void)mapItemClassToViewClass;

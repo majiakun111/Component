@@ -26,10 +26,10 @@
 
 + (void)load
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self swizzleMethod:@selector(addAnimation:forKey:) withMethod:@selector(hook_addAnimation:forKey:)];
-    });
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [self swizzleMethod:@selector(addAnimation:forKey:) withMethod:@selector(hook_addAnimation:forKey:)];
+//    });
 }
 
 - (void)addAnimation:(nonnull CAAnimation *)animation

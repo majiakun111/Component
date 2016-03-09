@@ -15,10 +15,11 @@
 
 @implementation TestTableViewController
 
-- (instancetype)init
+-(void)doRefresh
 {
-    self = [super init];
-    if (self) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView.refreshView stopRefreshing];
+        
         self.sectionItems = [[NSMutableArray alloc] init];
         
         TableViewSectionItem *sectionItem = [[TableViewSectionItem alloc] init];
@@ -33,7 +34,7 @@
         [sectionItem setFooterViewItem:footerViewItem];
         
         NSMutableArray *cellItems = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 30; i++) {
             TestTableViewCellItem *cellItem =  [[TestTableViewCellItem alloc] init];
             [cellItem setTitle:[NSString stringWithFormat:@"%d", i]];
             cellItem.height = 50;
@@ -42,10 +43,29 @@
         
         [sectionItem setCellItems:cellItems];
         
-        [self.sectionItems addObject:sectionItem];        
-    }
+        [self.sectionItems addObject:sectionItem];
+        
+        [self reloadData];
+    });
+}
+
+- (void)loadMore
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.tableView.loadMoreView stopLoading];
+        
+        for (int i = 31; i < 60; i++) {
+            TestTableViewCellItem *cellItem =  [[TestTableViewCellItem alloc] init];
+            [cellItem setTitle:[NSString stringWithFormat:@"%d", i]];
+            cellItem.height = 50;
+            
+            [[[self.sectionItems lastObject] cellItems] addObject:cellItem];
+        }
+        
+        [self reloadData];
+    });
     
-    return self;
 }
 
 - (void)mapItemClassToViewClass;
@@ -53,7 +73,7 @@
     [self mapCellClass:[TestTableViewCell class] cellItemClass:[TestTableViewCellItem class]];
     
     [self mapHeaderOrFooterViewClass:[TestTableViewHeaderOrFooterView class] headerOrFooterViewItem:[TestTableViewHeaderOrFooterViewItem class]];
-
+    
 }
 
 @end
