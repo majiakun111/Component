@@ -10,6 +10,8 @@
 #import "CollectionViewSectionItem.h"
 #import "TestCollectionViewCellItem.h"
 #import "TestCollectionViewCell.h"
+#import "TestReusableViewItem.h"
+#import "TestReuseableView.h"
 
 @implementation TestCollectionViewController
 
@@ -20,15 +22,15 @@
         self.sectionItems = [[NSMutableArray alloc] init];
         
         CollectionViewSectionItem *sectionItem = [[CollectionViewSectionItem alloc] init];
-//        TestTableViewHeaderOrFooterViewItem *headerViewItem = [[TestTableViewHeaderOrFooterViewItem alloc] init];
-//        [headerViewItem setTitle:@"head"];
-//        headerViewItem.height = 20.0f;
-//        [sectionItem setHeaderViewItem:headerViewItem];
+        TestReusableViewItem *headerViewItem = [[TestReusableViewItem alloc] init];
+        [headerViewItem setTitle:@"head"];
+        headerViewItem.size = CGSizeMake([[UIScreen mainScreen] bounds].size.width, 20);
+        [sectionItem setHeaderViewItem:headerViewItem];
         
-//        TestTableViewHeaderOrFooterViewItem *footerViewItem = [[TestTableViewHeaderOrFooterViewItem alloc] init];
-//        [footerViewItem setTitle:@"footer"];
-//        [footerViewItem setHeight:20.0f];
-//        [sectionItem setFooterViewItem:footerViewItem];
+        TestReusableViewItem *footerViewItem = [[TestReusableViewItem alloc] init];
+        [footerViewItem setTitle:@"footer"];
+        footerViewItem.size = CGSizeMake([[UIScreen mainScreen] bounds].size.width, 20);
+        [sectionItem setFooterViewItem:footerViewItem];
         
         NSMutableArray *cellItems = [[NSMutableArray alloc] init];
         for (int i = 0; i < 100; i++) {
@@ -50,8 +52,8 @@
 {
     [self mapCellClass:[TestCollectionViewCell class] cellItemClass:[TestCollectionViewCellItem class]];
     
-//    [self mapHeaderOrFooterViewClass:[TestTableViewHeaderOrFooterView class] headerOrFooterViewItem:[TestTableViewHeaderOrFooterViewItem class]];
-    
+    [self mapReuseableViewClass:[TestReuseableView class] reuseableViewItem:[TestReusableViewItem class] forKind:UICollectionElementKindSectionHeader];
+    [self mapReuseableViewClass:[TestReuseableView class] reuseableViewItem:[TestReusableViewItem class] forKind:UICollectionElementKindSectionFooter];    
 }
 
 

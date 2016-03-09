@@ -44,6 +44,8 @@
 		5BBE61101C85536E006D0595 /* NSObject+MethodSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE61081C85536E006D0595 /* NSObject+MethodSafe.m */; };
 		5BBE61111C85536E006D0595 /* NSObject+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE610A1C85536E006D0595 /* NSObject+Notification.m */; };
 		5BBE61121C85536E006D0595 /* NSObject+SwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE610C1C85536E006D0595 /* NSObject+SwizzleMethod.m */; };
+		5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C21D1C8FC22F00FBF149 /* TestReuseableView.m */; };
+		5BC8C2211C8FC23C00FBF149 /* TestReusableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C2201C8FC23C00FBF149 /* TestReusableViewItem.m */; };
 		5BF78E281C8F0DF700648444 /* ReusableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E271C8F0DF700648444 /* ReusableViewItem.m */; };
 		5BF78E2B1C8F168100648444 /* CollectionViewRelativeSizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E2A1C8F168100648444 /* CollectionViewRelativeSizeHelper.m */; };
 		5BF78E2E1C8F1CAE00648444 /* CollectionViewSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E2D1C8F1CAE00648444 /* CollectionViewSectionItem.m */; };
@@ -134,6 +136,10 @@
 		5BBE610A1C85536E006D0595 /* NSObject+Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notification.m"; sourceTree = "<group>"; };
 		5BBE610B1C85536E006D0595 /* NSObject+SwizzleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SwizzleMethod.h"; sourceTree = "<group>"; };
 		5BBE610C1C85536E006D0595 /* NSObject+SwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SwizzleMethod.m"; sourceTree = "<group>"; };
+		5BC8C21C1C8FC22F00FBF149 /* TestReuseableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestReuseableView.h; sourceTree = "<group>"; };
+		5BC8C21D1C8FC22F00FBF149 /* TestReuseableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReuseableView.m; sourceTree = "<group>"; };
+		5BC8C21F1C8FC23C00FBF149 /* TestReusableViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestReusableViewItem.h; sourceTree = "<group>"; };
+		5BC8C2201C8FC23C00FBF149 /* TestReusableViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReusableViewItem.m; sourceTree = "<group>"; };
 		5BF78E261C8F0DF700648444 /* ReusableViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReusableViewItem.h; sourceTree = "<group>"; };
 		5BF78E271C8F0DF700648444 /* ReusableViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableViewItem.m; sourceTree = "<group>"; };
 		5BF78E291C8F168100648444 /* CollectionViewRelativeSizeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewRelativeSizeHelper.h; sourceTree = "<group>"; };
@@ -405,6 +411,10 @@
 				5BF78E461C8F2A4D00648444 /* TestCollectionViewCellItem.m */,
 				5BF78E481C8F2ABC00648444 /* TestCollectionViewController.h */,
 				5BF78E491C8F2ABC00648444 /* TestCollectionViewController.m */,
+				5BC8C21C1C8FC22F00FBF149 /* TestReuseableView.h */,
+				5BC8C21D1C8FC22F00FBF149 /* TestReuseableView.m */,
+				5BC8C21F1C8FC23C00FBF149 /* TestReusableViewItem.h */,
+				5BC8C2201C8FC23C00FBF149 /* TestReusableViewItem.m */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -488,6 +498,7 @@
 				5B24E49F1C896C7C00F1A521 /* RefreshViewController+NetworkErrorTips.m in Sources */,
 				5B24E49B1C896C7C00F1A521 /* BaseLoadingTips.m in Sources */,
 				5BF78E3D1C8F284F00648444 /* TestTableViewController.m in Sources */,
+				5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */,
 				5B15A2DB1C8DB9CD00764E8C /* ReusableView.m in Sources */,
 				5B24E3B11C88449900F1A521 /* UIView+Coordinate.m in Sources */,
 				5B24E49D1C896C7C00F1A521 /* BaseNotDataTips.m in Sources */,
@@ -507,6 +518,7 @@
 				5B24E3451C87D9AE00F1A521 /* SwizzleCollectionMethod.m in Sources */,
 				5B24E3411C87D8AB00F1A521 /* NSArray+Safe.m in Sources */,
 				5B15A2691C8A85ED00764E8C /* CollectionViewCellItem.m in Sources */,
+				5BC8C2211C8FC23C00FBF149 /* TestReusableViewItem.m in Sources */,
 				5B24E3AC1C88447300F1A521 /* PullView.m in Sources */,
 				5B24E4A01C896C7C00F1A521 /* RefreshViewController+NotDataTips.m in Sources */,
 				5B15A2581C89E19C00764E8C /* HeaderOrFooterViewItem.m in Sources */,
