@@ -20,7 +20,7 @@
 - (void)buildUI
 {
     [super buildUI];
-    
+
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
     [_titleLabel setBackgroundColor:[UIColor redColor]];
     [_titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
