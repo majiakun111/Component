@@ -19,7 +19,7 @@
 -(void)doRefresh
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.collectionView.refreshView stopRefreshing];
+        [self stopRefreshing];
         
         self.sectionItems = [[NSMutableArray alloc] init];
         
@@ -54,7 +54,7 @@
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [self.collectionView.loadMoreView stopLoading];
+        [self stopLoading];
         
         for (int i = 101; i < 200; i++) {
             TestCollectionViewCellItem *cellItem =  [[TestCollectionViewCellItem alloc] init];
@@ -63,6 +63,9 @@
             
             [[[self.sectionItems lastObject] cellItems] addObject:cellItem];
         }
+        
+        [self setHasMore:NO];
+
         
         [self reloadData];
     });

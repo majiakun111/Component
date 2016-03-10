@@ -18,7 +18,7 @@
 -(void)doRefresh
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView.refreshView stopRefreshing];
+        [self stopRefreshing];
         
         self.sectionItems = [[NSMutableArray alloc] init];
         
@@ -53,7 +53,7 @@
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [self.tableView.loadMoreView stopLoading];
+        [self stopLoading];
         
         for (int i = 31; i < 60; i++) {
             TestTableViewCellItem *cellItem =  [[TestTableViewCellItem alloc] init];

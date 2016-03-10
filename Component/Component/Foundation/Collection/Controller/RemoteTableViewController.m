@@ -24,22 +24,44 @@
         [weakSelf loadMore];
     }];
     
-    [self.tableView.refreshView startRefreshing];
-}
-
--(void)doRefresh
-{
-
-}
-
-- (void)loadMore
-{
-
+    [self startRefreshing];
 }
 
 - (void)reloadData
 {
     [self.tableView reloadData];
+}
+
+- (void)startRefreshing
+{
+    [self.tableView.refreshView startRefreshing];
+}
+
+- (void)stopRefreshing
+{
+    [self.tableView.refreshView stopRefreshing];
+}
+
+- (void)stopLoading
+{
+    [self.tableView.loadMoreView stopLoading];
+}
+
+- (void)setHasMore:(BOOL)hasMore
+{
+    [self.tableView.loadMoreView setHasMore:hasMore];
+}
+
+#pragma mark - overrride
+
+-(void)doRefresh
+{
+    
+}
+
+- (void)loadMore
+{
+    
 }
 
 @end

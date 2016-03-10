@@ -23,6 +23,7 @@ typedef enum{
 #define CONTENT_HEIGHT 60.f
 #define REAL_WIDTH 94.0f //(image + label 及他们之间的间隙 所占的大小)
 #define ANIMATION_TIME 0.2
+#define ROTATION_ANIMATION_TIME 0.8
 
 #define OFFSET_THRESHOLD 65.0
 #define INSET  60.0f

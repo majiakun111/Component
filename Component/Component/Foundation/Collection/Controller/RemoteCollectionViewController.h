@@ -15,6 +15,12 @@
 
 - (void)reloadData;
 
+- (void)startRefreshing;
+- (void)stopRefreshing;
+
+- (void)stopLoading;
+- (void)setHasMore:(BOOL)hasMore;
+
 #pragma mark - Override
 - (void)doRefresh;
 - (void)loadMore;

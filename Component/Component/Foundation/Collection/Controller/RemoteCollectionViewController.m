@@ -32,6 +32,32 @@
     [self.collectionView.refreshView startRefreshing];
 }
 
+- (void)reloadData
+{
+    [self.collectionView reloadData];
+}
+
+- (void)startRefreshing
+{
+    [self.collectionView.refreshView startRefreshing];
+}
+
+- (void)stopRefreshing
+{
+    [self.collectionView.refreshView stopRefreshing];
+}
+
+- (void)stopLoading
+{
+    [self.collectionView.loadMoreView stopLoading];
+}
+
+- (void)setHasMore:(BOOL)hasMore
+{
+    [self.collectionView.loadMoreView setHasMore:hasMore];
+}
+
+#pragma mark - override
 -(void)doRefresh
 {
     
@@ -40,11 +66,6 @@
 - (void)loadMore
 {
     
-}
-
-- (void)reloadData
-{
-    [self.collectionView reloadData];
 }
 
 @end

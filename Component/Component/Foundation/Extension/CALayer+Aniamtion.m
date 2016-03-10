@@ -24,21 +24,27 @@
 
 @implementation CALayer (Aniamtion)
 
-+ (void)load
-{
+//+ (void)load
+//{
 //    static dispatch_once_t onceToken;
 //    dispatch_once(&onceToken, ^{
 //        [self swizzleMethod:@selector(addAnimation:forKey:) withMethod:@selector(hook_addAnimation:forKey:)];
 //    });
-}
+//}
 
 - (void)addAnimation:(nonnull CAAnimation *)animation
               forKey:(nullable NSString *)key
        completeBlock:(nullable CompleteBlock)completeBlock
 {
+    self.animation = animation;
+    self.key = key;
+    
+    [animation setDelegate:self];
     self.completeBlcok = completeBlock;
 
     [self addAnimation:animation forKey:key];
+    
+    [self addObserver];
 }
 
 - (void)stopAniamtion
@@ -86,16 +92,16 @@
 
 #pragma mark - PrivateMethod
 
-- (void)hook_addAnimation:(CAAnimation *)animation forKey:(NSString *)key
-{
-    self.animation = animation;
-    self.key = key;
-
-    [animation setDelegate:self];
-    [self hook_addAnimation:animation forKey:key];
-    
-    [self addObserver];
-}
+//- (void)hook_addAnimation:(CAAnimation *)animation forKey:(NSString *)key
+//{
+//    self.animation = animation;
+//    self.key = key;
+//    
+//    [animation setDelegate:self];
+//    [self hook_addAnimation:animation forKey:key];
+//    
+//    [self addObserver];
+//}
 
 - (void)addObserver
 {

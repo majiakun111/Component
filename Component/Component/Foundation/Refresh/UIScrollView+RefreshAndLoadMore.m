@@ -19,7 +19,6 @@
 - (void)setRefreshView:(RefreshView *)refreshView
 {
     if (refreshView != self.refreshView) {
-        // 删除旧的，添加新的
         [self.refreshView removeFromSuperview];
         [self insertSubview:refreshView atIndex:0];
         
@@ -35,11 +34,9 @@
 - (void)setLoadMoreView:(LoadMoreView *)loadMoreView
 {
     if (loadMoreView != self.loadMoreView) {
-        // 删除旧的，添加新的
         [self.loadMoreView removeFromSuperview];
         [self addSubview:loadMoreView];
         
-        // 存储新的
         objc_setAssociatedObject(self, @selector(loadMoreView), loadMoreView, OBJC_ASSOCIATION_ASSIGN);
     }
 }

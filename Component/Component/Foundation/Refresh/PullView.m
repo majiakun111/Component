@@ -8,6 +8,7 @@
 
 #import "PullView.h"
 #import "UIView+Coordinate.h"
+#import "CALayer+Aniamtion.h"
 
 #define CONTENT_SIZE   @"contentSize"
 #define CONTENT_OFFSET @"contentOffset"
@@ -148,6 +149,9 @@
             [CATransaction begin];
             [CATransaction setAnimationDuration:ANIMATION_TIME];
             _arrowImageLayer.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
+            [CATransaction  setCompletionBlock:^{
+                
+            }];
             [CATransaction commit];
             
             break;
@@ -214,16 +218,18 @@
     CABasicAnimation* rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
-    rotationAnimation.duration = 0.8;
+    rotationAnimation.duration = ROTATION_ANIMATION_TIME;
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = INT32_MAX;
     
-    [_loadingImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    [_loadingImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation" completeBlock:^{
+        
+    }];
 }
 
 - (void)stopRotationLoadingImage
 {
-    [_loadingImageView.layer removeAnimationForKey:@"rotationAnimation"];
+    [_loadingImageView.layer stopAniamtion];
     [_loadingImageView setHidden:YES];
 }
 
