@@ -1,48 +1,71 @@
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+# git ignore template from: http://cocoaheads.tumblr.com/post/1350304132/gitignore-template-for-xcode3-4
+# Mac OS X Finder
 
-## Build generated
-build/
-DerivedData/
+.DS_Store
 
-## Various settings
-*.pbxuser
-!default.pbxuser
+# Sparkle distribution Private Key (Don’t check me in!)
+
+dsa_priv.pem
+
+# XCode (and ancestors) per-user config (very noisy, and not relevant)
+
+*.mode1
+
 *.mode1v3
-!default.mode1v3
+
 *.mode2v3
-!default.mode2v3
+
+*.perspective
+
 *.perspectivev3
-!default.perspectivev3
+
+*.pbxuser
+
+# Xcode 4
+
 xcuserdata/
 
-## Other
-*.moved-aside
-*.xcuserstate
+project.xcworkspace/
 
-## Obj-C/Swift specific
-*.hmap
+# Generated files
+
+VersionX-revision.h
+
+# build products
+
+build/
+
+*.[o]
+
+# Other source repository archive directories (protects when importing)
+
+.hg
+
+.svn
+
+CVS
+
+# automatic backup files
+
+*~.nib
+
+*.swp
+
+*~
+
+*(Autosaved).rtfd/
+
+Backup[ ]of[ ]*.pages/
+
+Backup[ ]of[ ]*.key/
+
+Backup[ ]of[ ]*.numbers/
+
 *.ipa
+*.xccheckout
+*.idea
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# Pods/
+FFProject/Pods/
 
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
-Carthage/Build
-
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the 
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://github.com/fastlane/fastlane/blob/master/docs/Gitignore.md
+*.orig
+*.pyc
