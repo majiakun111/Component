@@ -29,6 +29,13 @@
 		5B24E3AC1C88447300F1A521 /* PullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3A61C88447300F1A521 /* PullView.m */; };
 		5B24E3AD1C88447300F1A521 /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3A81C88447300F1A521 /* RefreshView.m */; };
 		5B24E3B11C88449900F1A521 /* UIView+Coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3B01C88449900F1A521 /* UIView+Coordinate.m */; };
+		5B52236D1C9D4C0E0059875B /* JavascriptInterfaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223651C9D4C0E0059875B /* JavascriptInterfaceManager.m */; };
+		5B52236E1C9D4C0E0059875B /* JavascriptWebViewBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5B5223671C9D4C0E0059875B /* JavascriptWebViewBridge.js.txt */; };
+		5B52236F1C9D4C0E0059875B /* JavascriptWebViewBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223681C9D4C0E0059875B /* JavascriptWebViewBridge.m */; };
+		5B5223701C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52236A1C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.m */; };
+		5B5223761C9D4C8F0059875B /* JSWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223741C9D4C8F0059875B /* JSWebViewViewController.m */; };
+		5B5223771C9D4C8F0059875B /* Test.html in Resources */ = {isa = PBXBuildFile; fileRef = 5B5223751C9D4C8F0059875B /* Test.html */; };
+		5B52237A1C9D4CA50059875B /* JSCallNavtiveInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223791C9D4CA40059875B /* JSCallNavtiveInterface.m */; };
 		5BBE60681C809EAF006D0595 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60671C809EAF006D0595 /* main.m */; };
 		5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE606A1C809EAF006D0595 /* AppDelegate.m */; };
 		5BBE60731C809EAF006D0595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE60721C809EAF006D0595 /* Assets.xcassets */; };
@@ -40,8 +47,8 @@
 		5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C21D1C8FC22F00FBF149 /* TestReuseableView.m */; };
 		5BC8C2211C8FC23C00FBF149 /* TestReusableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C2201C8FC23C00FBF149 /* TestReusableViewItem.m */; };
 		5BC8C22C1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C22B1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m */; };
-		5BC8C22F1C9087C300FBF149 /* RemoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C22E1C9087C300FBF149 /* RemoteTableViewController.m */; };
-		5BC8C2321C908E2200FBF149 /* RemoteCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C2311C908E2200FBF149 /* RemoteCollectionViewController.m */; };
+		5BC8C22F1C9087C300FBF149 /* RefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C22E1C9087C300FBF149 /* RefreshTableViewController.m */; };
+		5BC8C2321C908E2200FBF149 /* RefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC8C2311C908E2200FBF149 /* RefreshCollectionViewController.m */; };
 		5BF78E281C8F0DF700648444 /* ReusableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E271C8F0DF700648444 /* ReusableViewItem.m */; };
 		5BF78E2B1C8F168100648444 /* CollectionViewRelativeSizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E2A1C8F168100648444 /* CollectionViewRelativeSizeHelper.m */; };
 		5BF78E2E1C8F1CAE00648444 /* CollectionViewSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF78E2D1C8F1CAE00648444 /* CollectionViewSectionItem.m */; };
@@ -102,6 +109,18 @@
 		5B24E3A81C88447300F1A521 /* RefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshView.m; sourceTree = "<group>"; };
 		5B24E3AF1C88449900F1A521 /* UIView+Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Coordinate.h"; sourceTree = "<group>"; };
 		5B24E3B01C88449900F1A521 /* UIView+Coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Coordinate.m"; sourceTree = "<group>"; };
+		5B5223641C9D4C0E0059875B /* JavascriptInterfaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptInterfaceManager.h; sourceTree = "<group>"; };
+		5B5223651C9D4C0E0059875B /* JavascriptInterfaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptInterfaceManager.m; sourceTree = "<group>"; };
+		5B5223661C9D4C0E0059875B /* JavascriptWebViewBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptWebViewBridge.h; sourceTree = "<group>"; };
+		5B5223671C9D4C0E0059875B /* JavascriptWebViewBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JavascriptWebViewBridge.js.txt; sourceTree = "<group>"; };
+		5B5223681C9D4C0E0059875B /* JavascriptWebViewBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptWebViewBridge.m; sourceTree = "<group>"; };
+		5B5223691C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptWebViewBridgeHelper.h; sourceTree = "<group>"; };
+		5B52236A1C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptWebViewBridgeHelper.m; sourceTree = "<group>"; };
+		5B5223731C9D4C8F0059875B /* JSWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSWebViewViewController.h; sourceTree = "<group>"; };
+		5B5223741C9D4C8F0059875B /* JSWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSWebViewViewController.m; sourceTree = "<group>"; };
+		5B5223751C9D4C8F0059875B /* Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Test.html; sourceTree = "<group>"; };
+		5B5223781C9D4CA40059875B /* JSCallNavtiveInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCallNavtiveInterface.h; sourceTree = "<group>"; };
+		5B5223791C9D4CA40059875B /* JSCallNavtiveInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCallNavtiveInterface.m; sourceTree = "<group>"; };
 		5BBE60631C809EAF006D0595 /* Component.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Component.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE60671C809EAF006D0595 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BBE60691C809EAF006D0595 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,10 +142,10 @@
 		5BC8C2201C8FC23C00FBF149 /* TestReusableViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReusableViewItem.m; sourceTree = "<group>"; };
 		5BC8C22A1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+RefreshAndLoadMore.h"; sourceTree = "<group>"; };
 		5BC8C22B1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+RefreshAndLoadMore.m"; sourceTree = "<group>"; };
-		5BC8C22D1C9087C300FBF149 /* RemoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteTableViewController.h; sourceTree = "<group>"; };
-		5BC8C22E1C9087C300FBF149 /* RemoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteTableViewController.m; sourceTree = "<group>"; };
-		5BC8C2301C908E2200FBF149 /* RemoteCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteCollectionViewController.h; sourceTree = "<group>"; };
-		5BC8C2311C908E2200FBF149 /* RemoteCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteCollectionViewController.m; sourceTree = "<group>"; };
+		5BC8C22D1C9087C300FBF149 /* RefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTableViewController.h; sourceTree = "<group>"; };
+		5BC8C22E1C9087C300FBF149 /* RefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTableViewController.m; sourceTree = "<group>"; };
+		5BC8C2301C908E2200FBF149 /* RefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshCollectionViewController.h; sourceTree = "<group>"; };
+		5BC8C2311C908E2200FBF149 /* RefreshCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshCollectionViewController.m; sourceTree = "<group>"; };
 		5BF78E261C8F0DF700648444 /* ReusableViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReusableViewItem.h; sourceTree = "<group>"; };
 		5BF78E271C8F0DF700648444 /* ReusableViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableViewItem.m; sourceTree = "<group>"; };
 		5BF78E291C8F168100648444 /* CollectionViewRelativeSizeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewRelativeSizeHelper.h; sourceTree = "<group>"; };
@@ -180,10 +199,10 @@
 				5B15A2481C89E0D800764E8C /* TableViewController.m */,
 				5B15A2591C89E1FF00764E8C /* CollectionViewController.h */,
 				5B15A25A1C89E1FF00764E8C /* CollectionViewController.m */,
-				5BC8C22D1C9087C300FBF149 /* RemoteTableViewController.h */,
-				5BC8C22E1C9087C300FBF149 /* RemoteTableViewController.m */,
-				5BC8C2301C908E2200FBF149 /* RemoteCollectionViewController.h */,
-				5BC8C2311C908E2200FBF149 /* RemoteCollectionViewController.m */,
+				5BC8C22D1C9087C300FBF149 /* RefreshTableViewController.h */,
+				5BC8C22E1C9087C300FBF149 /* RefreshTableViewController.m */,
+				5BC8C2301C908E2200FBF149 /* RefreshCollectionViewController.h */,
+				5BC8C2311C908E2200FBF149 /* RefreshCollectionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -274,6 +293,32 @@
 			path = Refresh;
 			sourceTree = "<group>";
 		};
+		5B5223631C9D4C0E0059875B /* JSWebView */ = {
+			isa = PBXGroup;
+			children = (
+				5B5223671C9D4C0E0059875B /* JavascriptWebViewBridge.js.txt */,
+				5B5223641C9D4C0E0059875B /* JavascriptInterfaceManager.h */,
+				5B5223651C9D4C0E0059875B /* JavascriptInterfaceManager.m */,
+				5B5223661C9D4C0E0059875B /* JavascriptWebViewBridge.h */,
+				5B5223681C9D4C0E0059875B /* JavascriptWebViewBridge.m */,
+				5B5223691C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.h */,
+				5B52236A1C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.m */,
+			);
+			path = JSWebView;
+			sourceTree = "<group>";
+		};
+		5B5223721C9D4C660059875B /* JSWebView */ = {
+			isa = PBXGroup;
+			children = (
+				5B5223781C9D4CA40059875B /* JSCallNavtiveInterface.h */,
+				5B5223791C9D4CA40059875B /* JSCallNavtiveInterface.m */,
+				5B5223731C9D4C8F0059875B /* JSWebViewViewController.h */,
+				5B5223741C9D4C8F0059875B /* JSWebViewViewController.m */,
+				5B5223751C9D4C8F0059875B /* Test.html */,
+			);
+			path = JSWebView;
+			sourceTree = "<group>";
+		};
 		5BBE605A1C809EAF006D0595 = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +361,7 @@
 		5BBE60851C81E108006D0595 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				5B5223631C9D4C0E0059875B /* JSWebView */,
 				5B15A2EB1C8DD66700764E8C /* Define */,
 				5B15A2451C89E0D700764E8C /* Collection */,
 				5B24E3A21C88447300F1A521 /* Refresh */,
@@ -349,6 +395,7 @@
 		5BF78E2F1C8F284F00648444 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				5B5223721C9D4C660059875B /* JSWebView */,
 				5BF78E411C8F29CE00648444 /* CollectionView */,
 				5BF78E301C8F284F00648444 /* TableView */,
 			);
@@ -446,8 +493,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B5223771C9D4C8F0059875B /* Test.html in Resources */,
 				5BBE60761C809EAF006D0595 /* LaunchScreen.storyboard in Resources */,
 				5BBE60731C809EAF006D0595 /* Assets.xcassets in Resources */,
+				5B52236E1C9D4C0E0059875B /* JavascriptWebViewBridge.js.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,12 +507,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BC8C2321C908E2200FBF149 /* RemoteCollectionViewController.m in Sources */,
+				5BC8C2321C908E2200FBF149 /* RefreshCollectionViewController.m in Sources */,
 				5B15A2521C89E15700764E8C /* TableViewSectionItem.m in Sources */,
 				5B15A25E1C89E25000764E8C /* CollectionViewCell.m in Sources */,
+				5B52236D1C9D4C0E0059875B /* JavascriptInterfaceManager.m in Sources */,
 				5B15A2661C8A85DD00764E8C /* TableViewCellItem.m in Sources */,
 				5BF78E3E1C8F284F00648444 /* TestTableViewHeaderOrFooterView.m in Sources */,
+				5B52237A1C9D4CA50059875B /* JSCallNavtiveInterface.m in Sources */,
 				5B24E3AB1C88447300F1A521 /* LoadMoreView.m in Sources */,
+				5B5223761C9D4C8F0059875B /* JSWebViewViewController.m in Sources */,
 				5BF78E4A1C8F2ABC00648444 /* TestCollectionViewController.m in Sources */,
 				5BF78E3D1C8F284F00648444 /* TestTableViewController.m in Sources */,
 				5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */,
@@ -472,6 +524,7 @@
 				5B15A25B1C89E1FF00764E8C /* CollectionViewController.m in Sources */,
 				5BF78E3F1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m in Sources */,
 				5B15A24A1C89E0D800764E8C /* TableViewController.m in Sources */,
+				5B52236F1C9D4C0E0059875B /* JavascriptWebViewBridge.m in Sources */,
 				5B15A2D21C8D787500764E8C /* HeaderOrFooterView.m in Sources */,
 				5B15A26C1C8D1C3600764E8C /* NSObject+ClassName.m in Sources */,
 				5B24E3AD1C88447300F1A521 /* RefreshView.m in Sources */,
@@ -493,13 +546,14 @@
 				5B24E3481C87EC2000F1A521 /* NSMutableDictionary+Safe.m in Sources */,
 				5BC8C22C1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m in Sources */,
 				5B15A24F1C89E12200764E8C /* TableViewCell.m in Sources */,
-				5BC8C22F1C9087C300FBF149 /* RemoteTableViewController.m in Sources */,
+				5BC8C22F1C9087C300FBF149 /* RefreshTableViewController.m in Sources */,
 				5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */,
 				5BF78E2E1C8F1CAE00648444 /* CollectionViewSectionItem.m in Sources */,
 				5BBE610D1C85536E006D0595 /* CALayer+Aniamtion.m in Sources */,
 				5BF78E471C8F2A4D00648444 /* TestCollectionViewCellItem.m in Sources */,
 				5B24E3A11C883B4E00F1A521 /* NSTimer+Weak.m in Sources */,
 				5BBE60681C809EAF006D0595 /* main.m in Sources */,
+				5B5223701C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.m in Sources */,
 				5BF78E441C8F29F000648444 /* TestCollectionViewCell.m in Sources */,
 				5B24E39E1C87ED5B00F1A521 /* NSDictionary+Safe.m in Sources */,
 			);

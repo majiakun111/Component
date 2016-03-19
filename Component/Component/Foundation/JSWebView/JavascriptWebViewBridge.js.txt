@@ -1,0 +1,93 @@
+;(function() {
+    if (window.JavascriptWebViewBridge) { return; }
+
+    var methodsMap = {};
+
+    var sendMessageQueue = [];
+    var responseCallbacks = {};
+    var uniqueId = 1;
+
+    var CUSTOM_PROTOCOL_SCHEME = 'mjkscheme';
+    var QUEUE_HAS_MESSAGE = '__MJK_QUEUE_MESSAGE__';
+
+	function send(interfaceIdentifier, jsMethodName, args) {
+		_doSend(interfaceIdentifier, jsMethodName, args);
+	}
+
+	function fetchQueue() {
+		var messageQueueString = JSON.stringify(sendMessageQueue);
+		sendMessageQueue = [];
+
+		return messageQueueString;
+	}
+	
+	function handleMessageFromObjC(messageJSON) {
+		_dispatchMessageFromObjC(messageJSON);
+	}
+
+    function inject(interfaceIdentifier, methods) {
+        for (var i = 0, l = methods.length; i < l; i++){
+            var ocMethodName = methods[i];
+            var jsMethodName = ocMethodName.replace(new RegExp(":", "g"), "");
+            methodsMap[jsMethodName] =  ocMethodName;
+        }
+    }
+
+	function _doSend(interfaceIdentifier, jsMethodName, args) {
+		var message = {};
+        message['interfaceIdentifier'] = interfaceIdentifier;
+        var ocMethodName = methodsMap[jsMethodName];
+		message['methodName'] = ocMethodName;
+
+		var  formattedArgs = [];
+		for (var i = 0, l = args.length; i < l; i++){
+			var arg = {};
+			if (typeof args[i] == "function"){
+                var callbackId = 'cb_'+(uniqueId++)+'_'+new Date().getTime();
+				arg['type'] = 'function';
+				arg['value'] =  callbackId;
+
+                responseCallbacks[callbackId] =  args[i];
+			}else{
+				arg['type'] = 'object';
+				arg['value'] =  args[i];
+			}
+
+			formattedArgs.push(arg);
+		}	
+
+		message['args'] = formattedArgs;
+        sendMessageQueue.push(message);
+
+        var iframe = document.createElement("IFRAME");
+        iframe.setAttribute("src",  CUSTOM_PROTOCOL_SCHEME + '://' + QUEUE_HAS_MESSAGE);
+        document.documentElement.appendChild(iframe);
+        iframe.parentNode.removeChild(iframe);
+        iframe = null;
+	}
+
+	function _dispatchMessageFromObjC(messageJSON) {
+		setTimeout(function _timeoutDispatchMessageFromObjC() {
+			var message = JSON.parse(messageJSON);
+			if (message.responseId) {
+                responseCallback = responseCallbacks[message.responseId];
+				if (!responseCallback) { return; }
+
+                responseCallback(message.status, message.responseData);
+                delete responseCallbacks[message.responseId];
+			}
+		})
+	}
+
+	window.JavascriptWebViewBridge = {
+        inject: inject,
+		send: send,
+		fetchQueue: fetchQueue,
+		handleMessageFromObjC: handleMessageFromObjC,
+	}
+
+    var readyEvent = doc.createEvent('Events');
+    readyEvent.initEvent('JavascriptWebViewBridgeReady');
+    readyEvent.bridge = JavascriptWebViewBridge;
+    doc.dispatchEvent(readyEvent);
+})();

@@ -6,10 +6,10 @@
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "RemoteCollectionViewController.h"
+#import "RefreshCollectionViewController.h"
 #import "UIView+Coordinate.h"
 
-@implementation RemoteCollectionViewController
+@implementation RefreshCollectionViewController
 
 - (void)buildCollectionView
 {

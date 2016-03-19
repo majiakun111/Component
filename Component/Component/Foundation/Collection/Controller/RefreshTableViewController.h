@@ -11,7 +11,7 @@
 #import "RefreshView.h"
 #import "LoadMoreView.h"
 
-@interface RemoteTableViewController : TableViewController
+@interface RefreshTableViewController : TableViewController
 
 - (void)reloadData;
 

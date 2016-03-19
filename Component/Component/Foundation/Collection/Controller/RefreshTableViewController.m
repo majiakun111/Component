@@ -6,10 +6,10 @@
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "RemoteTableViewController.h"
+#import "RefreshTableViewController.h"
 #import "UIView+Coordinate.h"
 
-@implementation RemoteTableViewController
+@implementation RefreshTableViewController
 
 - (void)buildTableView
 {

@@ -11,7 +11,7 @@
 #import "RefreshView.h"
 #import "LoadMoreView.h"
 
-@interface RemoteCollectionViewController : CollectionViewController
+@interface RefreshCollectionViewController : CollectionViewController
 
 - (void)reloadData;
 
