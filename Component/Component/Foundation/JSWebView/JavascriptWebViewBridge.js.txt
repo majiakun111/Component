@@ -7,8 +7,7 @@
     var responseCallbacks = {};
     var uniqueId = 1;
 
-    var CUSTOM_PROTOCOL_SCHEME = 'mjkscheme';
-    var QUEUE_HAS_MESSAGE = '__MJK_QUEUE_MESSAGE__';
+    var url = 'mjkscheme://__MJK_QUEUE_MESSAGE__';
 
 	function send(interfaceIdentifier, jsMethodName, args) {
 		_doSend(interfaceIdentifier, jsMethodName, args);
@@ -28,7 +27,8 @@
     function inject(interfaceIdentifier, methods) {
         for (var i = 0, l = methods.length; i < l; i++){
             var ocMethodName = methods[i];
-            var jsMethodName = ocMethodName.replace(new RegExp(":", "g"), "");
+            var ocMethodNameArgNames = ocMethodName.split(':'); //取出第一个作为js的方法名字
+            jsMethodName = ocMethodNameArgNames[0];
             methodsMap[jsMethodName] =  ocMethodName;
         }
     }
@@ -60,7 +60,7 @@
         sendMessageQueue.push(message);
 
         var iframe = document.createElement("IFRAME");
-        iframe.setAttribute("src",  CUSTOM_PROTOCOL_SCHEME + '://' + QUEUE_HAS_MESSAGE);
+        iframe.setAttribute("src",  url);
         document.documentElement.appendChild(iframe);
         iframe.parentNode.removeChild(iframe);
         iframe = null;

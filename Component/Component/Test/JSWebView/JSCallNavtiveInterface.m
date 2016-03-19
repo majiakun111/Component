@@ -10,20 +10,6 @@
 
 @implementation JSCallNavtiveInterface
 
-- (void)setData: (NSString*)data forKey: (NSString*)key webView:(UIWebView *)webview callback:(void(^)(NSString *status, NSString *data))callback;
-{
-    if (callback) {
-        callback(@"1", nil);
-        callback = nil;
-    }
-}
 
-- (void)getDataForKey:(NSString*)key webView:(UIWebView *)webView callback:(void(^)(NSString *status, NSString *data))callback
-{
-    if (callback) {
-        callback(@"1", @"Ansel");
-        callback = nil;
-    }
-}
 
 @end

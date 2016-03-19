@@ -21,8 +21,8 @@
 - (void)handleFromJSMessage:(NSString *)messageString forWebView:(UIWebView *)webView;
 - (void)injectJavascriptFile;
 - (void)injectInterfaces;
-- (BOOL)isCorrectProcotocolScheme:(NSURL*)url;
-- (BOOL)isCorrectHost:(NSURL*)urll;
-- (void)logUnkownMessage:(NSURL*)url;
+- (BOOL)isCorrectProcotocolURL:(NSURL*)url;
+- (NSString *)getJSQueryCommod;
+- (NSString *)getJSCheckIsInjectCommod;
 
 @end

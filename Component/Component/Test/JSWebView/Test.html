@@ -22,22 +22,30 @@
 	}
 	
     connectJavascriptWebViewBridge(function(bridge) {
-        var args = ['Ansel',
-                    'name',
-                    function (status, data){
+        var args = ['Ansel', //data
+                    'name', //key
+                    function (status, data){ //callback
                         alert("status:"+status + "data:" + data);
                      }
                      ];
                                    
-        bridge.send('Interface', 'setDataforKey', args);
+        bridge.send('Interface', 'setData', args);
                                    
-        args = ['name',
-                function (status, data){
+        args = ['name', //key
+                function (status, data){//callback
                     alert("status:"+status + "data:" + data);
                 }
               ];
        
-        bridge.send('Interface', 'getDataForKey', args);
+        bridge.send('Interface', 'getData', args);
+          
+       args = ['app://login', //url
+               function (status, data){//callback
+                   alert("status:"+status + "data:" + data);
+               }
+               ];
+        bridge.send('Interface', 'forward', args);
+                       
     });
 	</script>
 </body></html>

@@ -8,11 +8,9 @@
 
 #import "JavascriptWebViewBridgeHelper.h"
 #import "JavascriptInterfaceManager.h"
-
 #import <objc/runtime.h>
 
-#define kCustomProtocolScheme @"mjkscheme"
-#define kQueueHasMessage      @"__MJK_QUEUE_MESSAGE__"
+#define URL @"mjkscheme://__MJK_QUEUE_MESSAGE__"
 
 typedef void (^ResponseCallback)(NSString *status, id responseData);
 
@@ -21,8 +19,8 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
 /**
  * js -> oc
  *   {
- *      interfaceIdentifier : '',//接口标识
- *      methodName: @"setData: forKey: callback:",  //webView需要自己加入
+ *      interfaceIdentifier : '',//接口标识, 通过标识找到 Interface
+ *      methodName: @"setData: forKey: webView: callback:",  //webView需要自己加入
  *      args:[
  *        {
  *          type:'object', //参数类型
@@ -39,7 +37,7 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
  *
  *   oc -> js  //oc call js  callback
  *   {
- *      responseId:'',
+ *      responseId:'', //对应 js 的callbackId
  *      status:'',
  *      responseData : ''
  *   }
@@ -66,10 +64,8 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
         
         id interface = [[JavascriptInterfaceManager shareInstance] getJavascriptInterfaceInterfaceIdentifier:interfaceIdentifier];
        
-        NSMutableString *method  = [NSMutableString stringWithFormat:@"%@", message[@"methodName"]];
-        //还原webView参数和callback:参数, 在尾部追加webView:callback:
-        [method appendString:@"webView:callback:"];
-         SEL selector = NSSelectorFromString(method);
+        NSMutableString *method  = message[@"methodName"];
+        SEL selector = NSSelectorFromString(method);
         
         if (![interface respondsToSelector:selector]) {
             NSLog(@"JavascriptWebViewBridge: WARNING:  %@ not found", method);
@@ -82,10 +78,14 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
         invoker.selector = selector;
         invoker.target = interface;
         
+        NSDictionary *webViewArg = @{@"type": @"object", @"value" : webView};
         NSMutableArray *args = [NSMutableArray arrayWithArray:message[@"args"]];
-        if ([args count] >= 1) {
-            NSDictionary *webViewArg = @{@"type": @"object", @"value" : webView};
+        NSDictionary *arg = [args lastObject];
+        if ([arg[@"type"] isEqualToString:@"function"]) {
             [args insertObject:webViewArg atIndex:[args count] -1];
+        }
+        else {
+            [args addObject:webViewArg];
         }
         
         ResponseCallback responseCallback = nil;
@@ -125,7 +125,6 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
 
 - (void)injectJavascriptFile
 {
-    //需要修改
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"JavascriptWebViewBridge.js" ofType:@"txt"];
     NSString *js = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     [self evaluateJavascript:js];
@@ -149,10 +148,7 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
         Method * mlist = class_copyMethodList(cls, &mc);
         for (int i = 0; i < mc; i++){
             [injection appendString:@"\'"];
-            //去掉webView:callback:
-            NSMutableString *name = [NSMutableString stringWithUTF8String:sel_getName(method_getName(mlist[i]))];
-            [name replaceOccurrencesOfString:@"webView:callback:" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [name length])];
-            [injection appendString:name];
+            [injection appendString:[NSString stringWithUTF8String:sel_getName(method_getName(mlist[i]))]];
             [injection appendString:@"\'"];
             
             if (i != mc - 1){
@@ -168,27 +164,23 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
     [self.delegate evaluateJavascript:injection];
 }
 
--(BOOL)isCorrectProcotocolScheme:(NSURL*)url
+-(BOOL)isCorrectProcotocolURL:(NSURL*)url
 {
-    if([[url scheme] isEqualToString:kCustomProtocolScheme]){
+    if([[url absoluteString] isEqualToString:URL]){
         return YES;
     } else {
         return NO;
     }
 }
 
--(BOOL)isCorrectHost:(NSURL*)url
+- (NSString *)getJSQueryCommod
 {
-    if([[url host] isEqualToString:kQueueHasMessage]){
-        return YES;
-    } else {
-        return NO;
-    }
+    return @"JavascriptWebViewBridge.fetchQueue();";
 }
 
--(void)logUnkownMessage:(NSURL*)url
+- (NSString *)getJSCheckIsInjectCommod
 {
-    NSLog(@"JavascriptWebViewBridge: WARNING: Received unknown JavascriptWebViewBridge command %@://%@", kCustomProtocolScheme, [url path]);
+    return @"typeof JavascriptWebViewBridge == \'object\';";
 }
 
 #pragma mark - PrivateMethod

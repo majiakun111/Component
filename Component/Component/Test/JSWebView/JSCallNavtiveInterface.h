@@ -10,8 +10,4 @@
 
 @interface JSCallNavtiveInterface : NSObject
 
-- (void)setData: (NSString*)data forKey: (NSString*)key webView:(UIWebView *)webView callback:(void(^)(NSString *status, NSString *data))callback;
-
-- (void)getDataForKey:(NSString*)key webView:(UIWebView *)webView callback:(void(^)(NSString *status, NSString *data))callback;
-
 @end

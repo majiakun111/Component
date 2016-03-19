@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "TestCollectionViewController.h"
+#import "TestJSWebViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +20,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    TestCollectionViewController *rootViewController = [[TestCollectionViewController alloc] init];
+    TestJSWebViewController *rootViewController = [[TestJSWebViewController alloc] init];
     UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     self.window.rootViewController = rootNavigationController;
     

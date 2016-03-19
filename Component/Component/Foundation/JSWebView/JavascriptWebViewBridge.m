@@ -59,33 +59,20 @@
 {
     NSURL *url = [request URL];
     
-    if ([_helper isCorrectProcotocolScheme:url]) {
-        
-        if ([_helper isCorrectHost:url]) {
-            
-            NSString *messageString = [self evaluateJavascript:@"JavascriptWebViewBridge.fetchQueue();"];
-            [_helper handleFromJSMessage:messageString forWebView:webView];
-            
-        } else {
-            [_helper logUnkownMessage:url];
-        }
-        
+    if ([_helper isCorrectProcotocolURL:url]) {
+        NSString *messageString = [self evaluateJavascript:[_helper getJSQueryCommod]];
+        [_helper handleFromJSMessage:messageString forWebView:webView];
         return NO;
-        
     } else if (self.webViewDelegate && [self.webViewDelegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) {
-        
         return [self.webViewDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
-        
     } else {
-        
         return YES;
-        
     }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    if (![[webView stringByEvaluatingJavaScriptFromString:@"typeof JavascriptWebViewBridge == \'object\';"] isEqualToString:@"true"]) {
+    if (![[self evaluateJavascript:[_helper getJSCheckIsInjectCommod]] isEqualToString:@"true"]) {
         [_helper injectJavascriptFile];
         [_helper injectInterfaces];
     }

@@ -6,19 +6,19 @@
 //  Copyright © 2016年 PingAn. All rights reserved.
 //
 
-#import "JSWebViewViewController.h"
+#import "TestJSWebViewController.h"
 #import "JavascriptWebViewBridge.h"
 #import "JSCallNavtiveInterface.h"
 #import "JavascriptInterfaceManager.h"
 
-@interface ViewController () <UIWebViewDelegate>
+@interface TestJSWebViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) JavascriptWebViewBridge *bridge;
 
 @end
 
-@implementation ViewController
+@implementation TestJSWebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

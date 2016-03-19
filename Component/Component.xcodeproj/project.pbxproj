@@ -33,9 +33,13 @@
 		5B52236E1C9D4C0E0059875B /* JavascriptWebViewBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5B5223671C9D4C0E0059875B /* JavascriptWebViewBridge.js.txt */; };
 		5B52236F1C9D4C0E0059875B /* JavascriptWebViewBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223681C9D4C0E0059875B /* JavascriptWebViewBridge.m */; };
 		5B5223701C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52236A1C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.m */; };
-		5B5223761C9D4C8F0059875B /* JSWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223741C9D4C8F0059875B /* JSWebViewViewController.m */; };
+		5B5223761C9D4C8F0059875B /* TestJSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223741C9D4C8F0059875B /* TestJSWebViewController.m */; };
 		5B5223771C9D4C8F0059875B /* Test.html in Resources */ = {isa = PBXBuildFile; fileRef = 5B5223751C9D4C8F0059875B /* Test.html */; };
 		5B52237A1C9D4CA50059875B /* JSCallNavtiveInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223791C9D4CA40059875B /* JSCallNavtiveInterface.m */; };
+		5B52237D1C9D98E50059875B /* JSCallNavtiveInterface+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52237C1C9D98E50059875B /* JSCallNavtiveInterface+Data.m */; };
+		5B5223801C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52237F1C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m */; };
+		5B5223831C9D99940059875B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223821C9D99940059875B /* LoginViewController.m */; };
+		5B5223861C9D9A0C0059875B /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223851C9D9A0C0059875B /* UIView+ViewController.m */; };
 		5BBE60681C809EAF006D0595 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60671C809EAF006D0595 /* main.m */; };
 		5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE606A1C809EAF006D0595 /* AppDelegate.m */; };
 		5BBE60731C809EAF006D0595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE60721C809EAF006D0595 /* Assets.xcassets */; };
@@ -116,11 +120,19 @@
 		5B5223681C9D4C0E0059875B /* JavascriptWebViewBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptWebViewBridge.m; sourceTree = "<group>"; };
 		5B5223691C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptWebViewBridgeHelper.h; sourceTree = "<group>"; };
 		5B52236A1C9D4C0E0059875B /* JavascriptWebViewBridgeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptWebViewBridgeHelper.m; sourceTree = "<group>"; };
-		5B5223731C9D4C8F0059875B /* JSWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSWebViewViewController.h; sourceTree = "<group>"; };
-		5B5223741C9D4C8F0059875B /* JSWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSWebViewViewController.m; sourceTree = "<group>"; };
+		5B5223731C9D4C8F0059875B /* TestJSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestJSWebViewController.h; sourceTree = "<group>"; };
+		5B5223741C9D4C8F0059875B /* TestJSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestJSWebViewController.m; sourceTree = "<group>"; };
 		5B5223751C9D4C8F0059875B /* Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Test.html; sourceTree = "<group>"; };
 		5B5223781C9D4CA40059875B /* JSCallNavtiveInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCallNavtiveInterface.h; sourceTree = "<group>"; };
 		5B5223791C9D4CA40059875B /* JSCallNavtiveInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCallNavtiveInterface.m; sourceTree = "<group>"; };
+		5B52237B1C9D98E50059875B /* JSCallNavtiveInterface+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSCallNavtiveInterface+Data.h"; sourceTree = "<group>"; };
+		5B52237C1C9D98E50059875B /* JSCallNavtiveInterface+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSCallNavtiveInterface+Data.m"; sourceTree = "<group>"; };
+		5B52237E1C9D99430059875B /* JSCallNavtiveInterface+Navigatior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSCallNavtiveInterface+Navigatior.h"; sourceTree = "<group>"; };
+		5B52237F1C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSCallNavtiveInterface+Navigatior.m"; sourceTree = "<group>"; };
+		5B5223811C9D99940059875B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		5B5223821C9D99940059875B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		5B5223841C9D9A0C0059875B /* UIView+ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ViewController.h"; sourceTree = "<group>"; };
+		5B5223851C9D9A0C0059875B /* UIView+ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewController.m"; sourceTree = "<group>"; };
 		5BBE60631C809EAF006D0595 /* Component.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Component.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE60671C809EAF006D0595 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BBE60691C809EAF006D0595 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -312,8 +324,14 @@
 			children = (
 				5B5223781C9D4CA40059875B /* JSCallNavtiveInterface.h */,
 				5B5223791C9D4CA40059875B /* JSCallNavtiveInterface.m */,
-				5B5223731C9D4C8F0059875B /* JSWebViewViewController.h */,
-				5B5223741C9D4C8F0059875B /* JSWebViewViewController.m */,
+				5B52237B1C9D98E50059875B /* JSCallNavtiveInterface+Data.h */,
+				5B52237C1C9D98E50059875B /* JSCallNavtiveInterface+Data.m */,
+				5B52237E1C9D99430059875B /* JSCallNavtiveInterface+Navigatior.h */,
+				5B52237F1C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m */,
+				5B5223731C9D4C8F0059875B /* TestJSWebViewController.h */,
+				5B5223741C9D4C8F0059875B /* TestJSWebViewController.m */,
+				5B5223811C9D99940059875B /* LoginViewController.h */,
+				5B5223821C9D99940059875B /* LoginViewController.m */,
 				5B5223751C9D4C8F0059875B /* Test.html */,
 			);
 			path = JSWebView;
@@ -388,6 +406,8 @@
 				5B24E3A01C883B4E00F1A521 /* NSTimer+Weak.m */,
 				5B24E3AF1C88449900F1A521 /* UIView+Coordinate.h */,
 				5B24E3B01C88449900F1A521 /* UIView+Coordinate.m */,
+				5B5223841C9D9A0C0059875B /* UIView+ViewController.h */,
+				5B5223851C9D9A0C0059875B /* UIView+ViewController.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -515,10 +535,11 @@
 				5BF78E3E1C8F284F00648444 /* TestTableViewHeaderOrFooterView.m in Sources */,
 				5B52237A1C9D4CA50059875B /* JSCallNavtiveInterface.m in Sources */,
 				5B24E3AB1C88447300F1A521 /* LoadMoreView.m in Sources */,
-				5B5223761C9D4C8F0059875B /* JSWebViewViewController.m in Sources */,
+				5B5223761C9D4C8F0059875B /* TestJSWebViewController.m in Sources */,
 				5BF78E4A1C8F2ABC00648444 /* TestCollectionViewController.m in Sources */,
 				5BF78E3D1C8F284F00648444 /* TestTableViewController.m in Sources */,
 				5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */,
+				5B52237D1C9D98E50059875B /* JSCallNavtiveInterface+Data.m in Sources */,
 				5B15A2DB1C8DB9CD00764E8C /* ReusableView.m in Sources */,
 				5B24E3B11C88449900F1A521 /* UIView+Coordinate.m in Sources */,
 				5B15A25B1C89E1FF00764E8C /* CollectionViewController.m in Sources */,
@@ -527,6 +548,7 @@
 				5B52236F1C9D4C0E0059875B /* JavascriptWebViewBridge.m in Sources */,
 				5B15A2D21C8D787500764E8C /* HeaderOrFooterView.m in Sources */,
 				5B15A26C1C8D1C3600764E8C /* NSObject+ClassName.m in Sources */,
+				5B5223861C9D9A0C0059875B /* UIView+ViewController.m in Sources */,
 				5B24E3AD1C88447300F1A521 /* RefreshView.m in Sources */,
 				5BF78E3B1C8F284F00648444 /* TestTableViewCell.m in Sources */,
 				5BBE61101C85536E006D0595 /* NSObject+MethodSafe.m in Sources */,
@@ -534,12 +556,14 @@
 				5B15A2C61C8D3DD800764E8C /* TableViewRelativeHeightHelper.m in Sources */,
 				5BF78E2B1C8F168100648444 /* CollectionViewRelativeSizeHelper.m in Sources */,
 				5BF78E281C8F0DF700648444 /* ReusableViewItem.m in Sources */,
+				5B5223831C9D99940059875B /* LoginViewController.m in Sources */,
 				5B24E3451C87D9AE00F1A521 /* SwizzleCollectionMethod.m in Sources */,
 				5B24E3411C87D8AB00F1A521 /* NSArray+Safe.m in Sources */,
 				5B15A2691C8A85ED00764E8C /* CollectionViewCellItem.m in Sources */,
 				5BC8C2211C8FC23C00FBF149 /* TestReusableViewItem.m in Sources */,
 				5B24E3AC1C88447300F1A521 /* PullView.m in Sources */,
 				5B15A2581C89E19C00764E8C /* HeaderOrFooterViewItem.m in Sources */,
+				5B5223801C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m in Sources */,
 				5BF78E3C1C8F284F00648444 /* TestTableViewCellItem.m in Sources */,
 				5BBE61121C85536E006D0595 /* NSObject+SwizzleMethod.m in Sources */,
 				5B24E3421C87D8AB00F1A521 /* NSMutableArray+Safe.m in Sources */,
