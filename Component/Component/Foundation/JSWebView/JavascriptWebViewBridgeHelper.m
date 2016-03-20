@@ -141,7 +141,7 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
 
 - (NSString *)getJSQueryCommod
 {
-    return @"JavascriptWebViewBridge.fetchQueue();";
+    return @"JavascriptWebViewBridge.fetchQueueMessage();";
 }
 
 - (NSString *)getJSCheckIsInjectCommod
@@ -168,7 +168,7 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
     messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\u2028" withString:@"\\u2028"];
     messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\u2029" withString:@"\\u2029"];
     
-    NSString* javascriptCommand = [NSString stringWithFormat:@"JavascriptWebViewBridge.handleMessageFromObjC('%@');", messageJSON];
+    NSString* javascriptCommand = [NSString stringWithFormat:@"JavascriptWebViewBridge.receiveMessageFromObjC('%@');", messageJSON];
     if ([[NSThread currentThread] isMainThread]) {
         [self evaluateJavascript:javascriptCommand];
         

@@ -8,21 +8,6 @@
     var url = 'mjkscheme://__MJK_QUEUE_MESSAGE__';
 
 	function send(interfaceIdentifier, methodIdentifier, args) {
-		_doSend(interfaceIdentifier, methodIdentifier, args);
-	}
-
-	function fetchQueue() {
-		var messageQueueString = JSON.stringify(sendMessageQueue);
-		sendMessageQueue = [];
-
-		return messageQueueString;
-	}
-	
-	function handleMessageFromObjC(messageJSON) {
-		_dispatchMessageFromObjC(messageJSON);
-	}
-
-	function _doSend(interfaceIdentifier, methodIdentifier, args) {
 		var message = {};
         message['interfaceIdentifier'] = interfaceIdentifier;
 		message['methodIdentifier'] = methodIdentifier;
@@ -54,23 +39,28 @@
         iframe = null;
 	}
 
-	function _dispatchMessageFromObjC(messageJSON) {
-		setTimeout(function _timeoutDispatchMessageFromObjC() {
-			var message = JSON.parse(messageJSON);
-			if (message.responseId) {
-                responseCallback = responseCallbacks[message.responseId];
-				if (!responseCallback) { return; }
+	function receiveMessageFromObjC(messageJSON) {
+        var message = JSON.parse(messageJSON);
+        if (message.responseId) {
+            responseCallback = responseCallbacks[message.responseId];
+            if (!responseCallback) { return; }
 
-                responseCallback(message.status, message.responseData);
-                delete responseCallbacks[message.responseId];
-			}
-		})
+            responseCallback(message.status, message.responseData);
+            delete responseCallbacks[message.responseId];
+        }
 	}
+
+    function fetchQueueMessage() {
+        var messageQueueString = JSON.stringify(sendMessageQueue);
+        sendMessageQueue = [];
+
+        return messageQueueString;
+    }
 
 	window.JavascriptWebViewBridge = {
 		send: send,
-		fetchQueue: fetchQueue,
-		handleMessageFromObjC: handleMessageFromObjC,
+        receiveMessageFromObjC: receiveMessageFromObjC,
+		fetchQueueMessage: fetchQueueMessage,
 	}
 
     var readyEvent = doc.createEvent('Events');
