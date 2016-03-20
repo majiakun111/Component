@@ -60,7 +60,6 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
             continue;
         }
         
-        
         NSString *interfaceIdentifier = message[@"interfaceIdentifier"];
         id interface = [[JavascriptInterfaceManager shareInstance] getJavascriptInterfaceWithInterfaceIdentifier:interfaceIdentifier];
         NSString *methodIdentifier = message[@"methodIdentifier"];
