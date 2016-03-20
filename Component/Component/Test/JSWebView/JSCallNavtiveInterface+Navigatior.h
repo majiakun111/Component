@@ -11,4 +11,5 @@
 @interface JSCallNavtiveInterface (Navigatior)
 
 - (void)forward:(NSString *)url webView:(UIWebView *)webView callback:(void(^)(NSString *status, NSString *data))callback;
+
 @end
