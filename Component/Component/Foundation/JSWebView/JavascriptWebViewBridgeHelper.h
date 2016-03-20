@@ -20,7 +20,6 @@
 
 - (void)handleFromJSMessage:(NSString *)messageString forWebView:(UIWebView *)webView;
 - (void)injectJavascriptFile;
-- (void)injectInterfaces;
 - (BOOL)isCorrectProcotocolURL:(NSURL*)url;
 - (NSString *)getJSQueryCommod;
 - (NSString *)getJSCheckIsInjectCommod;

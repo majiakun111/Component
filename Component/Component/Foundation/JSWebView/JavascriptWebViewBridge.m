@@ -74,7 +74,6 @@
 {
     if (![[self evaluateJavascript:[_helper getJSCheckIsInjectCommod]] isEqualToString:@"true"]) {
         [_helper injectJavascriptFile];
-        [_helper injectInterfaces];
     }
     
     if (self.webViewDelegate && [self.webViewDelegate respondsToSelector:@selector(webViewDidFinishLoad:)]) {

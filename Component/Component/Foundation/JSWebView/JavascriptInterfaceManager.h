@@ -14,7 +14,9 @@
 
 - (void)addJavascriptInterface:(id)interface interfaceIdentifier:(NSString *)interfaceIdentifier;
 
-- (id)getJavascriptInterfaceInterfaceIdentifier:(NSString *)interfaceIdentifier;
+- (id)getJavascriptInterfaceWithInterfaceIdentifier:(NSString *)interfaceIdentifier;
+
+- (id)getJavascriptInterfaceMethodWithMethodIdentifier:(NSString *)methodIdentifier interfaceIdentifier:(NSString *)interfaceIdentifier;
 
 - (NSDictionary *)getInterfacesMap;
 

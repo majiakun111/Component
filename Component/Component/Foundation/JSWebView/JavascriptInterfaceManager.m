@@ -7,12 +7,28 @@
 //
 
 #import "JavascriptInterfaceManager.h"
+#import <objc/runtime.h>
 
 @class JSCallNavtiveInterface;
 
 @interface JavascriptInterfaceManager ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, JSCallNavtiveInterface*> *interfacesMap;
+
+/**
+*   {
+*       interfaceIdentifier : [
+*                                 interface, //接口对象
+*
+*                                 {
+*                                     methodIdentifier: method, //方法标识 => 方法名, (方法标识 为方法名的一个参数标识)
+*                                     ...
+*                                 }
+*                              ],
+*        ...
+*   }
+*/
+
+@property (nonatomic, strong) NSMutableDictionary *interfacesMap;
 
 @end
 
@@ -33,12 +49,34 @@
 
 - (void)addJavascriptInterface:(id)interface interfaceIdentifier:(NSString *)interfaceIdentifier
 {
-    [self.interfacesMap setObject:interface forKey:interfaceIdentifier];
+    NSMutableDictionary *methodsMap = [[NSMutableDictionary alloc] init];
+    unsigned int methodCount = 0;
+    Class cls = object_getClass(interface);
+    Method * mlist = class_copyMethodList(cls, &methodCount);
+    for (NSInteger index = 0; index < methodCount; index++){
+        NSString *method = [NSString stringWithUTF8String:sel_getName(method_getName(mlist[index]))];
+        NSArray *methodArgsIdentifier = [method componentsSeparatedByString:@":"];
+        NSString *methodIdentifier = [methodArgsIdentifier firstObject]; //取方法的方法的第一个参数标识作为方法标识
+        [methodsMap setObject:method forKey:methodIdentifier];
+    }
+    
+    NSArray *interfaceInfo = @[interface, methodsMap];
+    methodsMap = nil;
+    
+    [self.interfacesMap setObject:interfaceInfo forKey:interfaceIdentifier];
+    
+    free(mlist);
 }
 
-- (id)getJavascriptInterfaceInterfaceIdentifier:(NSString *)interfaceIdentifier
+- (id)getJavascriptInterfaceWithInterfaceIdentifier:(NSString *)interfaceIdentifier
 {
-    return [self.interfacesMap objectForKey:interfaceIdentifier];
+    return [[self.interfacesMap objectForKey:interfaceIdentifier] firstObject];
+}
+
+- (id)getJavascriptInterfaceMethodWithMethodIdentifier:(NSString *)methodIdentifier interfaceIdentifier:(NSString *)interfaceIdentifier
+{
+    NSDictionary *methodsMap = [[self.interfacesMap objectForKey:interfaceIdentifier] lastObject];
+    return methodsMap[methodIdentifier];
 }
 
 - (NSDictionary *)getInterfacesMap

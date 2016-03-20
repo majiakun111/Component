@@ -1,16 +1,14 @@
 ;(function() {
     if (window.JavascriptWebViewBridge) { return; }
 
-    var methodsMap = {};
-
     var sendMessageQueue = [];
     var responseCallbacks = {};
     var uniqueId = 1;
 
     var url = 'mjkscheme://__MJK_QUEUE_MESSAGE__';
 
-	function send(interfaceIdentifier, jsMethodName, args) {
-		_doSend(interfaceIdentifier, jsMethodName, args);
+	function send(interfaceIdentifier, methodIdentifier, args) {
+		_doSend(interfaceIdentifier, methodIdentifier, args);
 	}
 
 	function fetchQueue() {
@@ -24,20 +22,10 @@
 		_dispatchMessageFromObjC(messageJSON);
 	}
 
-    function inject(interfaceIdentifier, methods) {
-        for (var i = 0, l = methods.length; i < l; i++){
-            var ocMethodName = methods[i];
-            var ocMethodNameArgNames = ocMethodName.split(':'); //取出第一个作为js的方法名字
-            jsMethodName = ocMethodNameArgNames[0];
-            methodsMap[jsMethodName] =  ocMethodName;
-        }
-    }
-
-	function _doSend(interfaceIdentifier, jsMethodName, args) {
+	function _doSend(interfaceIdentifier, methodIdentifier, args) {
 		var message = {};
         message['interfaceIdentifier'] = interfaceIdentifier;
-        var ocMethodName = methodsMap[jsMethodName];
-		message['methodName'] = ocMethodName;
+		message['methodIdentifier'] = methodIdentifier;
 
 		var  formattedArgs = [];
 		for (var i = 0, l = args.length; i < l; i++){
@@ -80,7 +68,6 @@
 	}
 
 	window.JavascriptWebViewBridge = {
-        inject: inject,
 		send: send,
 		fetchQueue: fetchQueue,
 		handleMessageFromObjC: handleMessageFromObjC,

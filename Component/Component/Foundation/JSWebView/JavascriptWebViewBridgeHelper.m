@@ -20,7 +20,7 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
  * js -> oc
  *   {
  *      interfaceIdentifier : '',//接口标识, 通过标识找到 Interface
- *      methodName: @"setData: forKey: webView: callback:",  //webView需要自己加入
+ *      methodIdentifier: @"setData:", //(方法标识 为方法名的一个参数标识, setData: forKey: webView: callback:)
  *      args:[
  *        {
  *          type:'object', //参数类型
@@ -60,11 +60,11 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
             continue;
         }
         
-        NSString *interfaceIdentifier = message[@"interfaceIdentifier"];
         
-        id interface = [[JavascriptInterfaceManager shareInstance] getJavascriptInterfaceInterfaceIdentifier:interfaceIdentifier];
-       
-        NSMutableString *method  = message[@"methodName"];
+        NSString *interfaceIdentifier = message[@"interfaceIdentifier"];
+        id interface = [[JavascriptInterfaceManager shareInstance] getJavascriptInterfaceWithInterfaceIdentifier:interfaceIdentifier];
+        NSString *methodIdentifier = message[@"methodIdentifier"];
+        NSString *method = [[JavascriptInterfaceManager shareInstance] getJavascriptInterfaceMethodWithMethodIdentifier:methodIdentifier interfaceIdentifier:interfaceIdentifier];
         SEL selector = NSSelectorFromString(method);
         
         if (![interface respondsToSelector:selector]) {
@@ -128,40 +128,6 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"JavascriptWebViewBridge.js" ofType:@"txt"];
     NSString *js = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     [self evaluateJavascript:js];
-}
-
-- (void)injectInterfaces
-{
-    NSMutableString* injection = [[NSMutableString alloc] init];
-    NSDictionary *interfacesMap = [[JavascriptInterfaceManager shareInstance] getInterfacesMap];
-    
-    //inject the javascript interface
-    for(NSString *interfaceIdentifier in interfacesMap) {
-        NSObject* interface = [interfacesMap objectForKey:interfaceIdentifier];
-        
-        [injection appendString:@"JavascriptWebViewBridge.inject(\""];
-        [injection appendString:interfaceIdentifier];
-        [injection appendString:@"\", ["];
-        
-        unsigned int mc = 0;
-        Class cls = object_getClass(interface);
-        Method * mlist = class_copyMethodList(cls, &mc);
-        for (int i = 0; i < mc; i++){
-            [injection appendString:@"\'"];
-            [injection appendString:[NSString stringWithUTF8String:sel_getName(method_getName(mlist[i]))]];
-            [injection appendString:@"\'"];
-            
-            if (i != mc - 1){
-                [injection appendString:@", "];
-            }
-        }
-        
-        free(mlist);
-        
-        [injection appendString:@"]);"];
-    }
-    
-    [self.delegate evaluateJavascript:injection];
 }
 
 -(BOOL)isCorrectProcotocolURL:(NSURL*)url
