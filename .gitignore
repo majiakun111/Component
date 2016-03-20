@@ -25,6 +25,8 @@ dsa_priv.pem
 
 xcuserdata/
 
+xcuserstate/
+
 project.xcworkspace/
 
 # Generated files
@@ -64,8 +66,6 @@ Backup[ ]of[ ]*.numbers/
 *.ipa
 *.xccheckout
 *.idea
-
-FFProject/Pods/
 
 *.orig
 *.pyc
