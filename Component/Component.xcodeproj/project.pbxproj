@@ -19,6 +19,12 @@
 		5B15A2C61C8D3DD800764E8C /* TableViewRelativeHeightHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2C51C8D3DD800764E8C /* TableViewRelativeHeightHelper.m */; };
 		5B15A2D21C8D787500764E8C /* HeaderOrFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2D11C8D787500764E8C /* HeaderOrFooterView.m */; };
 		5B15A2DB1C8DB9CD00764E8C /* ReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2DA1C8DB9CD00764E8C /* ReusableView.m */; };
+		5B1DD42E1CB552D100C61BED /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD4231CB552D100C61BED /* NSData+AES.m */; };
+		5B1DD42F1CB552D100C61BED /* NSData+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD4251CB552D100C61BED /* NSData+DES.m */; };
+		5B1DD4301CB552D100C61BED /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD4271CB552D100C61BED /* NSData+MD5.m */; };
+		5B1DD4311CB552D100C61BED /* NSString+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD4291CB552D100C61BED /* NSString+AES.m */; };
+		5B1DD4321CB552D100C61BED /* NSString+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD42B1CB552D100C61BED /* NSString+DES.m */; };
+		5B1DD4331CB552D100C61BED /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD42D1CB552D100C61BED /* NSString+MD5.m */; };
 		5B24E3411C87D8AB00F1A521 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E33E1C87D8AB00F1A521 /* NSArray+Safe.m */; };
 		5B24E3421C87D8AB00F1A521 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3401C87D8AB00F1A521 /* NSMutableArray+Safe.m */; };
 		5B24E3451C87D9AE00F1A521 /* SwizzleCollectionMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3441C87D9AE00F1A521 /* SwizzleCollectionMethod.m */; };
@@ -93,6 +99,18 @@
 		5B15A2DA1C8DB9CD00764E8C /* ReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableView.m; sourceTree = "<group>"; };
 		5B15A2EC1C8DD66700764E8C /* CommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 		5B15A2ED1C8DD66700764E8C /* SizeDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeDefine.h; sourceTree = "<group>"; };
+		5B1DD4221CB552D100C61BED /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
+		5B1DD4231CB552D100C61BED /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
+		5B1DD4241CB552D100C61BED /* NSData+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+DES.h"; sourceTree = "<group>"; };
+		5B1DD4251CB552D100C61BED /* NSData+DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+DES.m"; sourceTree = "<group>"; };
+		5B1DD4261CB552D100C61BED /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
+		5B1DD4271CB552D100C61BED /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
+		5B1DD4281CB552D100C61BED /* NSString+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AES.h"; sourceTree = "<group>"; };
+		5B1DD4291CB552D100C61BED /* NSString+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES.m"; sourceTree = "<group>"; };
+		5B1DD42A1CB552D100C61BED /* NSString+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DES.h"; sourceTree = "<group>"; };
+		5B1DD42B1CB552D100C61BED /* NSString+DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DES.m"; sourceTree = "<group>"; };
+		5B1DD42C1CB552D100C61BED /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		5B1DD42D1CB552D100C61BED /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		5B24E33D1C87D8AB00F1A521 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
 		5B24E33E1C87D8AB00F1A521 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
 		5B24E33F1C87D8AB00F1A521 /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
@@ -407,6 +425,18 @@
 				5B24E3AF1C88449900F1A521 /* UIView+Coordinate.h */,
 				5B24E3B01C88449900F1A521 /* UIView+Coordinate.m */,
 				5B5223841C9D9A0C0059875B /* UIView+ViewController.h */,
+				5B1DD4221CB552D100C61BED /* NSData+AES.h */,
+				5B1DD4231CB552D100C61BED /* NSData+AES.m */,
+				5B1DD4241CB552D100C61BED /* NSData+DES.h */,
+				5B1DD4251CB552D100C61BED /* NSData+DES.m */,
+				5B1DD4261CB552D100C61BED /* NSData+MD5.h */,
+				5B1DD4271CB552D100C61BED /* NSData+MD5.m */,
+				5B1DD4281CB552D100C61BED /* NSString+AES.h */,
+				5B1DD4291CB552D100C61BED /* NSString+AES.m */,
+				5B1DD42A1CB552D100C61BED /* NSString+DES.h */,
+				5B1DD42B1CB552D100C61BED /* NSString+DES.m */,
+				5B1DD42C1CB552D100C61BED /* NSString+MD5.h */,
+				5B1DD42D1CB552D100C61BED /* NSString+MD5.m */,
 				5B5223851C9D9A0C0059875B /* UIView+ViewController.m */,
 			);
 			path = Extension;
@@ -541,6 +571,8 @@
 				5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */,
 				5B52237D1C9D98E50059875B /* JSCallNavtiveInterface+Data.m in Sources */,
 				5B15A2DB1C8DB9CD00764E8C /* ReusableView.m in Sources */,
+				5B1DD42E1CB552D100C61BED /* NSData+AES.m in Sources */,
+				5B1DD42F1CB552D100C61BED /* NSData+DES.m in Sources */,
 				5B24E3B11C88449900F1A521 /* UIView+Coordinate.m in Sources */,
 				5B15A25B1C89E1FF00764E8C /* CollectionViewController.m in Sources */,
 				5BF78E3F1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m in Sources */,
@@ -568,11 +600,15 @@
 				5BBE61121C85536E006D0595 /* NSObject+SwizzleMethod.m in Sources */,
 				5B24E3421C87D8AB00F1A521 /* NSMutableArray+Safe.m in Sources */,
 				5B24E3481C87EC2000F1A521 /* NSMutableDictionary+Safe.m in Sources */,
+				5B1DD4331CB552D100C61BED /* NSString+MD5.m in Sources */,
+				5B1DD4301CB552D100C61BED /* NSData+MD5.m in Sources */,
 				5BC8C22C1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m in Sources */,
 				5B15A24F1C89E12200764E8C /* TableViewCell.m in Sources */,
 				5BC8C22F1C9087C300FBF149 /* RefreshTableViewController.m in Sources */,
 				5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */,
 				5BF78E2E1C8F1CAE00648444 /* CollectionViewSectionItem.m in Sources */,
+				5B1DD4311CB552D100C61BED /* NSString+AES.m in Sources */,
+				5B1DD4321CB552D100C61BED /* NSString+DES.m in Sources */,
 				5BBE610D1C85536E006D0595 /* CALayer+Aniamtion.m in Sources */,
 				5BF78E471C8F2A4D00648444 /* TestCollectionViewCellItem.m in Sources */,
 				5B24E3A11C883B4E00F1A521 /* NSTimer+Weak.m in Sources */,
