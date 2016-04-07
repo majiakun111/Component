@@ -25,6 +25,8 @@
 		5B1DD4311CB552D100C61BED /* NSString+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD4291CB552D100C61BED /* NSString+AES.m */; };
 		5B1DD4321CB552D100C61BED /* NSString+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD42B1CB552D100C61BED /* NSString+DES.m */; };
 		5B1DD4331CB552D100C61BED /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD42D1CB552D100C61BED /* NSString+MD5.m */; };
+		5B1DD43C1CB55AEF00C61BED /* NSString+SHA.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD43B1CB55AEF00C61BED /* NSString+SHA.m */; };
+		5B1DD43F1CB55AFF00C61BED /* NSData+SHA.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD43E1CB55AFF00C61BED /* NSData+SHA.m */; };
 		5B24E3411C87D8AB00F1A521 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E33E1C87D8AB00F1A521 /* NSArray+Safe.m */; };
 		5B24E3421C87D8AB00F1A521 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3401C87D8AB00F1A521 /* NSMutableArray+Safe.m */; };
 		5B24E3451C87D9AE00F1A521 /* SwizzleCollectionMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E3441C87D9AE00F1A521 /* SwizzleCollectionMethod.m */; };
@@ -111,6 +113,10 @@
 		5B1DD42B1CB552D100C61BED /* NSString+DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DES.m"; sourceTree = "<group>"; };
 		5B1DD42C1CB552D100C61BED /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		5B1DD42D1CB552D100C61BED /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		5B1DD43A1CB55AEF00C61BED /* NSString+SHA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA.h"; sourceTree = "<group>"; };
+		5B1DD43B1CB55AEF00C61BED /* NSString+SHA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SHA.m"; sourceTree = "<group>"; };
+		5B1DD43D1CB55AFF00C61BED /* NSData+SHA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA.h"; sourceTree = "<group>"; };
+		5B1DD43E1CB55AFF00C61BED /* NSData+SHA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA.m"; sourceTree = "<group>"; };
 		5B24E33D1C87D8AB00F1A521 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
 		5B24E33E1C87D8AB00F1A521 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
 		5B24E33F1C87D8AB00F1A521 /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
@@ -425,19 +431,23 @@
 				5B24E3AF1C88449900F1A521 /* UIView+Coordinate.h */,
 				5B24E3B01C88449900F1A521 /* UIView+Coordinate.m */,
 				5B5223841C9D9A0C0059875B /* UIView+ViewController.h */,
+				5B5223851C9D9A0C0059875B /* UIView+ViewController.m */,
 				5B1DD4221CB552D100C61BED /* NSData+AES.h */,
 				5B1DD4231CB552D100C61BED /* NSData+AES.m */,
 				5B1DD4241CB552D100C61BED /* NSData+DES.h */,
 				5B1DD4251CB552D100C61BED /* NSData+DES.m */,
 				5B1DD4261CB552D100C61BED /* NSData+MD5.h */,
 				5B1DD4271CB552D100C61BED /* NSData+MD5.m */,
+				5B1DD43D1CB55AFF00C61BED /* NSData+SHA.h */,
+				5B1DD43E1CB55AFF00C61BED /* NSData+SHA.m */,
 				5B1DD4281CB552D100C61BED /* NSString+AES.h */,
 				5B1DD4291CB552D100C61BED /* NSString+AES.m */,
 				5B1DD42A1CB552D100C61BED /* NSString+DES.h */,
 				5B1DD42B1CB552D100C61BED /* NSString+DES.m */,
 				5B1DD42C1CB552D100C61BED /* NSString+MD5.h */,
 				5B1DD42D1CB552D100C61BED /* NSString+MD5.m */,
-				5B5223851C9D9A0C0059875B /* UIView+ViewController.m */,
+				5B1DD43A1CB55AEF00C61BED /* NSString+SHA.h */,
+				5B1DD43B1CB55AEF00C61BED /* NSString+SHA.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -565,6 +575,7 @@
 				5BF78E3E1C8F284F00648444 /* TestTableViewHeaderOrFooterView.m in Sources */,
 				5B52237A1C9D4CA50059875B /* JSCallNavtiveInterface.m in Sources */,
 				5B24E3AB1C88447300F1A521 /* LoadMoreView.m in Sources */,
+				5B1DD43F1CB55AFF00C61BED /* NSData+SHA.m in Sources */,
 				5B5223761C9D4C8F0059875B /* TestJSWebViewController.m in Sources */,
 				5BF78E4A1C8F2ABC00648444 /* TestCollectionViewController.m in Sources */,
 				5BF78E3D1C8F284F00648444 /* TestTableViewController.m in Sources */,
@@ -609,6 +620,7 @@
 				5BF78E2E1C8F1CAE00648444 /* CollectionViewSectionItem.m in Sources */,
 				5B1DD4311CB552D100C61BED /* NSString+AES.m in Sources */,
 				5B1DD4321CB552D100C61BED /* NSString+DES.m in Sources */,
+				5B1DD43C1CB55AEF00C61BED /* NSString+SHA.m in Sources */,
 				5BBE610D1C85536E006D0595 /* CALayer+Aniamtion.m in Sources */,
 				5BF78E471C8F2A4D00648444 /* TestCollectionViewCellItem.m in Sources */,
 				5B24E3A11C883B4E00F1A521 /* NSTimer+Weak.m in Sources */,

@@ -13,70 +13,42 @@
 
 - (NSData *)DESEncryptWithKey:(NSString *)key
 {
-    char cKey[kCCKeySizeAES256+1];
-    bzero(cKey, sizeof(cKey));
-    
-    [key getCString:cKey maxLength:sizeof(cKey) encoding:NSUTF8StringEncoding];
-    
-    NSUInteger dataLength = [self length];
-    
-    size_t bufferSize = dataLength + kCCBlockSizeAES128;
-    void *buffer = malloc(bufferSize);
-    size_t numBytesEncrypted = 0;
-    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
-                                          kCCAlgorithmDES,
-                                          kCCOptionPKCS7Padding | kCCOptionECBMode,
-                                          cKey,
-                                          kCCBlockSizeDES,
-                                          NULL,
-                                          [self bytes],
-                                          dataLength,
-                                          buffer,
-                                          bufferSize,
-                                          &numBytesEncrypted);
-    
-    NSData *encryptData = nil;
-    if (cryptStatus == kCCSuccess) {
-        encryptData = [NSData dataWithBytes:buffer length:numBytesEncrypted];
-    }
-    
-    free(buffer);
-    return encryptData;
+    return [self DESWitKey:key operation:kCCEncrypt];
 }
 
 - (NSData *)DESDecryptWithKey:(NSString *)key
 {
-    char cKey[kCCKeySizeAES256+1];
-    bzero(cKey, sizeof(cKey));
+    return [self DESWitKey:key operation:kCCDecrypt];
+}
+
+#pragma mark - PrivateMethod
+
+- (NSData *)DESWitKey:(NSString *)key operation:(CCOperation)operation
+{
+    size_t bufferSize = ([self length] + kCCKeySizeDES) & ~(kCCKeySizeDES - 1);
+    void *buffer = malloc(bufferSize);
+    memset(buffer, 0x00, bufferSize);
     
-    [key getCString:cKey maxLength:sizeof(cKey) encoding:NSUTF8StringEncoding];
-    
-    NSUInteger dataLength = [self length];
-    
-//    size_t bufferSize = dataLength + kCCBlockSizeAES128;
-    void *buffer = malloc(dataLength);
-    
-    size_t numBytesDecrypted = 0;
-    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,
+    size_t numBytesEncrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(operation,
                                           kCCAlgorithmDES,
-                                          kCCOptionPKCS7Padding | kCCOptionECBMode,
-                                          cKey,
-                                          kCCBlockSizeDES,
+                                          kCCOptionPKCS7Padding,
+                                          [key UTF8String],
+                                          kCCKeySizeDES,
                                           NULL,
                                           [self bytes],
-                                          dataLength,
+                                          [self length],
                                           buffer,
-                                          dataLength,
-                                          &numBytesDecrypted);
+                                          bufferSize,
+                                          &numBytesEncrypted);
     
-    NSData *decryptData = nil;
+    NSData *data = nil;
     if (cryptStatus == kCCSuccess) {
-        decryptData = [NSData dataWithBytes:buffer length:numBytesDecrypted];
+        data = [NSData dataWithBytes:buffer length:numBytesEncrypted];
     }
     
     free(buffer);
-    return decryptData;
+    return data;
 }
-
 
 @end
