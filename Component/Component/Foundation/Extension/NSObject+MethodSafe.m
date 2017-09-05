@@ -18,7 +18,7 @@
 
 @implementation ExceptionCatch
 
-int smartFunction(id sel,SEL fun,...)
+int smartFunction(id self,SEL fun,...)
 {
     return 0;
 }
