@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "UIButton+Highlight.h"
+#import "UIImage+Color.h"
 
 @interface ViewController ()
 
@@ -20,18 +21,12 @@
     // Do any additional setup after loading the view.
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 80, 80)];
-    [button setImage:[UIImage imageNamed:@"loading"] forState:UIControlStateNormal];
+    UIImage *image = [UIImage imageWithSize:CGSizeMake(80, 80) color:[UIColor redColor] cornerRadius:20 borderWidth:10 borderColor:[UIColor blueColor]];
+    [button setImage:image forState:UIControlStateNormal];
     [button setHighlightImageWithScale:0];
-    [button setImage:[UIImage imageNamed:@"PullToLoadMore"] forState:UIControlStateSelected];
-    [button setHighlightSelectedImageWithScale:0];
-    [button addTarget:self action:@selector(didClickButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     //[button setImage:[UIImage imageNamed:@"loading"] forState:UIControlStateSelected];
     
-}
-
-- (void)didClickButton:(UIButton *)sender {
-    sender.selected = !(sender.selected);
 }
 
 - (void)didReceiveMemoryWarning {

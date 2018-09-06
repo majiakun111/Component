@@ -50,6 +50,8 @@
 		5B5223861C9D9A0C0059875B /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223851C9D9A0C0059875B /* UIView+ViewController.m */; };
 		5BAC68B82140B5C800A870F9 /* UIButton+Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68B72140B5C800A870F9 /* UIButton+Highlight.m */; };
 		5BAC68BB2140B98C00A870F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68BA2140B98C00A870F9 /* ViewController.m */; };
+		5BAC68BE2140C5EA00A870F9 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68BD2140C5EA00A870F9 /* UIImage+Color.m */; };
+		5BAC68C12140C88E00A870F9 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68C02140C88E00A870F9 /* UIImage+Alpha.m */; };
 		5BBE60681C809EAF006D0595 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60671C809EAF006D0595 /* main.m */; };
 		5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE606A1C809EAF006D0595 /* AppDelegate.m */; };
 		5BBE60731C809EAF006D0595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE60721C809EAF006D0595 /* Assets.xcassets */; };
@@ -163,6 +165,10 @@
 		5BAC68B72140B5C800A870F9 /* UIButton+Highlight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Highlight.m"; sourceTree = "<group>"; };
 		5BAC68B92140B98C00A870F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5BAC68BA2140B98C00A870F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5BAC68BC2140C5EA00A870F9 /* UIImage+Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		5BAC68BD2140C5EA00A870F9 /* UIImage+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		5BAC68BF2140C88E00A870F9 /* UIImage+Alpha.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		5BAC68C02140C88E00A870F9 /* UIImage+Alpha.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		5BBE60631C809EAF006D0595 /* Component.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Component.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE60671C809EAF006D0595 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BBE60691C809EAF006D0595 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -458,6 +464,10 @@
 				5B1DD43B1CB55AEF00C61BED /* NSString+SHA.m */,
 				5BAC68B62140B5C800A870F9 /* UIButton+Highlight.h */,
 				5BAC68B72140B5C800A870F9 /* UIButton+Highlight.m */,
+				5BAC68BC2140C5EA00A870F9 /* UIImage+Color.h */,
+				5BAC68BD2140C5EA00A870F9 /* UIImage+Color.m */,
+				5BAC68BF2140C88E00A870F9 /* UIImage+Alpha.h */,
+				5BAC68C02140C88E00A870F9 /* UIImage+Alpha.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -598,6 +608,7 @@
 				5B24E3B11C88449900F1A521 /* UIView+Coordinate.m in Sources */,
 				5B15A25B1C89E1FF00764E8C /* CollectionViewController.m in Sources */,
 				5BF78E3F1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m in Sources */,
+				5BAC68BE2140C5EA00A870F9 /* UIImage+Color.m in Sources */,
 				5B15A24A1C89E0D800764E8C /* TableViewController.m in Sources */,
 				5B52236F1C9D4C0E0059875B /* JavascriptWebViewBridge.m in Sources */,
 				5B15A2D21C8D787500764E8C /* HeaderOrFooterView.m in Sources */,
@@ -614,6 +625,7 @@
 				5B5223831C9D99940059875B /* LoginViewController.m in Sources */,
 				5B24E3451C87D9AE00F1A521 /* SwizzleCollectionMethod.m in Sources */,
 				5B24E3411C87D8AB00F1A521 /* NSArray+Safe.m in Sources */,
+				5BAC68C12140C88E00A870F9 /* UIImage+Alpha.m in Sources */,
 				5B15A2691C8A85ED00764E8C /* CollectionViewCellItem.m in Sources */,
 				5BC8C2211C8FC23C00FBF149 /* TestReusableViewItem.m in Sources */,
 				5B24E3AC1C88447300F1A521 /* PullView.m in Sources */,
