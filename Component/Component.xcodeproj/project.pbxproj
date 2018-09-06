@@ -48,6 +48,8 @@
 		5B5223801C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52237F1C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m */; };
 		5B5223831C9D99940059875B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223821C9D99940059875B /* LoginViewController.m */; };
 		5B5223861C9D9A0C0059875B /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223851C9D9A0C0059875B /* UIView+ViewController.m */; };
+		5BAC68B82140B5C800A870F9 /* UIButton+Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68B72140B5C800A870F9 /* UIButton+Highlight.m */; };
+		5BAC68BB2140B98C00A870F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68BA2140B98C00A870F9 /* ViewController.m */; };
 		5BBE60681C809EAF006D0595 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE60671C809EAF006D0595 /* main.m */; };
 		5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE606A1C809EAF006D0595 /* AppDelegate.m */; };
 		5BBE60731C809EAF006D0595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE60721C809EAF006D0595 /* Assets.xcassets */; };
@@ -157,6 +159,10 @@
 		5B5223821C9D99940059875B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		5B5223841C9D9A0C0059875B /* UIView+ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ViewController.h"; sourceTree = "<group>"; };
 		5B5223851C9D9A0C0059875B /* UIView+ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewController.m"; sourceTree = "<group>"; };
+		5BAC68B62140B5C800A870F9 /* UIButton+Highlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Highlight.h"; sourceTree = "<group>"; };
+		5BAC68B72140B5C800A870F9 /* UIButton+Highlight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Highlight.m"; sourceTree = "<group>"; };
+		5BAC68B92140B98C00A870F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5BAC68BA2140B98C00A870F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5BBE60631C809EAF006D0595 /* Component.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Component.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE60671C809EAF006D0595 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BBE60691C809EAF006D0595 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -383,6 +389,8 @@
 				5BBE60851C81E108006D0595 /* Foundation */,
 				5BBE60691C809EAF006D0595 /* AppDelegate.h */,
 				5BBE606A1C809EAF006D0595 /* AppDelegate.m */,
+				5BAC68B92140B98C00A870F9 /* ViewController.h */,
+				5BAC68BA2140B98C00A870F9 /* ViewController.m */,
 				5BF78E2F1C8F284F00648444 /* Test */,
 				5BBE60721C809EAF006D0595 /* Assets.xcassets */,
 				5BBE60741C809EAF006D0595 /* LaunchScreen.storyboard */,
@@ -448,6 +456,8 @@
 				5B1DD42D1CB552D100C61BED /* NSString+MD5.m */,
 				5B1DD43A1CB55AEF00C61BED /* NSString+SHA.h */,
 				5B1DD43B1CB55AEF00C61BED /* NSString+SHA.m */,
+				5BAC68B62140B5C800A870F9 /* UIButton+Highlight.h */,
+				5BAC68B72140B5C800A870F9 /* UIButton+Highlight.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -567,6 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BAC68BB2140B98C00A870F9 /* ViewController.m in Sources */,
 				5BC8C2321C908E2200FBF149 /* RefreshCollectionViewController.m in Sources */,
 				5B15A2521C89E15700764E8C /* TableViewSectionItem.m in Sources */,
 				5B15A25E1C89E25000764E8C /* CollectionViewCell.m in Sources */,
@@ -597,6 +608,7 @@
 				5BBE61101C85536E006D0595 /* NSObject+MethodSafe.m in Sources */,
 				5BBE61111C85536E006D0595 /* NSObject+Notification.m in Sources */,
 				5B15A2C61C8D3DD800764E8C /* TableViewRelativeHeightHelper.m in Sources */,
+				5BAC68B82140B5C800A870F9 /* UIButton+Highlight.m in Sources */,
 				5BF78E2B1C8F168100648444 /* CollectionViewRelativeSizeHelper.m in Sources */,
 				5BF78E281C8F0DF700648444 /* ReusableViewItem.m in Sources */,
 				5B5223831C9D99940059875B /* LoginViewController.m in Sources */,
