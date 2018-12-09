@@ -3,7 +3,7 @@
 //  Component
 //
 //  Created by Ansel on 2018/9/6.
-//  Copyright © 2018年 PingAn. All rights reserved.
+//  Copyright © 2018年 MJK. All rights reserved.
 //
 
 #import "UIImage+Alpha.h"

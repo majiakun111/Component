@@ -3,7 +3,7 @@
 //  Component
 //
 //  Created by Ansel on 16/2/26.
-//  Copyright © 2016年 PingAn. All rights reserved.
+//  Copyright © 2016年 MJK. All rights reserved.
 //
 
 #import "CALayer+Aniamtion.h"
@@ -11,7 +11,7 @@
 #import "NSObject+Notification.h"
 #import "NSObject+SwizzleMethod.h"
 
-@interface CALayer ()
+@interface CALayer () <CAAnimationDelegate>
 
 @property (nonatomic, copy) CompleteBlock completeBlcok;
 

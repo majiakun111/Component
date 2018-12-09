@@ -3,7 +3,7 @@
 //  Component
 //
 //  Created by Ansel on 2018/11/14.
-//  Copyright © 2018 PingAn. All rights reserved.
+//  Copyright © 2018 MJK. All rights reserved.
 //
 
 #import "ImagesConvertVideo.h"

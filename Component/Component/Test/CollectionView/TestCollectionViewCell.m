@@ -3,7 +3,7 @@
 //  Component
 //
 //  Created by Ansel on 16/3/8.
-//  Copyright © 2016年 PingAn. All rights reserved.
+//  Copyright © 2016年 MJK. All rights reserved.
 //
 
 #import "TestCollectionViewCell.h"
@@ -19,8 +19,10 @@
 
 - (void)buildUI
 {
+    [super buildUI];
+    
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    [_titleLabel setBackgroundColor:[UIColor yellowColor]];
+    [_titleLabel setBackgroundColor:[UIColor purpleColor]];
     [_titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     
     [self.contentView addSubview:_titleLabel];
