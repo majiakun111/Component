@@ -46,6 +46,12 @@
     }
     
     self.pageContainerViewController = [[PageContainerViewController alloc] initWithPageViewControllers:pageViewControllers pageWidth:[UIScreen mainScreen].bounds.size.width];
+    [self.pageContainerViewController setContentOffsetDidChangeBlock:^(CGPoint contentOffset) {
+        NSLog(@"----contentOffset:%@", NSStringFromCGPoint(contentOffset));
+    }];
+    [self.pageContainerViewController setPageIndexChangeBlock:^(NSInteger pageIndex) {
+        NSLog(@"----pageIndex:%d", (int)pageIndex);
+    }];
     [self addChildViewController:self.pageContainerViewController];
     [self.view addSubview:self.pageContainerViewController.view];
     
@@ -54,9 +60,9 @@
     }];
     [self.pageContainerViewController didMoveToParentViewController:self];
     
-    //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.pageContainerViewController setPageIndex:18 animated:NO];
-    //});
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self.pageContainerViewController setPageIndex:5 animated:NO];
+//    });
 }
 
 - (void)didReceiveMemoryWarning {

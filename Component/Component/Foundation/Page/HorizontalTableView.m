@@ -33,7 +33,7 @@ static const CGFloat DefaultCellWidth = 40.0;
 
 @implementation HorizontalTableView
 
-@synthesize delegate = _delegate;
+@dynamic delegate;
 
 - (void)dealloc
 {

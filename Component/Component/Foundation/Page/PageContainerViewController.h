@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^PageContainerViewControllerContentOffsetDidChangeBlock)(CGPoint contentOffset);
+typedef void(^PageContainerViewControllerPageIndexChangeBlock)(NSInteger pageIndex);
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PageContainerViewController<__covariant ViewControllerType : UIViewController *> : UIViewController
+
+@property(nonatomic, copy) PageContainerViewControllerContentOffsetDidChangeBlock contentOffsetDidChangeBlock;
+@property(nonatomic, copy) PageContainerViewControllerPageIndexChangeBlock pageIndexChangeBlock;
+@property(nonatomic, strong) UIColor *tintColor;
 
 - (instancetype)initWithPageViewControllers:(NSArray<ViewControllerType> *)pageViewControllers pageWidth:(CGFloat)pageWidth NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;

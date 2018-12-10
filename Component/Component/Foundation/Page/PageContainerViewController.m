@@ -29,26 +29,30 @@ NSInteger const DefaultCurrentPageIndex = 0;
     }
     
     if (_viewController) {
+        [_viewController beginAppearanceTransition:NO animated:YES];
         [_viewController willMoveToParentViewController:nil];
         if (_viewController.isViewLoaded && [self.viewController.view superview]) {
             [_viewController.view removeFromSuperview];
         }
         [_viewController removeFromParentViewController];
         [_viewController didMoveToParentViewController:nil];
+        [_viewController endAppearanceTransition];
     }
     
     _viewController = viewController;
     
-    if (_viewController) {
-        [_viewController willMoveToParentViewController:self.parentViewController];
-        [self.parentViewController addChildViewController:_viewController];
-        [self addSubview:_viewController.view];
+    if (viewController) {
+        [viewController beginAppearanceTransition:YES animated:YES];
+        [viewController willMoveToParentViewController:self.parentViewController];
+        [self.parentViewController addChildViewController:viewController];
+        [self addSubview:viewController.view];
         
-        [_viewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        [viewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
         
-        [_viewController didMoveToParentViewController:self.parentViewController];
+        [viewController didMoveToParentViewController:self.parentViewController];
+        [viewController endAppearanceTransition];
     }
 }
 
@@ -69,6 +73,10 @@ NSInteger const DefaultCurrentPageIndex = 0;
 
 @implementation PageContainerViewController
 
+- (void)dealloc {
+    [self removeObserver];
+}
+
 - (instancetype)initWithPageViewControllers:(NSArray<UIViewController *> *)pageViewControllers pageWidth:(CGFloat)pageWidth {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
@@ -85,29 +93,30 @@ NSInteger const DefaultCurrentPageIndex = 0;
     // Do any additional setup after loading the view.
     
     [self buildUI];
+    [self addObserver];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     [[self currentPageViewController] beginAppearanceTransition:YES animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     [[self currentPageViewController] endAppearanceTransition];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+
     [[self currentPageViewController] beginAppearanceTransition:NO animated:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    
+
     [[self currentPageViewController] endAppearanceTransition];
 }
 
@@ -131,11 +140,21 @@ NSInteger const DefaultCurrentPageIndex = 0;
     [self.tableView setContentOffset:CGPointMake(pageIndex * self.pageWidth, 0) animated:animated];
 }
 
+#pragma mark - Property
+
+- (void)setTintColor:(UIColor *)tintColor {
+    _tintColor = tintColor;
+    
+    if (self.isViewLoaded) {
+        [self.view setBackgroundColor:tintColor];
+    }
+}
+
 #pragma mark - PrivateUI
 
 - (void)buildUI {
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self.view setBackgroundColor:self.tintColor ?: [UIColor clearColor]];
     
     [self buildTableView];
 }
@@ -152,6 +171,33 @@ NSInteger const DefaultCurrentPageIndex = 0;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+}
+
+#pragma mark -  PrivateNotification
+
+- (void)addObserver
+{
+    [self.tableView addObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset)) options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+}
+
+- (void)removeObserver
+{
+    [self.tableView removeObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset))];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if (![keyPath isEqualToString:NSStringFromSelector(@selector(contentOffset))]) {
+        return;
+    }
+    
+    CGPoint contentOffsetOld  = [change[NSKeyValueChangeOldKey] CGPointValue];
+    CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
+    if (!CGPointEqualToPoint(contentOffsetOld, contentOffset)) {
+        if (self.contentOffsetDidChangeBlock) {
+            self.contentOffsetDidChangeBlock(contentOffset);
+        }
+    }
 }
 
 #pragma mark - PrivateMethod
@@ -191,7 +237,7 @@ NSInteger const DefaultCurrentPageIndex = 0;
     return self.pageWidth;
 }
 
-- (void)tableView:(HorizontalTableView *)collectionView willDisplayCell:(__kindof HorizontalTableViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(HorizontalTableView *)tableView willDisplayCell:(__kindof HorizontalTableViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row >= self.pageViewControllers.count) {
         return;
     }
@@ -200,8 +246,21 @@ NSInteger const DefaultCurrentPageIndex = 0;
     [(PageContainerTableViewCell *)cell setViewController:pageViewController];
 }
 
-- (void)tableView:(HorizontalTableView *)collectionView didEndDisplayingCell:(__kindof HorizontalTableViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(HorizontalTableView *)tableView didEndDisplayingCell:(__kindof HorizontalTableViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     [(PageContainerTableViewCell *)cell setViewController:nil];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.tracking || scrollView.decelerating) {
+        NSInteger pageIndex = round((scrollView.contentOffset.x / (scrollView.frame.size.width ?: 0.000001)));
+        pageIndex = MIN(MAX(0, pageIndex), self.pageViewControllers.count - 1);
+        if (self.currentPageIndex != pageIndex) {
+            self.currentPageIndex = pageIndex;
+            self.pageIndexChangeBlock ? self.pageIndexChangeBlock(self.currentPageIndex) : nil;
+        }
+    }
 }
 
 @end

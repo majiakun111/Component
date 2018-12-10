@@ -25,12 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol HorizontalTableViewDelegate <NSObject, UIScrollViewDelegate>
+@protocol HorizontalTableViewDelegate <UIScrollViewDelegate>
 
 @optional
 - (CGFloat)tableView:(HorizontalTableView *)tableView widthForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-- (void)tableView:(HorizontalTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)tableView:(HorizontalTableView *)tableView willDisplayCell:(__kindof HorizontalTableViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
 
@@ -40,8 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HorizontalTableView : UIScrollView
 
-@property (nonatomic, weak) id<HorizontalTableViewDataSource> dataSource;
-@property (nonatomic, weak) id<HorizontalTableViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id<HorizontalTableViewDataSource> dataSource;
+@property (nonatomic, weak, nullable) id<HorizontalTableViewDelegate> delegate;
 
 - (__kindof HorizontalTableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
 

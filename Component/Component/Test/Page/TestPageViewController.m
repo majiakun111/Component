@@ -29,10 +29,22 @@
     NSLog(@"--viewWillAppear--vc:%@----", self);
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"--viewDidAppear--vc:%@----", self);
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     NSLog(@"--viewWillDisappear--vc:%@----", self);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    NSLog(@"--viewDidDisappear--vc:%@----", self);
 }
 
 - (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent {
