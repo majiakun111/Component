@@ -28,21 +28,20 @@ NSInteger const DefaultCurrentPageIndex = 0;
         return;
     }
     
-    if (_viewController) {
-        [_viewController beginAppearanceTransition:NO animated:YES];
-        [_viewController willMoveToParentViewController:nil];
-        if (_viewController.isViewLoaded && [self.viewController.view superview]) {
-            [_viewController.view removeFromSuperview];
+    UIViewController *lastViewController = _viewController;
+    if (lastViewController) {
+        [lastViewController willMoveToParentViewController:nil];
+        if (lastViewController.isViewLoaded && [lastViewController.view superview]) {
+            [lastViewController.view removeFromSuperview];
         }
-        [_viewController removeFromParentViewController];
-        [_viewController didMoveToParentViewController:nil];
-        [_viewController endAppearanceTransition];
+        [lastViewController removeFromParentViewController];
+        [lastViewController didMoveToParentViewController:nil];
+        [lastViewController endAppearanceTransition];
     }
     
     _viewController = viewController;
     
     if (viewController) {
-        [viewController beginAppearanceTransition:YES animated:YES];
         [viewController willMoveToParentViewController:self.parentViewController];
         [self.parentViewController addChildViewController:viewController];
         [self addSubview:viewController.view];
@@ -52,8 +51,12 @@ NSInteger const DefaultCurrentPageIndex = 0;
         }];
         
         [viewController didMoveToParentViewController:self.parentViewController];
-        [viewController endAppearanceTransition];
     }
+    
+    [lastViewController beginAppearanceTransition:NO animated:YES];
+    [viewController beginAppearanceTransition:YES animated:YES];
+    [lastViewController endAppearanceTransition];
+    [viewController endAppearanceTransition];
 }
 
 @end
@@ -136,6 +139,10 @@ NSInteger const DefaultCurrentPageIndex = 0;
 }
 
 - (void)setPageIndex:(NSInteger)pageIndex animated:(BOOL)animated {
+    if (_currentPageIndex == pageIndex) {
+        return;
+    }
+    
     _currentPageIndex = pageIndex;
     [self.tableView setContentOffset:CGPointMake(pageIndex * self.pageWidth, 0) animated:animated];
 }

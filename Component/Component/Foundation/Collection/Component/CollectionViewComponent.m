@@ -40,21 +40,28 @@
 
 @interface CollectionViewComponent ()
 
-@property (nonatomic, strong) NSArray<__kindof CollectionViewSectionItem *> *sectionItems;
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property(nonatomic, strong) NSArray<__kindof CollectionViewSectionItem *> *sectionItems;
+@property(nonatomic, strong) UICollectionView *collectionView;
 
 //1. CollectionViewCellItem或其子类的ClassName作为key CollectionViewCell或其子类的class作为值
 //2. 以ReuseableViewItem或其子类的ClassName作为key ReusableView或其子类的class作为值
-@property (nonatomic, strong) NSMutableDictionary *viewClassMap;
+@property(nonatomic, strong) NSMutableDictionary *viewClassMap;
+
+@property(nonatomic, assign) UICollectionViewScrollDirection scrollDirection;
 
 @end
 
 @implementation CollectionViewComponent
 
 - (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
+    return [self initWithSectionItems:sectionItems scrollDirection:UICollectionViewScrollDirectionVertical mapItemClassToViewClassBlock:mapItemClassToViewClassBlock];
+}
+
+- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems scrollDirection:(UICollectionViewScrollDirection)scrollDirection mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
     self = [super init];
     if (self) {
         _sectionItems = sectionItems;
+        _scrollDirection = scrollDirection;
         [self buildCollectionView];
         
         if (mapItemClassToViewClassBlock) {
@@ -152,6 +159,11 @@
     return sectionItem.cellItems;
 }
 
+- (__kindof CollectionViewCell *)cellForRow:(NSInteger)row inSection:(NSInteger)section {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+    return [self cellForItemAtIndexPath:indexPath];
+}
+
 - (__kindof UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.collectionView cellForItemAtIndexPath:indexPath];
 }
@@ -196,7 +208,7 @@
 {
     if (nil == _collectionViewFlowLayout) {
         _collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-        [_collectionViewFlowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [_collectionViewFlowLayout setScrollDirection:self.scrollDirection];
     }
     
     return _collectionViewFlowLayout;

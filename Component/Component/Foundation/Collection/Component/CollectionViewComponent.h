@@ -36,7 +36,8 @@ typedef void(^CollectionViewComponentWillDisplayIndexPathBlock)(CollectionViewCo
 
 @property (nonatomic, copy) CollectionViewComponentWillDisplayIndexPathBlock willDisplayIndexPathBlock;
 
-- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock;
+- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems scrollDirection:(UICollectionViewScrollDirection)scrollDirection mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)buildCollectionView;
@@ -61,6 +62,7 @@ typedef void(^CollectionViewComponentWillDisplayIndexPathBlock)(CollectionViewCo
 - (NSArray< __kindof CollectionViewCellItem *> *)cellItemsForSectionIndex:(NSInteger)sectionIndex;
 
 //cell
+- (__kindof CollectionViewCell *)cellForRow:(NSInteger)row inSection:(NSInteger)section;
 - (__kindof UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 //indexPath

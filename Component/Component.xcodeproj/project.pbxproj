@@ -50,6 +50,7 @@
 		5B5223801C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52237F1C9D99430059875B /* JSCallNavtiveInterface+Navigatior.m */; };
 		5B5223831C9D99940059875B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223821C9D99940059875B /* LoginViewController.m */; };
 		5B5223861C9D9A0C0059875B /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223851C9D9A0C0059875B /* UIView+ViewController.m */; };
+		5B5BFC9121BF4E63008069B5 /* PageTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFC9021BF4E63008069B5 /* PageTitleView.m */; };
 		5B7B164F21B9140C003C6ACE /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B164E21B9140C003C6ACE /* PageContainerViewController.m */; };
 		5B7B165321B91E85003C6ACE /* CollectionViewComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B165121B91E85003C6ACE /* CollectionViewComponent.m */; };
 		5B7B165E21B92A8C003C6ACE /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B165D21B92A8C003C6ACE /* PageViewController.m */; };
@@ -183,6 +184,8 @@
 		5B5223821C9D99940059875B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		5B5223841C9D9A0C0059875B /* UIView+ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ViewController.h"; sourceTree = "<group>"; };
 		5B5223851C9D9A0C0059875B /* UIView+ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewController.m"; sourceTree = "<group>"; };
+		5B5BFC8F21BF4E63008069B5 /* PageTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageTitleView.h; sourceTree = "<group>"; };
+		5B5BFC9021BF4E63008069B5 /* PageTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageTitleView.m; sourceTree = "<group>"; };
 		5B7B164D21B9140C003C6ACE /* PageContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageContainerViewController.h; sourceTree = "<group>"; };
 		5B7B164E21B9140C003C6ACE /* PageContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageContainerViewController.m; sourceTree = "<group>"; };
 		5B7B165121B91E85003C6ACE /* CollectionViewComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewComponent.m; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				5B7B166121B93130003C6ACE /* PageItem.m */,
 				5B7B165C21B92A8C003C6ACE /* PageViewController.h */,
 				5B7B165D21B92A8C003C6ACE /* PageViewController.m */,
+				5B5BFC8F21BF4E63008069B5 /* PageTitleView.h */,
+				5B5BFC9021BF4E63008069B5 /* PageTitleView.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -695,6 +700,7 @@
 				TargetAttributes = {
 					5BBE60621C809EAF006D0595 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9XBEF454C5;
 					};
 				};
 			};
@@ -739,6 +745,7 @@
 				5BC8C2321C908E2200FBF149 /* RefreshCollectionViewController.m in Sources */,
 				5B15A2521C89E15700764E8C /* TableViewSectionItem.m in Sources */,
 				5B15A25E1C89E25000764E8C /* CollectionViewCell.m in Sources */,
+				5B5BFC9121BF4E63008069B5 /* PageTitleView.m in Sources */,
 				5B52236D1C9D4C0E0059875B /* JavascriptInterfaceManager.m in Sources */,
 				5B15A2661C8A85DD00764E8C /* TableViewCellItem.m in Sources */,
 				5BF78E3E1C8F284F00648444 /* TestTableViewHeaderOrFooterView.m in Sources */,
@@ -922,6 +929,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9XBEF454C5;
 				INFOPLIST_FILE = Component/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -935,6 +943,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9XBEF454C5;
 				INFOPLIST_FILE = Component/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
