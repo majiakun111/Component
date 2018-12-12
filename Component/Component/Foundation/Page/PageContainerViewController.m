@@ -129,7 +129,7 @@ NSInteger const DefaultCurrentPageIndex = 0;
     if (!CGSizeEqualToSize(self.view.bounds.size, CGSizeZero) && !CGSizeEqualToSize(self.view.bounds.size, self.viewOldSize)) {
         self.viewOldSize = self.view.bounds.size;
         [self.view layoutIfNeeded];
-        [self setPageIndex:self.currentPageIndex animated:NO];
+        [self.tableView setContentOffset:CGPointMake(self.currentPageIndex * self.pageWidth, 0) animated:NO];
     }
 }
 

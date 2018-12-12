@@ -49,6 +49,7 @@
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
     }];
+    [self.pageTitleView updateIndexProgress:10 animated:NO];
 
     NSMutableArray<TestPageViewController *> *pageViewControllers = @[].mutableCopy;
     for (int pageIndex = 0; pageIndex < 20; pageIndex++) {
@@ -82,6 +83,8 @@
         make.right.equalTo(self.view.mas_right);
     }];
     [self.pageContainerViewController didMoveToParentViewController:self];
+    
+    [self.pageContainerViewController setPageIndex:10 animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {

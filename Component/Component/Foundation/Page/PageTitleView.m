@@ -78,7 +78,8 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (!CGSizeEqualToSize(self.containerView.contentSize, CGSizeZero)) {
+    if (!CGRectEqualToRect(self.bounds, CGRectZero)) {
+        [self layoutIfNeeded];
         [self scrollToIndex:self.currentIndex animated:NO needExcuteCurrentIndexChangedBlock:NO];
     }
 }
