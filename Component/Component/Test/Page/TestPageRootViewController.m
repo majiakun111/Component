@@ -30,14 +30,13 @@
     for (NSInteger index = 0; index < 20; index++) {
         NSString *title = [NSString stringWithFormat:@"title_%d", (int)index];
         if (index % 2 ==0) {
-            title = [NSString stringWithFormat:@"majiakun%@", title];
+            title = [NSString stringWithFormat:@"ansel_%@", title];
         }
         
         [titles addObject:title];
     }
     
     self.pageTitleView = [[PageTitleView alloc] initWithTitles:titles];
-    [self.pageTitleView setTitePadding:10];
     [self.pageTitleView setBackgroundColor:[UIColor clearColor]];
     __weak typeof(self) weakSelf = self;
     [self.pageTitleView setCurrentIndexChangedBlock:^(NSUInteger currentIndex) {

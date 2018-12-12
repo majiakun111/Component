@@ -22,6 +22,7 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
 #define PageTitleViewTitleDefaultColor [UIColor redColor]
 #define PageTitleViewTitleSelectedDefaultColor [UIColor purpleColor]
 #define PageTitleViewTitleDefaultFont [UIFont systemFontOfSize:16]
+NSInteger const PageTitleViewTitleDefalutPadding = 10;
 
 #define PageTitleViewUnderSeparationLineDefaultColor [UIColor grayColor]
 #define PageTitleViewSelectedIndicatorViewDefaultColor [UIColor redColor]
@@ -57,6 +58,7 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
     self = [super initWithFrame:CGRectZero];
     if (self) {
         _currentIndex = PageTitleViewDefalutSelectedIndex;
+        _titePadding = PageTitleViewTitleDefalutPadding;
         self.titles = titles;
     }
     
