@@ -24,17 +24,27 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
 #define PageTitleViewTitleDefaultFont [UIFont systemFontOfSize:16]
 
 #define PageTitleViewUnderSeparationLineDefaultColor [UIColor grayColor]
-#define PageTitleViewSelectionIndicatorViewDefaultColor [UIColor redColor]
+#define PageTitleViewSelectedIndicatorViewDefaultColor [UIColor redColor]
+
+@interface PageTitleLabel : UILabel
+
+@property(nonatomic, assign) CGFloat selectedIndicatorViewWidth;
+
+@end
+
+@implementation PageTitleLabel
+
+@end
 
 //category view
 @interface PageTitleView ()
 
 @property(nonatomic, strong) NSArray<NSString *> *titles;
-@property(nonatomic, strong) NSArray<UILabel *> *titleLabels;
+@property(nonatomic, strong) NSArray<PageTitleLabel *> *titleLabels;
 @property(nonatomic, strong) UIScrollView *containerView;
 
 @property(nonatomic, strong) UIView *underSeparationLine;
-@property(nonatomic, strong) UIView *selectionIndicatorView;
+@property(nonatomic, strong) UIView *selectedIndicatorView;
 
 @property (nonatomic, assign) NSUInteger currentIndex;
 @property (nonatomic, assign) CGFloat indexProgress;
@@ -59,7 +69,7 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
     }
     
     self.indexProgress = MAX(0, MIN(indexProgress, self.titles.count - 1));
-    [self updateTitleColor];
+    [self updateTitleColorAndSelectedIndicatorView];
     
     NSUInteger index = 0;
     if (self.currentIndex < self.indexProgress) {
@@ -80,6 +90,8 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
     if (!CGRectEqualToRect(self.bounds, CGRectZero)) {
         [self layoutIfNeeded];
         [self scrollToIndex:self.currentIndex animated:NO needExcuteCurrentIndexChangedBlock:NO];
+        [self.selectedIndicatorView setTop:self.height - PageTitleViewForSelectionIndicatorViewHeight];
+        [self.selectedIndicatorView setHeight:PageTitleViewForSelectionIndicatorViewHeight];
     }
 }
 
@@ -103,6 +115,10 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
     return _titleFont ?: PageTitleViewTitleDefaultFont;
 }
 
+- (UIColor *)selectedIndicatorViewTintColor {
+    return _selectedIndicatorViewTintColor ?: PageTitleViewSelectedIndicatorViewDefaultColor;
+}
+
 #pragma mark - PrivateUI
 
 - (void)buildUI {
@@ -119,10 +135,10 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
         make.height.equalTo(self.containerView.mas_height);
     }];
     
-    NSMutableArray<UILabel *> *titleLabels = @[].mutableCopy;
-    __block UILabel *preLabel = nil;
+    NSMutableArray<PageTitleLabel *> *titleLabels = @[].mutableCopy;
+    __block PageTitleLabel *preLabel = nil;
     [self.titles enumerateObjectsUsingBlock:^(NSString * _Nonnull title, NSUInteger index, BOOL * _Nonnull stop) {
-        UILabel *label = [[UILabel alloc] init];
+        PageTitleLabel *label = [[PageTitleLabel alloc] init];
         [label setText:title];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setFont:self.titleFont];
@@ -132,7 +148,9 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTitleLabel:)];
         [label addGestureRecognizer:tapGestureRecognizer];
         
-        CGFloat width = [self getWidthWithFont:self.titleFont height:INT_MAX forString:title] + self.titePadding * 2;
+        CGFloat selectedIndicatorViewWidth = [self getWidthWithFont:self.titleFont height:INT_MAX forString:title];
+        [label setSelectedIndicatorViewWidth:selectedIndicatorViewWidth];
+        CGFloat width = selectedIndicatorViewWidth + self.titePadding * 2;
         [innerContainerView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(preLabel ? preLabel.mas_right : @0);
@@ -155,7 +173,7 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
         make.right.equalTo(preLabel.mas_right);
     }];
     
-    [self addSubview:self.underSeparationLine];
+    [innerContainerView addSubview:self.underSeparationLine];
     [self.underSeparationLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left);
         make.right.mas_equalTo(self.mas_right);
@@ -163,11 +181,7 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
         make.height.mas_equalTo(PageTitleViewForUnderSeparationLineHeight);
     }];
     
-    [self addSubview:self.selectionIndicatorView];
-    [self.selectionIndicatorView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.mas_bottom);
-        make.height.mas_equalTo(PageTitleViewForSelectionIndicatorViewHeight);
-    }];
+    [innerContainerView addSubview:self.selectedIndicatorView];
 }
 
 #pragma mark - PrivateProperty
@@ -186,23 +200,23 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
 - (UIView *)underSeparationLine {
     if (nil == _underSeparationLine) {
         _underSeparationLine = [[UIView alloc] initWithFrame:CGRectZero];
-        [_underSeparationLine setBackgroundColor:self.underSeparationLineTintColor ?: PageTitleViewUnderSeparationLineDefaultColor];
+        [_underSeparationLine setBackgroundColor:self.underSeparationLineTintColor];
         [_underSeparationLine setUserInteractionEnabled:YES];
     }
     
     return _underSeparationLine;
 }
 
-- (UIView *)selectionIndicatorView {
-    if (nil == _selectionIndicatorView) {
-        _selectionIndicatorView = [[UIView alloc] initWithFrame:CGRectZero];
-        [_selectionIndicatorView setBackgroundColor:self.selectionIndicatorViewTintColor ?: PageTitleViewSelectionIndicatorViewDefaultColor];
-        [_selectionIndicatorView.layer setCornerRadius:1.0];
-        [_selectionIndicatorView.layer setMasksToBounds:YES];
-        [_selectionIndicatorView setUserInteractionEnabled:YES];
+- (UIView *)selectedIndicatorView {
+    if (nil == _selectedIndicatorView) {
+        _selectedIndicatorView = [[UIView alloc] initWithFrame:CGRectZero];
+        [_selectedIndicatorView setBackgroundColor:self.selectedIndicatorViewTintColor];
+        [_selectedIndicatorView.layer setCornerRadius:1.0];
+        [_selectedIndicatorView.layer setMasksToBounds:YES];
+        [_selectedIndicatorView setUserInteractionEnabled:YES];
     }
     
-    return _selectionIndicatorView;
+    return _selectedIndicatorView;
 }
 
 #pragma mark - PrivateMethod
@@ -228,11 +242,11 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
 
 - (void)scrollToIndex:(NSInteger)index animated:(BOOL)animated needExcuteCurrentIndexChangedBlock:(BOOL)needExcuteCurrentIndexChangedBlock {
     CGFloat lastIndex = self.currentIndex;
-    UILabel *lastTitleLable = [self.titleLabels objectAtIndex:lastIndex];
+    PageTitleLabel *lastTitleLable = [self.titleLabels objectAtIndex:lastIndex];
     [lastTitleLable setTextColor:self.titleColor];
     
     self.currentIndex = self.titles.count ? MIN(self.titles.count - 1, index) : 0;
-    UILabel *currentTitleLabel = [self.titleLabels objectAtIndex:self.currentIndex];
+    PageTitleLabel *currentTitleLabel = [self.titleLabels objectAtIndex:self.currentIndex];
     [currentTitleLabel setTextColor:self.titleSelectedColor];
     
     CGFloat offsetX = 0.0;
@@ -246,6 +260,8 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
     }
     
     [UIView animateWithDuration:0.25 animations:^{
+        [self.selectedIndicatorView setCenterX:currentTitleLabel.centerX];
+        [self.selectedIndicatorView setWidth:currentTitleLabel.selectedIndicatorViewWidth];
         [self.containerView setContentOffset:CGPointMake(offsetX, 0)];
     } completion:^(BOOL finished) {
         if (needExcuteCurrentIndexChangedBlock && self.currentIndexChangedBlock) {
@@ -254,19 +270,36 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
     }];
 }
 
-- (void)updateTitleColor {
+- (void)updateTitleColorAndSelectedIndicatorView {
     NSUInteger preIndex = (NSUInteger)floorf(self.indexProgress);
+    PageTitleLabel *preTitleLabel = [self.titleLabels objectAtIndex:preIndex];
+
     NSUInteger nextIndex = (NSUInteger)ceilf(self.indexProgress);
+    PageTitleLabel *nextTitleLabel = [self.titleLabels objectAtIndex:nextIndex];
     
-    UILabel *preTitleLabel = [self.titleLabels objectAtIndex:preIndex];
-    UILabel *nextTitleLabel = [self.titleLabels objectAtIndex:nextIndex];
-    
+    CGFloat lableCenterXGap = nextTitleLabel.centerX - preTitleLabel.centerX;
     if (self.indexProgress > self.currentIndex) {
-        [preTitleLabel setTextColor:[self colorFrom:self.titleSelectedColor to:self.titleColor progress:self.indexProgress - preIndex ignoreAlpha:NO]];
-        [nextTitleLabel setTextColor:[self colorFrom:self.titleColor to:self.titleSelectedColor progress:self.indexProgress - preIndex ignoreAlpha:NO]];
+        CGFloat progress = self.indexProgress - preIndex;
+        [preTitleLabel setTextColor:[self colorFrom:self.titleSelectedColor to:self.titleColor progress:progress ignoreAlpha:NO]];
+        [nextTitleLabel setTextColor:[self colorFrom:self.titleColor to:self.titleSelectedColor progress:progress ignoreAlpha:NO]];
+        
+        if (progress * lableCenterXGap > self.titePadding + preTitleLabel.selectedIndicatorViewWidth / 2) {
+            [self.selectedIndicatorView setWidth:nextTitleLabel.selectedIndicatorViewWidth];
+        } else {
+            [self.selectedIndicatorView setWidth:preTitleLabel.selectedIndicatorViewWidth];
+        }
+        [self.selectedIndicatorView setCenterX:(preTitleLabel.centerX) + lableCenterXGap * progress];
     } else {
-        [preTitleLabel setTextColor:[self colorFrom:self.titleColor to:self.titleSelectedColor progress:nextIndex - self.indexProgress ignoreAlpha:NO]];
-        [nextTitleLabel setTextColor:[self colorFrom:self.titleSelectedColor to:self.titleColor progress:nextIndex - self.indexProgress ignoreAlpha:NO]];
+        CGFloat progress = nextIndex - self.indexProgress;
+        [preTitleLabel setTextColor:[self colorFrom:self.titleColor to:self.titleSelectedColor progress:progress ignoreAlpha:NO]];
+        [nextTitleLabel setTextColor:[self colorFrom:self.titleSelectedColor to:self.titleColor progress:progress ignoreAlpha:NO]];
+        
+        if (progress * lableCenterXGap > self.titePadding + nextTitleLabel.selectedIndicatorViewWidth / 2) {
+            [self.selectedIndicatorView setWidth:preTitleLabel.selectedIndicatorViewWidth];
+        } else {
+            [self.selectedIndicatorView setWidth:nextTitleLabel.selectedIndicatorViewWidth];
+        }
+        [self.selectedIndicatorView setCenterX:(nextTitleLabel.centerX) - lableCenterXGap * progress];
     }
 }
 

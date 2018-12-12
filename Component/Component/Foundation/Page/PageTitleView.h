@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) PageTitleViewCurrentIndexChangedBlock currentIndexChangedBlock;
 
 @property(nonatomic, strong) UIColor *underSeparationLineTintColor;
-@property(nonatomic, strong) UIColor *selectionIndicatorViewTintColor;
+@property(nonatomic, strong) UIColor *selectedIndicatorViewTintColor;
 
 @end
 

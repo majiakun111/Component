@@ -29,6 +29,10 @@
     NSMutableArray<NSString *> *titles = @[].mutableCopy;
     for (NSInteger index = 0; index < 20; index++) {
         NSString *title = [NSString stringWithFormat:@"title_%d", (int)index];
+        if (index % 2 ==0) {
+            title = [NSString stringWithFormat:@"majiakun%@", title];
+        }
+        
         [titles addObject:title];
     }
     
