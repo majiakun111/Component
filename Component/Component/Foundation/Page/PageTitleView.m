@@ -55,7 +55,6 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
 }
 
 - (void)updateIndexProgress:(CGFloat)indexProgress animated:(BOOL)animated {
-    NSLog(@"--------indexProgress:%f", (float)indexProgress);
     if (self.indexProgress == indexProgress) {
         return;
     }
@@ -63,7 +62,13 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
     self.indexProgress = MAX(0, MIN(indexProgress, self.titles.count - 1));
     [self updateTitleColor];
     
-    NSUInteger index = (NSUInteger)round(self.indexProgress);
+    NSUInteger index = 0;
+    if (self.currentIndex < self.indexProgress) {
+        index = (NSUInteger)floor(self.indexProgress);
+    }  else {
+        index = (NSUInteger)ceil(self.indexProgress);
+    }
+    
     if (self.currentIndex == index) {
         return;
     }
@@ -266,7 +271,6 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
 }
 
 - (UIColor *)colorFrom:(UIColor *)fromColor to:(UIColor *)toColor progress:(CGFloat)progress ignoreAlpha:(BOOL)ignoreAlpha {
-    NSLog(@"------progress:%f", progress);
     if (!fromColor || !toColor) {
         return nil;
     }
