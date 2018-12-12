@@ -51,6 +51,7 @@
 		5B5223831C9D99940059875B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223821C9D99940059875B /* LoginViewController.m */; };
 		5B5223861C9D9A0C0059875B /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223851C9D9A0C0059875B /* UIView+ViewController.m */; };
 		5B5BFC9121BF4E63008069B5 /* PageTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFC9021BF4E63008069B5 /* PageTitleView.m */; };
+		5B5BFDAC21C0A158008069B5 /* TestPageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDAB21C0A158008069B5 /* TestPageRootViewController.m */; };
 		5B7B164F21B9140C003C6ACE /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B164E21B9140C003C6ACE /* PageContainerViewController.m */; };
 		5B7B165321B91E85003C6ACE /* CollectionViewComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B165121B91E85003C6ACE /* CollectionViewComponent.m */; };
 		5B7B165E21B92A8C003C6ACE /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B165D21B92A8C003C6ACE /* PageViewController.m */; };
@@ -186,6 +187,8 @@
 		5B5223851C9D9A0C0059875B /* UIView+ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewController.m"; sourceTree = "<group>"; };
 		5B5BFC8F21BF4E63008069B5 /* PageTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageTitleView.h; sourceTree = "<group>"; };
 		5B5BFC9021BF4E63008069B5 /* PageTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageTitleView.m; sourceTree = "<group>"; };
+		5B5BFDAA21C0A158008069B5 /* TestPageRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestPageRootViewController.h; sourceTree = "<group>"; };
+		5B5BFDAB21C0A158008069B5 /* TestPageRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestPageRootViewController.m; sourceTree = "<group>"; };
 		5B7B164D21B9140C003C6ACE /* PageContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageContainerViewController.h; sourceTree = "<group>"; };
 		5B7B164E21B9140C003C6ACE /* PageContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageContainerViewController.m; sourceTree = "<group>"; };
 		5B7B165121B91E85003C6ACE /* CollectionViewComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewComponent.m; sourceTree = "<group>"; };
@@ -616,6 +619,8 @@
 			children = (
 				5BF9790221BCD60100D69D54 /* TestPageViewController.h */,
 				5BF9790321BCD60100D69D54 /* TestPageViewController.m */,
+				5B5BFDAA21C0A158008069B5 /* TestPageRootViewController.h */,
+				5B5BFDAB21C0A158008069B5 /* TestPageRootViewController.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				5BC8C21E1C8FC22F00FBF149 /* TestReuseableView.m in Sources */,
 				5B52237D1C9D98E50059875B /* JSCallNavtiveInterface+Data.m in Sources */,
 				5BF9792721BCE14900D69D54 /* MASConstraint.m in Sources */,
+				5B5BFDAC21C0A158008069B5 /* TestPageRootViewController.m in Sources */,
 				5B15A2DB1C8DB9CD00764E8C /* ReusableView.m in Sources */,
 				5B1DD42E1CB552D100C61BED /* NSData+AES.m in Sources */,
 				5B7B166221B93130003C6ACE /* PageItem.m in Sources */,

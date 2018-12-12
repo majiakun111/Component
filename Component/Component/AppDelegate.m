@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TestJSWebViewController.h"
 #import "ViewController.h"
+#import "TestPageRootViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,9 @@
 //    UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
 //    self.window.rootViewController = rootNavigationController;
     
-    ViewController *rootViewController = [[ViewController alloc] init];
+//    ViewController *rootViewController = [[ViewController alloc] init];
+    
+    TestPageRootViewController *rootViewController = [[TestPageRootViewController alloc] init];
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     [self.window setBackgroundColor:[UIColor whiteColor]];

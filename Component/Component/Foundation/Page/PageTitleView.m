@@ -39,7 +39,6 @@ NSInteger const PageTitleViewDefalutSelectedIndex = 0;
 @property (nonatomic, assign) NSUInteger currentIndex;
 @property (nonatomic, assign) CGFloat indexProgress;
 
-
 @end
 
 @implementation PageTitleView
