@@ -11,6 +11,9 @@
 #import "ViewController.h"
 #import "TestPageRootViewController.h"
 
+#import "TestNestTableViewController.h"
+#import "TestCollectionViewCellItem.h"
+
 @interface AppDelegate ()
 
 @end
@@ -27,12 +30,79 @@
 //    self.window.rootViewController = rootNavigationController;
     
 //    ViewController *rootViewController = [[ViewController alloc] init];
+//    self.window.rootViewController = rootViewController;
+//    [self.window makeKeyAndVisible];
+//    [self.window setBackgroundColor:[UIColor whiteColor]];
+//
+ 
+//    TestPageRootViewController *rootViewController = [[TestPageRootViewController alloc] init];
+//    self.window.rootViewController = rootViewController;
+//    [self.window makeKeyAndVisible];
+//    [self.window setBackgroundColor:[UIColor whiteColor]];
+
     
-    TestPageRootViewController *rootViewController = [[TestPageRootViewController alloc] init];
+//    TestPageViewController *rootViewController = [[TestPageViewController alloc] init];
+//    self.window.rootViewController = rootViewController;
+//    [self.window makeKeyAndVisible];
+//    [self.window setBackgroundColor:[UIColor whiteColor]];
+
+    
+    TableViewSectionItem *topSectionItem = [[TableViewSectionItem alloc] init];
+    TestNestTableViewTopSectionCellItem *topSectionCellItem = [[TestNestTableViewTopSectionCellItem alloc] init];
+    topSectionCellItem.height = 100;
+    topSectionItem.cellItems = @[topSectionCellItem].mutableCopy;
+
+    TableViewSectionItem *bottomSectionItem = [[TableViewSectionItem alloc] init];
+
+    NestTableViewBottomSectionHeaderViewItem *bottomSectionHeaderViewItem = [[NestTableViewBottomSectionHeaderViewItem alloc] init];
+    NSMutableArray<NSString *> *titles = @[].mutableCopy;
+    for (NSInteger index = 0; index < 20; index++) {
+        NSString *title = [NSString stringWithFormat:@"title_%d", (int)index];
+        if (index % 2 ==0) {
+            title = [NSString stringWithFormat:@"ansel_%@", title];
+        }
+
+        [titles addObject:title];
+    }
+    bottomSectionHeaderViewItem.height = 40;
+    bottomSectionHeaderViewItem.titles = titles;
+    bottomSectionHeaderViewItem.indexProgress = 0;
+    bottomSectionItem.headerViewItem = bottomSectionHeaderViewItem;
+
+    NSMutableArray<__kindof PageItem *> *pageItems = @[].mutableCopy;
+    for (int pageIndex = 0; pageIndex < 20; pageIndex++) {
+        PageItem *pageItem = [[PageItem alloc] init];
+        pageItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - bottomSectionHeaderViewItem.height);
+        CollectionViewSectionItem *sectionItem = [[CollectionViewSectionItem alloc] init];
+        sectionItem.cellItems = @[].mutableCopy;
+        for (int index = 0; index < 100; index ++) {
+            TestCollectionViewCellItem *cellItem = [[TestCollectionViewCellItem alloc] init];
+            cellItem.title = [NSString stringWithFormat:@"%d_%d", pageIndex, index];
+            [sectionItem.cellItems addObject:cellItem];
+            cellItem.size = CGSizeMake(80.0, 80.0);
+        }
+
+        pageItem.sectionItems = @[sectionItem];
+        pageItem.viewControllerClass = [TestNestPageViewController class];
+        [pageItems addObject:pageItem];
+    }
+    PageContainerItem *pageContainerItem = [[PageContainerItem alloc] init];
+    pageContainerItem.pageItems = pageItems;
+    pageContainerItem.pageWidth = [UIScreen mainScreen].bounds.size.width;
+
+    NestTableViewBottomSectionCellItem *bottomSectionCellItem = [[NestTableViewBottomSectionCellItem alloc] init];
+    bottomSectionCellItem.pageContainerItem = pageContainerItem;
+    bottomSectionCellItem.canUpDownScroll = YES;
+    bottomSectionCellItem.pageIndex = 0;
+    bottomSectionCellItem.height = [UIScreen mainScreen].bounds.size.height - bottomSectionHeaderViewItem.height;
+
+    bottomSectionItem.cellItems = @[bottomSectionCellItem].mutableCopy;
+
+    TestNestTableViewController *rootViewController = [[TestNestTableViewController alloc] initWithSectioItems:@[topSectionItem, bottomSectionItem]];
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     [self.window setBackgroundColor:[UIColor whiteColor]];
-    
+
     return YES;
 }
 

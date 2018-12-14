@@ -352,6 +352,12 @@
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.didEndDisplayingIndexPathBlock) {
+        self.didEndDisplayingIndexPathBlock(self, cell, indexPath);
+    }
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -402,6 +408,14 @@
 {
     CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
     return item.minimumLineSpacing;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.didScrollBlock) {
+        self.didScrollBlock(self);
+    }
 }
 
 @end

@@ -15,7 +15,9 @@
 
 @end
 
-@interface TableViewCell : UITableViewCell
+@interface TableViewCell : UITableViewCell {
+    __kindof TableViewCellItem *_item;
+}
 
 @property (nonatomic, strong) __kindof TableViewCellItem *item; //通常是 __kindof  TableViewCellItem
 

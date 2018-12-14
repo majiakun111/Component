@@ -23,12 +23,12 @@
 
 - (void)buildUI
 {
-    
+    [self setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)updateUI
 {
-
+    
 }
 
 #pragma mark - property

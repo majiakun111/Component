@@ -1,75 +1,74 @@
 //
-//  TableViewController.m
+//  TableViewComponent.m
 //  Component
 //
-//  Created by Ansel on 16/3/4.
-//  Copyright © 2016年 MJK. All rights reserved.
+//  Created by Ansel on 2018/12/13.
+//  Copyright © 2018 MJK. All rights reserved.
 //
 
-#import "TableViewController.h"
+#import "TableViewComponent.h"
 #import "NSObject+ClassName.h"
 #import "CommonDefine.h"
-#import "TableViewSectionItem.h"
 #import "TableViewCellItem.h"
 #import "HeaderOrFooterViewItem.h"
-#import "TableViewCell.h"
-#import "HeaderOrFooterView.h"
-#import "TableViewRelativeHeightHelper.h"
 
 typedef NS_ENUM(NSInteger, HeaderOrFooterViewKind) {
     Header = 0,
     Footer = 1,
 };
 
-@interface TableViewController () <TableViewCellDelegate>
+@interface TableViewComponent ()
 //1. TableViewCellItem 的ClassName作为key TableViewCell或其子类的class作为值
 //2. 以HeaderOrFooterViewItem的ClassName作为key HeaderOrFooterView或其子类的class作为值
 @property (nonatomic, strong) NSMutableDictionary *viewClassMap;
 
 @end
 
-@implementation TableViewController
+@implementation TableViewComponent
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (instancetype)initWithSectionItems:(NSArray<__kindof TableViewSectionItem *> *)sectionItems
+        mapItemClassToViewClassBlock:(void (^)(__kindof TableViewComponent *tableViewComponent))mapItemClassToViewClassBlock
+                       delegateBlock:(void(^)(__kindof TableViewComponent *tableViewComponent))delegateBlock {
+    self = [super init];
+    if (self) {
+        self.sectionItems = sectionItems;
+        [self buildTableView];
+        
+        if (mapItemClassToViewClassBlock) {
+            mapItemClassToViewClassBlock(self);
+        } else {
+            [self mapItemClassToViewClass];
+        }
+        
+        if (delegateBlock) {
+            delegateBlock(self);
+        }
+    }
     
-    [self mapItemClassToViewClass];
-    [self buildUI];
-}
-
-- (void)buildUI
-{
-    [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    
-    [self buildTableView];
+    return self;
 }
 
 - (void)buildTableView
 {
-    CGRect rect = CGRectZero;
-    if (self.navigationController) {
-        rect = CGRectMake(0, STATUS_HEIGHT + NAVIGATION_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - STATUS_HEIGHT - NAVIGATION_BAR_HEIGHT);
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
+    if (@available(iOS 11.0, *)) {
+        [self.tableView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
-    else {
-        rect = CGRectMake(0, STATUS_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
-    }
-    
-    _tableView = [[UITableView alloc] initWithFrame:rect];
-    [_tableView setDelegate:self];
-    [_tableView setDataSource:self];
-    
-    [self.view addSubview:_tableView];
 }
 
 - (void)mapCellClass:(Class)cellClass cellItemClass:(Class)cellItemClass
 {
     [self.viewClassMap setObject:cellClass forKey:[cellItemClass className]];
+    [self.tableView registerClass:cellClass forCellReuseIdentifier:[cellItemClass className]];
 }
 
-- (void)mapHeaderOrFooterViewClass:(Class)headerOrFooterViewClass headerOrFooterViewItem:(Class)headerOrFooterViewItem
+- (void)mapHeaderOrFooterViewClass:(Class)headerOrFooterViewClass headerOrFooterViewItemClass:(Class)headerOrFooterViewItemClass
 {
-    [self.viewClassMap setObject:headerOrFooterViewClass forKey:[headerOrFooterViewItem className]];
+    [self.viewClassMap setObject:headerOrFooterViewClass forKey:[headerOrFooterViewItemClass className]];
+    [self.tableView registerClass:headerOrFooterViewClass forHeaderFooterViewReuseIdentifier:[headerOrFooterViewItemClass className]];
 }
 
 #pragma mark - MustOverride
@@ -79,6 +78,42 @@ typedef NS_ENUM(NSInteger, HeaderOrFooterViewKind) {
 #ifdef DEBUG
     MustOverride();
 #endif
+}
+
+// cell 对应的数据
+- (__kindof TableViewCellItem *)cellItemForRow:(NSUInteger)row section:(NSUInteger)section
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+    return [self cellItemForIndexPath:indexPath];
+}
+
+- (__kindof TableViewCellItem *)cellItemForIndexPath:(NSIndexPath *)indexPath
+{
+    TableViewCellItem *item = nil;
+    do {
+        if (indexPath.section >= [self.sectionItems count]) {
+            break;
+        }
+        
+        TableViewSectionItem *sectionItem = [self.sectionItems objectAtIndex:indexPath.section];
+        NSMutableArray *sectionData = sectionItem.cellItems;
+        if (indexPath.row >= [sectionData count]) {
+            break;
+        }
+        
+        item = [sectionData objectAtIndex:indexPath.row];
+    } while (0);
+    
+    return item;
+}
+
+//header footer
+- (__kindof HeaderOrFooterViewItem *)headerItemForSection:(NSUInteger)section {
+    return [self headerOrFooterViewItemForSection:section kind:Header];
+}
+
+- (__kindof HeaderOrFooterViewItem *)footerItemForSection:(NSUInteger)section {
+    return [self headerOrFooterViewItemForSection:section kind:Footer];
 }
 
 #pragma mark -- optional override property
@@ -93,15 +128,6 @@ typedef NS_ENUM(NSInteger, HeaderOrFooterViewKind) {
 }
 
 #pragma mark -- property
-
--(NSMutableArray<TableViewSectionItem *> *)sectionItems
-{
-    if (nil == _sectionItems) {
-        _sectionItems = [[NSMutableArray alloc] init];
-    }
-    
-    return _sectionItems;
-}
 
 - (NSMutableDictionary *)viewClassMap
 {
@@ -118,63 +144,27 @@ typedef NS_ENUM(NSInteger, HeaderOrFooterViewKind) {
 - (NSInteger)numOfRowsInSection:(NSInteger)sectionIndex tableView:(UITableView *)tableView
 {
     NSInteger numOfRows = 0;
-    if (tableView == self.tableView) {
-        if (0 <= sectionIndex && sectionIndex < [self.sectionItems count]) {
-            TableViewSectionItem *sectionItem = [self.sectionItems objectAtIndex:sectionIndex];
-            numOfRows = [sectionItem.cellItems count];
-        }
+    if (0 <= sectionIndex && sectionIndex < [self.sectionItems count]) {
+        TableViewSectionItem *sectionItem = [self.sectionItems objectAtIndex:sectionIndex];
+        numOfRows = [sectionItem.cellItems count];
     }
     
     return numOfRows;
 }
 
-// cell 对应的数据
-- (__kindof TableViewCellItem *)cellItemForIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView
+- (__kindof HeaderOrFooterViewItem *)headerOrFooterViewItemForSection:(NSInteger)section kind:(HeaderOrFooterViewKind)kind
 {
-    if (nil == tableView) {
-        return nil;
-    }
-    
-    TableViewCellItem *item = nil;
-    do {
-        if (tableView == self.tableView){
-            if (indexPath.section >= [self.sectionItems count]) {
-                break;
-            }
-            
-            TableViewSectionItem *sectionItem = [self.sectionItems objectAtIndex:indexPath.section];
-            NSMutableArray *sectionData = sectionItem.cellItems;
-            if (indexPath.row >= [sectionData count]) {
-                break;
-            }
-            
-            item = [sectionData objectAtIndex:indexPath.row];
-        }
-    } while (0);
-    
-    
-    return item;
-}
-
-- (__kindof HeaderOrFooterViewItem *)headerOrFooterViewItemForSection:(NSInteger)section kind:(HeaderOrFooterViewKind)kind tableView:(UITableView *)tableView
-{
-    if (nil == tableView) {
-        return nil;
-    }
-    
     HeaderOrFooterViewItem *item = nil;
     do {
-        if (tableView == self.tableView) {
-            if (section >= [self.sectionItems count]) {
-                break;
-            }
-            
-            TableViewSectionItem *sectionItem = [self.sectionItems objectAtIndex:section];
-            if (kind == Header) {
-                item = sectionItem.headerViewItem;
-            } else {
-                item = sectionItem.footerViewItem;
-            }
+        if (section >= [self.sectionItems count]) {
+            break;
+        }
+        
+        TableViewSectionItem *sectionItem = [self.sectionItems objectAtIndex:section];
+        if (kind == Header) {
+            item = sectionItem.headerViewItem;
+        } else {
+            item = sectionItem.footerViewItem;
         }
     } while (0);
     
@@ -204,18 +194,20 @@ typedef NS_ENUM(NSInteger, HeaderOrFooterViewKind) {
     return cellClass == nil ? [HeaderOrFooterView class] : cellClass;
 }
 
-- (HeaderOrFooterView *)headerOrFooterViewForSection:(NSInteger)section kind:(HeaderOrFooterViewKind)kind tableView:(UITableView *)tableView
+- (__kindof HeaderOrFooterView *)headerOrFooterViewForSection:(NSInteger)section kind:(HeaderOrFooterViewKind)kind
 {
     HeaderOrFooterView *headerOrFooterView = nil;
     
     do {
-        HeaderOrFooterViewItem *item = [self headerOrFooterViewItemForSection:section kind:kind tableView:tableView];
+        HeaderOrFooterViewItem *item = [self headerOrFooterViewItemForSection:section kind:kind];
         if (!item) {
             break;
         }
         
         headerOrFooterView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:[item className]];
+        [headerOrFooterView setDelegate:self.headerOrFooterViewDelegate];
         [headerOrFooterView setItem:item];
+        
     } while (0);
     
     return headerOrFooterView;
@@ -223,7 +215,7 @@ typedef NS_ENUM(NSInteger, HeaderOrFooterViewKind) {
 
 - (CGFloat)headerOrFooterViewHeightForSection:(NSInteger)section kind:(HeaderOrFooterViewKind)kind tableView:(UITableView *)tableView
 {
-    HeaderOrFooterViewItem *item = [self headerOrFooterViewItemForSection:section kind:kind tableView:tableView];
+    HeaderOrFooterViewItem *item = [self headerOrFooterViewItemForSection:section kind:kind];
     Class headerOrFooterViewClass = [self headerOrFooterViewClassWithItem:item];
     
     CGFloat height = [self.heightHelper getHeaderOrFooterHeightWithItem:item headerClass:headerOrFooterViewClass];
@@ -252,37 +244,37 @@ typedef NS_ENUM(NSInteger, HeaderOrFooterViewKind) {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = nil;
-    TableViewCellItem *item = [self cellItemForIndexPath:indexPath tableView:tableView];
+    TableViewCellItem *item = [self cellItemForIndexPath:indexPath];
     cellIdentifier = [self tableViewCellIdentifier:item];
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (nil == cell) {
         Class cellClass = [self cellClassWithItem:item];
         cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        [cell setDelegate: self];
+        [cell setDelegate:self.cellDelegate];
     }
     
     [cell setItem:item];
-
+    
     return cell;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    HeaderOrFooterView *headerView = [self headerOrFooterViewForSection:section kind:Header tableView:tableView];
-
+    HeaderOrFooterView *headerView = [self headerOrFooterViewForSection:section kind:Header];
+    
     return headerView;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    HeaderOrFooterView *footerView = [self headerOrFooterViewForSection:section kind:Footer tableView:tableView];
+    HeaderOrFooterView *footerView = [self headerOrFooterViewForSection:section kind:Footer];
     
     return footerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewCellItem *item = [self cellItemForIndexPath:indexPath tableView:tableView];
+    TableViewCellItem *item = [self cellItemForIndexPath:indexPath];
     Class cellClass = [self cellClassWithItem:item];
     
     CGFloat height = [self.heightHelper getCellHeightWithItem:item cellClass:cellClass];
@@ -305,6 +297,21 @@ typedef NS_ENUM(NSInteger, HeaderOrFooterViewKind) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.didSelectedIndexPathBlcok) {
+        self.didSelectedIndexPathBlcok(self, indexPath);
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if (self.willDisplayIndexPathBlock) {
+        self.willDisplayIndexPathBlock(self, cell, indexPath);
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if (self.didEndDisplayingIndexPathBlock) {
+        self.didEndDisplayingIndexPathBlock(self, cell, indexPath);
+    }
 }
 
 @end

@@ -12,22 +12,11 @@
 
 @interface PageViewController ()
 
-@property(nonatomic, strong) PageItem *pageItem;
-
 @property(nonatomic, strong) CollectionViewComponent *collectionViewComponent;
 
 @end
 
 @implementation PageViewController
-
-- (instancetype)initWithPageItem:(__kindof PageItem *)pageItem {
-    self = [super initWithNibName:nil bundle:nil];
-    if (self) {
-        _pageItem = pageItem;
-    }
-    
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -12,13 +12,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PageViewController : UIViewController
+@interface PageViewController : UIViewController<PageItemProtocol>
 
 @property(nonatomic, readonly) CollectionViewComponent *collectionViewComponent;
-
-- (instancetype)initWithPageItem:(__kindof PageItem *)pageItem NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
-- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 
 - (void)buildCollectionViewComponent;
 
@@ -27,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)collectionViewComponent:(CollectionViewComponent *)collectionViewComponent didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)reloadDataWithPageItem:(__kindof PageItem *)pageItem;
+
+#pragma mark PageItemProtocol
+@property(nonatomic, strong) PageItem *pageItem;
 
 @end
 

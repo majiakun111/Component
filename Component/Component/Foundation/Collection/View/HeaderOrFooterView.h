@@ -7,12 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HeaderOrFooterViewItem.h"
 
-@class HeaderOrFooterViewItem;
+@protocol HeaderOrFooterViewDelegate <NSObject>
 
-@interface HeaderOrFooterView : UIView
+@end
 
-@property (nonatomic, strong) __kindof HeaderOrFooterViewItem *item;
+@interface HeaderOrFooterView : UITableViewHeaderFooterView
+{
+    @protected
+    __kindof HeaderOrFooterViewItem *_item;
+}
+
+@property(nonatomic, strong) __kindof HeaderOrFooterViewItem *item;
+
+@property(nonatomic, assign) id<HeaderOrFooterViewDelegate> delegate;
 
 - (void)buildUI;
 

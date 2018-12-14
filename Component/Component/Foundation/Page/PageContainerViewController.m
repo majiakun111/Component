@@ -36,7 +36,6 @@ NSInteger const DefaultCurrentPageIndex = 0;
         }
         [lastViewController removeFromParentViewController];
         [lastViewController didMoveToParentViewController:nil];
-        [lastViewController endAppearanceTransition];
     }
     
     _viewController = viewController;
@@ -66,8 +65,7 @@ NSInteger const DefaultCurrentPageIndex = 0;
 
 @property(nonatomic, strong) HorizontalTableView *tableView;
 
-@property(nonatomic, strong) NSArray<UIViewController *> *pageViewControllers;
-@property(nonatomic, assign) CGFloat pageWidth;
+@property(nonatomic, strong) NSArray<UIViewController<PageItemProtocol> *> *pageViewControllers;
 @property(nonatomic, assign) NSInteger currentPageIndex;
 
 @property (nonatomic, assign) CGSize viewOldSize;
@@ -80,12 +78,11 @@ NSInteger const DefaultCurrentPageIndex = 0;
     [self removeObserver];
 }
 
-- (instancetype)initWithPageViewControllers:(NSArray<UIViewController *> *)pageViewControllers pageWidth:(CGFloat)pageWidth {
+- (instancetype)initWithPageContainerItem:(nullable __kindof PageContainerItem *)pageContainerItem {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        _pageViewControllers = pageViewControllers;
-        _pageWidth = pageWidth;
-        _currentPageIndex = DefaultCurrentPageIndex;
+        self.pageContainerItem = pageContainerItem;
+        self.currentPageIndex = DefaultCurrentPageIndex;
     }
     
     return self;
@@ -129,13 +126,8 @@ NSInteger const DefaultCurrentPageIndex = 0;
     if (!CGSizeEqualToSize(self.view.bounds.size, CGSizeZero) && !CGSizeEqualToSize(self.view.bounds.size, self.viewOldSize)) {
         self.viewOldSize = self.view.bounds.size;
         [self.view layoutIfNeeded];
-        [self.tableView setContentOffset:CGPointMake(self.currentPageIndex * self.pageWidth, 0) animated:NO];
+        [self.tableView setContentOffset:CGPointMake(self.currentPageIndex * self.pageContainerItem.pageWidth, 0) animated:NO];
     }
-}
-
-- (void)reloadDataWithPageViewControllers:(NSArray<UIViewController *> *)pageViewControllers {
-    _pageViewControllers = pageViewControllers;
-    [self.tableView reloadData];
 }
 
 - (void)setPageIndex:(NSInteger)pageIndex animated:(BOOL)animated {
@@ -144,7 +136,21 @@ NSInteger const DefaultCurrentPageIndex = 0;
     }
     
     _currentPageIndex = pageIndex;
-    [self.tableView setContentOffset:CGPointMake(pageIndex * self.pageWidth, 0) animated:animated];
+    [self removeObserver];
+    if (!animated) {
+        [self.tableView setContentOffset:CGPointMake(pageIndex * self.pageContainerItem.pageWidth, 0)];
+        [self addObserver];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.tableView setContentOffset:CGPointMake(pageIndex * self.pageContainerItem.pageWidth, 0)];
+        } completion:^(BOOL finished) {
+            [self addObserver];
+        }];
+    }
+//
+//
+//
+//    [self.tableView setContentOffset:CGPointMake(pageIndex * self.pageContainerItem.pageWidth, 0) animated:animated];
 }
 
 #pragma mark - Property
@@ -154,6 +160,29 @@ NSInteger const DefaultCurrentPageIndex = 0;
     
     if (self.isViewLoaded) {
         [self.view setBackgroundColor:tintColor];
+    }
+}
+
+- (void)setPageContainerItem:(__kindof PageContainerItem *)pageContainerItem {
+    if (_pageContainerItem == pageContainerItem) {
+        return;
+    }
+    
+    _pageContainerItem = pageContainerItem;
+    
+    NSMutableArray<UIViewController<PageItemProtocol> *> *pageViewControllers = @[].mutableCopy;
+    [_pageContainerItem.pageItems enumerateObjectsUsingBlock:^(__kindof PageItem * _Nonnull pageItem, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIViewController<PageItemProtocol> *pageViewController = [[pageItem.viewControllerClass alloc] init];
+        if ([pageViewController respondsToSelector:@selector(setPageItem:)]) {
+            [pageViewController setPageItem:pageItem];
+        }
+        
+        [pageViewControllers addObject:pageViewController];
+    }];
+    self.pageViewControllers = pageViewControllers;
+    
+    if (self.isViewLoaded) {
+        [self.tableView reloadData];
     }
 }
 
@@ -172,7 +201,6 @@ NSInteger const DefaultCurrentPageIndex = 0;
     [self.tableView setDataSource:self];
     [self.tableView setPagingEnabled:YES];
     [self.tableView setShowsVerticalScrollIndicator:NO];
-    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -182,18 +210,15 @@ NSInteger const DefaultCurrentPageIndex = 0;
 
 #pragma mark -  PrivateNotification
 
-- (void)addObserver
-{
+- (void)addObserver {
     [self.tableView addObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset)) options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
 }
 
-- (void)removeObserver
-{
+- (void)removeObserver {
     [self.tableView removeObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset))];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if (![keyPath isEqualToString:NSStringFromSelector(@selector(contentOffset))]) {
         return;
     }
@@ -241,7 +266,7 @@ NSInteger const DefaultCurrentPageIndex = 0;
 #pragma mark - HorizontalTableViewDelegate
 
 - (CGFloat)tableView:(HorizontalTableView *)tableView widthForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.pageWidth;
+    return self.pageContainerItem.pageWidth;
 }
 
 - (void)tableView:(HorizontalTableView *)tableView willDisplayCell:(__kindof HorizontalTableViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -260,6 +285,7 @@ NSInteger const DefaultCurrentPageIndex = 0;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"-------scrollViewDidScroll:%@-------", scrollView);
     if (scrollView.tracking || scrollView.decelerating) {
         NSInteger pageIndex = round((scrollView.contentOffset.x / (scrollView.frame.size.width ?: 0.000001)));
         pageIndex = MIN(MAX(0, pageIndex), self.pageViewControllers.count - 1);

@@ -43,6 +43,7 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
 @property(nonatomic, strong) NSArray<NSString *> *titles;
 @property(nonatomic, strong) NSArray<PageTitleLabel *> *titleLabels;
 @property(nonatomic, strong) UIScrollView *containerView;
+@property(nonatomic, strong) UIView *innerContainerView;
 
 @property(nonatomic, strong) UIView *underSeparationLine;
 @property(nonatomic, strong) UIView *selectedIndicatorView;
@@ -59,7 +60,7 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
     if (self) {
         _currentIndex = PageTitleViewDefalutSelectedIndex;
         _titePadding = PageTitleViewTitleDefalutPadding;
-        self.titles = titles;
+        _titles = titles;
     }
     
     return self;
@@ -91,9 +92,10 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
     
     if (!CGRectEqualToRect(self.bounds, CGRectZero)) {
         [self layoutIfNeeded];
-        [self scrollToIndex:self.currentIndex animated:NO needExcuteCurrentIndexChangedBlock:NO];
         [self.selectedIndicatorView setTop:self.height - PageTitleViewForSelectionIndicatorViewHeight];
         [self.selectedIndicatorView setHeight:PageTitleViewForSelectionIndicatorViewHeight];
+        
+        [self scrollToIndex:self.currentIndex animated:NO needExcuteCurrentIndexChangedBlock:NO];
     }
 }
 
@@ -124,15 +126,21 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
 #pragma mark - PrivateUI
 
 - (void)buildUI {
+    if ([self.titles count] <= 0) {
+        return;
+    }
+    
+    [self.containerView removeFromSuperview];
+    self.containerView = nil;
+    
     [self setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.containerView];
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
     
-    UIView *innerContainerView = [[UIView alloc] init];
-    [self.containerView addSubview:innerContainerView];
-    [innerContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.containerView addSubview:self.innerContainerView];
+    [self.innerContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.containerView);
         make.height.equalTo(self.containerView.mas_height);
     }];
@@ -146,6 +154,7 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
         [label setFont:self.titleFont];
         [label setTag:index];
         [label setUserInteractionEnabled:YES];
+        [label setBackgroundColor:[UIColor clearColor]];
         
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTitleLabel:)];
         [label addGestureRecognizer:tapGestureRecognizer];
@@ -153,12 +162,12 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
         CGFloat selectedIndicatorViewWidth = [self getWidthWithFont:self.titleFont height:INT_MAX forString:title];
         [label setSelectedIndicatorViewWidth:selectedIndicatorViewWidth];
         CGFloat width = selectedIndicatorViewWidth + self.titePadding * 2;
-        [innerContainerView addSubview:label];
+        [self.innerContainerView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(preLabel ? preLabel.mas_right : @0);
             make.width.equalTo(@(width));
-            make.top.equalTo(innerContainerView.mas_top);
-            make.bottom.equalTo(innerContainerView.mas_bottom);
+            make.top.equalTo(self.innerContainerView.mas_top);
+            make.bottom.equalTo(self.innerContainerView.mas_bottom);
         }];
         
         if (index == self.currentIndex) {
@@ -171,19 +180,19 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
         preLabel = label;
     }];
     self.titleLabels = titleLabels;
-    [innerContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.innerContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(preLabel.mas_right);
     }];
     
-    [innerContainerView addSubview:self.underSeparationLine];
+    [self.innerContainerView addSubview:self.underSeparationLine];
     [self.underSeparationLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left);
         make.right.mas_equalTo(self.mas_right);
         make.bottom.mas_equalTo(self.mas_bottom);
         make.height.mas_equalTo(PageTitleViewForUnderSeparationLineHeight);
     }];
-    
-    [innerContainerView addSubview:self.selectedIndicatorView];
+
+    [self.innerContainerView addSubview:self.selectedIndicatorView];
 }
 
 #pragma mark - PrivateProperty
@@ -197,6 +206,15 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
     }
     
     return _containerView;
+}
+
+- (UIView *)innerContainerView {
+    if (nil == _innerContainerView) {
+        _innerContainerView = [[UIView alloc] init];
+        [_innerContainerView setBackgroundColor:[UIColor clearColor]];
+    }
+    
+    return _innerContainerView;
 }
 
 - (UIView *)underSeparationLine {
@@ -262,8 +280,8 @@ NSInteger const PageTitleViewTitleDefalutPadding = 10;
     }
     
     [UIView animateWithDuration:0.25 animations:^{
-        [self.selectedIndicatorView setCenterX:currentTitleLabel.centerX];
         [self.selectedIndicatorView setWidth:currentTitleLabel.selectedIndicatorViewWidth];
+        [self.selectedIndicatorView setCenterX:currentTitleLabel.centerX];
         [self.containerView setContentOffset:CGPointMake(offsetX, 0)];
     } completion:^(BOOL finished) {
         if (needExcuteCurrentIndexChangedBlock && self.currentIndexChangedBlock) {

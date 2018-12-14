@@ -14,12 +14,15 @@
 @class CollectionViewRelativeSizeHelper;
 @class CollectionViewComponent;
 
-typedef void(^CollectionViewComponentDidSelectedIndexPathBlcok)(CollectionViewComponent *collectionViewComponent, NSIndexPath *indexPath);
-typedef void(^CollectionViewComponentWillDisplayIndexPathBlock)(CollectionViewComponent *collectionViewComponent, UICollectionViewCell *cell, NSIndexPath *indexPath);
+typedef void(^CollectionViewComponentDidSelectedIndexPathBlcok)(__kindof CollectionViewComponent *collectionViewComponent, NSIndexPath *indexPath);
+typedef void(^CollectionViewComponentWillDisplayIndexPathBlock)(__kindof CollectionViewComponent *collectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath);
+typedef void(^CollectionViewComponentDidEndDisplayingIndexPathBlock)(__kindof CollectionViewComponent *collectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath);
+typedef void(^CollectionViewComponentDidScrollBlock)(__kindof CollectionViewComponent *collectionViewComponent);
 
 @interface CollectionViewComponent : NSObject <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CollectionViewCellDelegate>
 {
     @protected
+    UICollectionView *_collectionView;
     UICollectionViewFlowLayout *_collectionViewFlowLayout;
 }
 
@@ -33,8 +36,9 @@ typedef void(^CollectionViewComponentWillDisplayIndexPathBlock)(CollectionViewCo
 @property (nonatomic, strong, readonly) NSArray<__kindof CollectionViewSectionItem *> *sectionItems;
 
 @property (nonatomic, copy) CollectionViewComponentDidSelectedIndexPathBlcok didSelectedIndexPathBlcok;
-
 @property (nonatomic, copy) CollectionViewComponentWillDisplayIndexPathBlock willDisplayIndexPathBlock;
+@property (nonatomic, copy) CollectionViewComponentDidEndDisplayingIndexPathBlock didEndDisplayingIndexPathBlock;
+@property (nonatomic, copy) CollectionViewComponentDidScrollBlock didScrollBlock;
 
 - (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock;
 - (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems scrollDirection:(UICollectionViewScrollDirection)scrollDirection mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock NS_DESIGNATED_INITIALIZER;

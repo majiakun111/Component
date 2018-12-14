@@ -8,10 +8,49 @@
 
 #import "TestPageRootViewController.h"
 #import "PageContainerViewController.h"
-#import "TestPageViewController.h"
+#import "TestCollectionViewCell.h"
 #import "TestCollectionViewCellItem.h"
 #import "Masonry.h"
 #import "PageTitleView.h"
+
+@implementation TestPageViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:(CGFloat)(arc4random() % 255) / 255.0 green:(CGFloat)(arc4random() % 255) / 255.0 blue:(CGFloat)(arc4random() % 255) / 255.0 alpha:1.0]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSLog(@"--viewWillAppear--vc:%@----", self);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"--viewDidAppear--vc:%@----", self);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    NSLog(@"--viewWillDisappear--vc:%@----", self);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    NSLog(@"--viewDidDisappear--vc:%@----", self);
+}
+
+- (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent {
+    [collectionViewComponent mapCellClass:[TestCollectionViewCell class] cellItemClass:[TestCollectionViewCellItem class]];
+}
+
+@end
 
 @interface TestPageRootViewController ()
 
@@ -51,7 +90,7 @@
     }];
     [self.pageTitleView updateIndexProgress:10 animated:NO];
     
-    NSMutableArray<TestPageViewController *> *pageViewControllers = @[].mutableCopy;
+    NSMutableArray<__kindof PageItem *> *pageItems = @[].mutableCopy;
     for (int pageIndex = 0; pageIndex < 20; pageIndex++) {
         PageItem *pageItem = [[PageItem alloc] init];
         
@@ -65,11 +104,14 @@
         }
         
         pageItem.sectionItems = @[sectionItem];
-        TestPageViewController *pageViewController = [[TestPageViewController alloc] initWithPageItem:pageItem];
-        [pageViewControllers addObject:pageViewController];
+        pageItem.viewControllerClass = [TestPageViewController class];
+        [pageItems addObject:pageItem];
     }
     
-    self.pageContainerViewController = [[PageContainerViewController alloc] initWithPageViewControllers:pageViewControllers pageWidth:[UIScreen mainScreen].bounds.size.width];
+    PageContainerItem *pageContainerItem = [[PageContainerItem alloc] init];
+    pageContainerItem.pageItems = pageItems;
+    pageContainerItem.pageWidth = [UIScreen mainScreen].bounds.size.width;
+    self.pageContainerViewController = [[PageContainerViewController alloc] initWithPageContainerItem:pageContainerItem];
     [self.pageContainerViewController setContentOffsetDidChangeBlock:^(CGPoint contentOffset) {
         [weakSelf.pageTitleView updateIndexProgress:contentOffset.x / [UIScreen mainScreen].bounds.size.width animated:YES];
     }];

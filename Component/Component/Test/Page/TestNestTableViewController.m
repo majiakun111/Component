@@ -1,20 +1,30 @@
 //
-//  TestPageViewController.m
+//  TestNestTableViewController.m
 //  Component
 //
-//  Created by Ansel on 2018/12/9.
+//  Created by Ansel on 2018/12/13.
 //  Copyright © 2018 MJK. All rights reserved.
 //
 
-#import "TestPageViewController.h"
+#import "TestNestTableViewController.h"
 #import "TestCollectionViewCell.h"
 #import "TestCollectionViewCellItem.h"
 
-@interface TestPageViewController ()
+@implementation TestNestTableViewTopSectionCellItem
 
 @end
 
-@implementation TestPageViewController
+@implementation TestNestTableViewTopSectionCell
+
+- (void)buildUI {
+    [super buildUI];
+    
+    [self setBackgroundColor:[UIColor redColor]];
+}
+
+@end
+
+@implementation TestNestPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +59,26 @@
 
 - (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent {
     [collectionViewComponent mapCellClass:[TestCollectionViewCell class] cellItemClass:[TestCollectionViewCellItem class]];
+}
+
+@end
+
+@interface TestNestTableViewController ()
+
+@end
+
+@implementation TestNestTableViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+#pragma mark - Overrdir
+- (void)mapItemClassToViewClassWithTableViewComponent:(TableViewComponent *)tableViewComponent {
+    [super mapItemClassToViewClassWithTableViewComponent:tableViewComponent];
+    
+    [tableViewComponent mapCellClass:[TestNestTableViewTopSectionCell class] cellItemClass:[TestNestTableViewTopSectionCellItem class]];
 }
 
 @end

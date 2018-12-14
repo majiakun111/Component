@@ -7,13 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CollectionViewCellItem.h"
 #import "CollectionViewSectionItem.h"
+
+@class PageItem;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PageItem : NSObject
+@protocol PageItemProtocol <NSObject>
+
+@property(nonatomic, strong) PageItem *pageItem;
+
+@optional
+@property(nonatomic, assign) BOOL canUpDownScroll;
+@property(nonatomic, copy) void(^pageWillLeaveTopBlock)(void);
+
+@end
+
+@interface PageItem : CollectionViewCellItem
 
 @property(nonatomic, strong) NSArray<__kindof CollectionViewSectionItem *> *sectionItems;
+
+@property(nonatomic, strong) Class viewControllerClass; //PageItemProtocol
 
 @end
 

@@ -16,6 +16,10 @@
 @class CollectionViewCellItem;
 
 @interface CollectionViewCell : UICollectionViewCell
+{
+    @protected
+    CollectionViewCellItem *_item;
+}
 
 @property (nonatomic, strong) __kindof CollectionViewCellItem *item;
 

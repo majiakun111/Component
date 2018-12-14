@@ -66,7 +66,6 @@
         
         [self setHasMore:NO];
 
-        
         [self reloadData];
     });
     
