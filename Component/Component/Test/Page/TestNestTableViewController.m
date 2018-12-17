@@ -36,25 +36,25 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"--viewWillAppear--vc:%@----", self);
+    NSLog(@"--viewWillAppear--page:%@----", self);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSLog(@"--viewDidAppear--vc:%@----", self);
+    NSLog(@"--viewDidAppear--page:%@----", self);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    NSLog(@"--viewWillDisappear--vc:%@----", self);
+    NSLog(@"--viewWillDisappear--page:%@----", self);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    NSLog(@"--viewDidDisappear--vc:%@----", self);
+    NSLog(@"--viewDidDisappear--page:%@----", self);
 }
 
 - (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent {

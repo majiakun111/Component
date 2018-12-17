@@ -147,10 +147,6 @@ NSInteger const DefaultCurrentPageIndex = 0;
             [self addObserver];
         }];
     }
-//
-//
-//
-//    [self.tableView setContentOffset:CGPointMake(pageIndex * self.pageContainerItem.pageWidth, 0) animated:animated];
 }
 
 #pragma mark - Property

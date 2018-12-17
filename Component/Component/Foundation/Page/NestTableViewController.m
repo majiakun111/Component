@@ -115,35 +115,26 @@ NSInteger const NestTableViewBottomCellRow = 0;
 }
 
 - (void)setParentViewController:(UIViewController *)parentViewController {
-    if (_parentViewController != parentViewController) {
-        
-        if (_parentViewController) {
-            [self.pageContianerViewController willMoveToParentViewController:_parentViewController];
-            if (self.pageContianerViewController.isViewLoaded && [self.pageContianerViewController.view superview]) {
-                [self.pageContianerViewController.view removeFromSuperview];
-            }
-            [self.pageContianerViewController removeFromParentViewController];
-            [self.pageContianerViewController didMoveToParentViewController:nil];
-            
-            [self.pageContianerViewController beginAppearanceTransition:NO animated:YES];
-            [self.pageContianerViewController endAppearanceTransition];
+    if (_parentViewController == parentViewController) {
+        return;
+    }
+    
+    if (_parentViewController) {
+        if (self.pageContianerViewController.isViewLoaded && [self.pageContianerViewController.view superview]) {
+            [self.pageContianerViewController.view removeFromSuperview];
         }
+        [self.pageContianerViewController removeFromParentViewController];
+    }
+    
+    _parentViewController = parentViewController;
+    
+    if (parentViewController) {
+        [parentViewController addChildViewController:self.pageContianerViewController];
+        [self addSubview:self.pageContianerViewController.view];
         
-        _parentViewController = parentViewController;
-        
-        if (parentViewController) {
-            [self.pageContianerViewController willMoveToParentViewController:parentViewController];
-            [parentViewController addChildViewController:self.pageContianerViewController];
-            [self addSubview:self.pageContianerViewController.view];
-            
-            [self.pageContianerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];
-            
-            [self.pageContianerViewController didMoveToParentViewController:self.parentViewController];
-            [self.pageContianerViewController beginAppearanceTransition:NO animated:YES];
-            [self.pageContianerViewController endAppearanceTransition];
-        }
+        [self.pageContianerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
     }
 }
 

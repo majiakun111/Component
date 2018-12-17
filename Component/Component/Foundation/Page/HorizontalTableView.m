@@ -99,6 +99,10 @@ static const CGFloat DefaultCellWidth = 40.0;
 
 - (void)reloadData
 {
+    if (CGSizeEqualToSize(self.bounds.size, CGSizeZero)) {
+        return;
+    }
+    
     //1. 分析CellInfo和计算contentSize
     [self analyzeCellInfosAndCalculateContentSize];
     
