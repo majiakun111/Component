@@ -15,12 +15,11 @@
 
 @implementation TestTableViewController
 
--(void)doRefresh
-{
+-(void)doRefresh {
+    [super doRefresh];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self stopRefreshing];
-        
-        self.sectionItems = [[NSMutableArray alloc] init];
         
         TableViewSectionItem *sectionItem = [[TableViewSectionItem alloc] init];
         TestTableViewHeaderOrFooterViewItem *headerViewItem = [[TestTableViewHeaderOrFooterViewItem alloc] init];
@@ -43,16 +42,14 @@
         
         [sectionItem setCellItems:cellItems];
         
-        [self.sectionItems addObject:sectionItem];
-        
-        [self reloadData];
+        [self updateSectionItems:@[sectionItem]];
     });
 }
 
-- (void)loadMore
-{
+- (void)loadMore {
+    [super loadMore];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
         [self stopLoading];
         
         for (int i = 31; i < 60; i++) {
@@ -60,20 +57,19 @@
             [cellItem setTitle:[NSString stringWithFormat:@"%d", i]];
             cellItem.height = 50;
             
-            [[[self.sectionItems lastObject] cellItems] addObject:cellItem];
+            [[[self.tableViewComponent.sectionItems lastObject] cellItems] addObject:cellItem];
         }
         
         [self reloadData];
     });
-    
 }
 
-- (void)mapItemClassToViewClass;
-{
-    [self mapCellClass:[TestTableViewCell class] cellItemClass:[TestTableViewCellItem class]];
+- (void)mapItemClassToViewClassWithTableViewComponent:(TableViewComponent *)tableViewComponent {
+    [super mapItemClassToViewClassWithTableViewComponent:tableViewComponent];
     
-    [self mapHeaderOrFooterViewClass:[TestTableViewHeaderOrFooterView class] headerOrFooterViewItem:[TestTableViewHeaderOrFooterViewItem class]];
+    [tableViewComponent mapCellClass:[TestTableViewCell class] cellItemClass:[TestTableViewCellItem class]];
     
+    [tableViewComponent mapHeaderOrFooterViewClass:[TestTableViewHeaderOrFooterView class] headerOrFooterViewItemClass:[TestTableViewHeaderOrFooterViewItem class]];
 }
 
 @end

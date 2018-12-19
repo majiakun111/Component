@@ -40,7 +40,7 @@
 
 @interface CollectionViewComponent ()
 
-@property(nonatomic, strong) NSArray<__kindof CollectionViewSectionItem *> *sectionItems;
+@property(nonatomic, strong) NSMutableArray<__kindof CollectionViewSectionItem *> *sectionItems;
 @property(nonatomic, strong) UICollectionView *collectionView;
 
 //1. CollectionViewCellItem或其子类的ClassName作为key CollectionViewCell或其子类的class作为值
@@ -60,7 +60,7 @@
 - (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems scrollDirection:(UICollectionViewScrollDirection)scrollDirection mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
     self = [super init];
     if (self) {
-        _sectionItems = sectionItems;
+        _sectionItems = [sectionItems mutableCopy];
         _scrollDirection = scrollDirection;
         [self buildCollectionView];
         
@@ -74,8 +74,7 @@
     return self;
 }
 
-- (void)buildCollectionView
-{
+- (void)buildCollectionView {
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.collectionViewFlowLayout];
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     [self.collectionView setDelegate:self];
@@ -87,22 +86,20 @@
 
 -(void)updateSectionItems:(NSArray<CollectionViewSectionItem *> *)sectionItems {
     if (self.sectionItems != sectionItems) {
-        self.sectionItems = sectionItems;
+        self.sectionItems = [sectionItems mutableCopy];
         
         [self.collectionView reloadData];
     }
 }
 
-- (void)mapCellClass:(Class)cellClass cellItemClass:(Class)cellItemClass
-{
+- (void)mapCellClass:(Class)cellClass cellItemClass:(Class)cellItemClass {
     cellClass != nil ? cellClass : [CollectionViewCell class];
 
     [self.viewClassMap setObject:cellClass forKey:[cellItemClass className]];
     [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:[cellClass className]];
 }
 
-- (void)mapReuseableViewClass:(Class)reuseableViewClass reuseableViewItem:(Class)reuseableViewItem forKind:(NSString *)kind
-{
+- (void)mapReuseableViewClass:(Class)reuseableViewClass reuseableViewItemClass:(Class)reuseableViewItem forKind:(NSString *)kind {
     [self.viewClassMap setObject:reuseableViewClass forKey:[reuseableViewItem className]];
     
     reuseableViewClass != nil ? reuseableViewClass : [ReusableView class];
@@ -111,8 +108,7 @@
 
 #pragma mark - CollectionView Handle Method
 //section 对应的数据
-- (__kindof CollectionViewSectionItem *)sectionItemForSectionIndex:(NSInteger)sectionIndex
-{
+- (__kindof CollectionViewSectionItem *)sectionItemForSectionIndex:(NSInteger)sectionIndex {
     CollectionViewSectionItem *sectionItem = nil;
     if (0 <= sectionIndex && sectionIndex < [self.sectionItems count]) {
         sectionItem = [self.sectionItems objectAtIndex:sectionIndex];
@@ -121,8 +117,7 @@
     return sectionItem;
 }
 
-- (NSInteger)numOfRowsInSection:(NSInteger)sectionIndex
-{
+- (NSInteger)numOfRowsInSection:(NSInteger)sectionIndex {
     CollectionViewSectionItem *sectionItem = [self sectionItemForSectionIndex:sectionIndex];
     NSInteger numOfRows = [sectionItem.cellItems count];
     return numOfRows;
@@ -134,8 +129,7 @@
     return [self cellItemForIndexPath:indexPath];
 }
 
-- (__kindof CollectionViewCellItem *)cellItemForIndexPath:(NSIndexPath *)indexPath
-{
+- (__kindof CollectionViewCellItem *)cellItemForIndexPath:(NSIndexPath *)indexPath {
     CollectionViewCellItem *item = nil;
     do {
         CollectionViewSectionItem *sectionItem = [self sectionItemForSectionIndex:indexPath.section];
@@ -195,8 +189,7 @@
 
 #pragma mark - MustOverride
 
-- (void)mapItemClassToViewClass
-{
+- (void)mapItemClassToViewClass {
     #ifdef DEBUG
         MustOverride();
     #endif
@@ -204,8 +197,7 @@
 
 #pragma mark - Optional Override Property
 
-- (UICollectionViewFlowLayout *)collectionViewFlowLayout
-{
+- (UICollectionViewFlowLayout *)collectionViewFlowLayout {
     if (nil == _collectionViewFlowLayout) {
         _collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
         [_collectionViewFlowLayout setScrollDirection:self.scrollDirection];
@@ -216,8 +208,7 @@
 
 #pragma mark - Property
 
-- (CollectionViewRelativeSizeHelper *)sizeHelper
-{
+- (CollectionViewRelativeSizeHelper *)sizeHelper {
     if (nil == _sizeHelper) {
         _sizeHelper = [[CollectionViewRelativeSizeHelper alloc] init];
     }
@@ -227,8 +218,7 @@
 
 #pragma mark - PrviateProperty
 
-- (NSMutableDictionary *)viewClassMap
-{
+- (NSMutableDictionary *)viewClassMap {
     if (nil == _viewClassMap) {
         _viewClassMap = [[NSMutableDictionary alloc] init];
     }
@@ -236,17 +226,14 @@
     return _viewClassMap;
 }
 
-
 #pragma mark - PrivateMethod CollectionView Handle Method
 
-- (Class)cellClassWithItem:(CollectionViewCellItem *)item
-{
+- (Class)cellClassWithItem:(CollectionViewCellItem *)item {
     Class cellClass = [self.viewClassMap objectForKey:[item className]];
     return cellClass == nil ? [CollectionViewCell class] : cellClass;
 }
 
-- (NSString *)collectionViewCellIdentifier:(CollectionViewCellItem *)item
-{
+- (NSString *)collectionViewCellIdentifier:(CollectionViewCellItem *)item {
     NSString *identifier = [CollectionViewCell className];
     Class cellClass = [self cellClassWithItem:item];
     if (cellClass && [cellClass isSubclassOfClass:[CollectionViewCell class]]) {
@@ -256,8 +243,7 @@
     return identifier;
 }
 
-- (NSString *)reuseableViewIdentifier:(ReusableViewItem *)item
-{
+- (NSString *)reuseableViewIdentifier:(ReusableViewItem *)item {
     NSString *identifier = [ReusableView className];
     Class reusableViewClass = [self reuseableViewClassWithItem:item];
     
@@ -269,14 +255,12 @@
 }
 
 
-- (Class)reuseableViewClassWithItem:(ReusableViewItem *)item
-{
+- (Class)reuseableViewClassWithItem:(ReusableViewItem *)item {
     Class reuseableViewClass = [self.viewClassMap objectForKey:[item className]];
     return reuseableViewClass == nil ? [ReusableView class] : reuseableViewClass;
 }
 
-- (__kindof ReusableViewItem *)reuseableViewItemForSection:(NSInteger)section kind:(NSString *)kind collectionView:(UICollectionView *)collectionView
-{
+- (__kindof ReusableViewItem *)reuseableViewItemForSection:(NSInteger)section kind:(NSString *)kind collectionView:(UICollectionView *)collectionView {
     ReusableViewItem *item = nil;
     do {
         if (section >= [self.sectionItems count]) {
@@ -295,8 +279,7 @@
     return item;
 }
 
-- (CGSize)reuseableViewSizeForSection:(NSInteger)section kind:(NSString *)kind collectionView:(UICollectionView *)collectionView
-{
+- (CGSize)reuseableViewSizeForSection:(NSInteger)section kind:(NSString *)kind collectionView:(UICollectionView *)collectionView {
     ReusableViewItem *item = [self reuseableViewItemForSection:section kind:kind collectionView:collectionView];
     Class reuseableViewClass = [self reuseableViewClassWithItem:item];
     
@@ -306,20 +289,17 @@
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     CGFloat sections = [self.sectionItems count];
     return sections;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     CGFloat rows = [self numOfRowsInSection:section];
     return rows;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = nil;
     CollectionViewCellItem *item = [self cellItemForIndexPath:indexPath];
     cellIdentifier = [self collectionViewCellIdentifier:item];
@@ -331,8 +311,7 @@
     return cell;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     static NSString *reuseableViewIdentifier = nil;
     
     ReusableViewItem *item = [self reuseableViewItemForSection:indexPath.section kind:kind collectionView:collectionView];
@@ -358,8 +337,7 @@
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 
     if (self.didSelectedIndexPathBlcok) {
@@ -369,8 +347,7 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionViewCellItem *item = [self cellItemForIndexPath:indexPath];
     Class cellClass = [self cellClassWithItem:item];
     
@@ -378,34 +355,29 @@
     return size;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     CGSize size = [self reuseableViewSizeForSection:section kind:UICollectionElementKindSectionHeader collectionView:collectionView];
     return size;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     CGSize size = [self reuseableViewSizeForSection:section kind:UICollectionElementKindSectionFooter collectionView:collectionView];
     return size;
 }
 
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
     return item.inset;
 }
 
 //调整列的间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
     return item.minimumInteritemSpacing;
 }
 
 //调整行的间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     CollectionViewSectionItem *item = [self sectionItemForSectionIndex:section];
     return item.minimumLineSpacing;
 }

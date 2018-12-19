@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B15A24A1C89E0D800764E8C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2481C89E0D800764E8C /* TableViewController.m */; };
 		5B15A24F1C89E12200764E8C /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A24E1C89E12200764E8C /* TableViewCell.m */; };
 		5B15A2521C89E15700764E8C /* TableViewSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2511C89E15700764E8C /* TableViewSectionItem.m */; };
 		5B15A2581C89E19C00764E8C /* HeaderOrFooterViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2571C89E19C00764E8C /* HeaderOrFooterViewItem.m */; };
-		5B15A25B1C89E1FF00764E8C /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A25A1C89E1FF00764E8C /* CollectionViewController.m */; };
 		5B15A25E1C89E25000764E8C /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A25D1C89E25000764E8C /* CollectionViewCell.m */; };
 		5B15A2661C8A85DD00764E8C /* TableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2651C8A85DD00764E8C /* TableViewCellItem.m */; };
 		5B15A2691C8A85ED00764E8C /* CollectionViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2681C8A85ED00764E8C /* CollectionViewCellItem.m */; };
@@ -52,7 +50,6 @@
 		5B5BFDAC21C0A158008069B5 /* TestPageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDAB21C0A158008069B5 /* TestPageRootViewController.m */; };
 		5B5BFDAF21C1048A008069B5 /* NestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDAE21C1048A008069B5 /* NestTableViewController.m */; };
 		5B5BFDB521C120DD008069B5 /* PageContainerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDB421C120DD008069B5 /* PageContainerItem.m */; };
-		5B5BFDB821C1F4FB008069B5 /* TableViewComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDB721C1F4FB008069B5 /* TableViewComponent.m */; };
 		5B5BFDBB21C21D94008069B5 /* NestPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDBA21C21D94008069B5 /* NestPageViewController.m */; };
 		5B5BFDBE21C21DF9008069B5 /* NestPageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDBD21C21DF9008069B5 /* NestPageContainerViewController.m */; };
 		5B5BFDC121C21EC8008069B5 /* TestNestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDC021C21EC8008069B5 /* TestNestTableViewController.m */; };
@@ -62,6 +59,7 @@
 		5B7B165321B91E85003C6ACE /* CollectionViewComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B165121B91E85003C6ACE /* CollectionViewComponent.m */; };
 		5B7B165E21B92A8C003C6ACE /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B165D21B92A8C003C6ACE /* PageViewController.m */; };
 		5B7B166221B93130003C6ACE /* PageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B166121B93130003C6ACE /* PageItem.m */; };
+		5B9CC10421C9D99D00840B93 /* TableViewComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9CC10321C9D99D00840B93 /* TableViewComponent.m */; };
 		5BAC68B82140B5C800A870F9 /* UIButton+Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68B72140B5C800A870F9 /* UIButton+Highlight.m */; };
 		5BAC68BB2140B98C00A870F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68BA2140B98C00A870F9 /* ViewController.m */; };
 		5BAC68BE2140C5EA00A870F9 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC68BD2140C5EA00A870F9 /* UIImage+Color.m */; };
@@ -104,16 +102,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B15A2471C89E0D700764E8C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		5B15A2481C89E0D800764E8C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		5B15A24D1C89E12200764E8C /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		5B15A24E1C89E12200764E8C /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		5B15A2501C89E15700764E8C /* TableViewSectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewSectionItem.h; sourceTree = "<group>"; };
 		5B15A2511C89E15700764E8C /* TableViewSectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewSectionItem.m; sourceTree = "<group>"; };
 		5B15A2561C89E19C00764E8C /* HeaderOrFooterViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderOrFooterViewItem.h; sourceTree = "<group>"; };
 		5B15A2571C89E19C00764E8C /* HeaderOrFooterViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderOrFooterViewItem.m; sourceTree = "<group>"; };
-		5B15A2591C89E1FF00764E8C /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
-		5B15A25A1C89E1FF00764E8C /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		5B15A25C1C89E25000764E8C /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		5B15A25D1C89E25000764E8C /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		5B15A2641C8A85DD00764E8C /* TableViewCellItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellItem.h; sourceTree = "<group>"; };
@@ -194,8 +188,6 @@
 		5B5BFDAE21C1048A008069B5 /* NestTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NestTableViewController.m; sourceTree = "<group>"; };
 		5B5BFDB321C120DD008069B5 /* PageContainerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageContainerItem.h; sourceTree = "<group>"; };
 		5B5BFDB421C120DD008069B5 /* PageContainerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageContainerItem.m; sourceTree = "<group>"; };
-		5B5BFDB621C1F4FB008069B5 /* TableViewComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewComponent.h; sourceTree = "<group>"; };
-		5B5BFDB721C1F4FB008069B5 /* TableViewComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewComponent.m; sourceTree = "<group>"; };
 		5B5BFDB921C21D94008069B5 /* NestPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NestPageViewController.h; sourceTree = "<group>"; };
 		5B5BFDBA21C21D94008069B5 /* NestPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NestPageViewController.m; sourceTree = "<group>"; };
 		5B5BFDBC21C21DF9008069B5 /* NestPageContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NestPageContainerViewController.h; sourceTree = "<group>"; };
@@ -214,6 +206,8 @@
 		5B7B165D21B92A8C003C6ACE /* PageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		5B7B166021B93130003C6ACE /* PageItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageItem.h; sourceTree = "<group>"; };
 		5B7B166121B93130003C6ACE /* PageItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageItem.m; sourceTree = "<group>"; };
+		5B9CC10221C9D99D00840B93 /* TableViewComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewComponent.h; sourceTree = "<group>"; };
+		5B9CC10321C9D99D00840B93 /* TableViewComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewComponent.m; sourceTree = "<group>"; };
 		5BAC68B62140B5C800A870F9 /* UIButton+Highlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Highlight.h"; sourceTree = "<group>"; };
 		5BAC68B72140B5C800A870F9 /* UIButton+Highlight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Highlight.m"; sourceTree = "<group>"; };
 		5BAC68B92140B98C00A870F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -351,10 +345,6 @@
 		5B15A2461C89E0D700764E8C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B15A2471C89E0D700764E8C /* TableViewController.h */,
-				5B15A2481C89E0D800764E8C /* TableViewController.m */,
-				5B15A2591C89E1FF00764E8C /* CollectionViewController.h */,
-				5B15A25A1C89E1FF00764E8C /* CollectionViewController.m */,
 				5BC8C22D1C9087C300FBF149 /* RefreshTableViewController.h */,
 				5BC8C22E1C9087C300FBF149 /* RefreshTableViewController.m */,
 				5BC8C2301C908E2200FBF149 /* RefreshCollectionViewController.h */,
@@ -484,10 +474,10 @@
 		5B7B165021B91E62003C6ACE /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				5B9CC10221C9D99D00840B93 /* TableViewComponent.h */,
+				5B9CC10321C9D99D00840B93 /* TableViewComponent.m */,
 				5B7B165221B91E85003C6ACE /* CollectionViewComponent.h */,
 				5B7B165121B91E85003C6ACE /* CollectionViewComponent.m */,
-				5B5BFDB621C1F4FB008069B5 /* TableViewComponent.h */,
-				5B5BFDB721C1F4FB008069B5 /* TableViewComponent.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -778,6 +768,7 @@
 				5B5BFC9121BF4E63008069B5 /* PageTitleView.m in Sources */,
 				5B52236D1C9D4C0E0059875B /* JavascriptInterfaceManager.m in Sources */,
 				5B5BFDB521C120DD008069B5 /* PageContainerItem.m in Sources */,
+				5B9CC10421C9D99D00840B93 /* TableViewComponent.m in Sources */,
 				5B15A2661C8A85DD00764E8C /* TableViewCellItem.m in Sources */,
 				5BF78E3E1C8F284F00648444 /* TestTableViewHeaderOrFooterView.m in Sources */,
 				5B52237A1C9D4CA50059875B /* JSCallNavtiveInterface.m in Sources */,
@@ -803,10 +794,8 @@
 				5B24E3B11C88449900F1A521 /* UIView+Coordinate.m in Sources */,
 				5BF9792221BCE14900D69D54 /* MASCompositeConstraint.m in Sources */,
 				5B5BFDBE21C21DF9008069B5 /* NestPageContainerViewController.m in Sources */,
-				5B15A25B1C89E1FF00764E8C /* CollectionViewController.m in Sources */,
 				5BF78E3F1C8F284F00648444 /* TestTableViewHeaderOrFooterViewItem.m in Sources */,
 				5BAC68BE2140C5EA00A870F9 /* UIImage+Color.m in Sources */,
-				5B15A24A1C89E0D800764E8C /* TableViewController.m in Sources */,
 				5B52236F1C9D4C0E0059875B /* JavascriptWebViewBridge.m in Sources */,
 				5B15A2D21C8D787500764E8C /* HeaderOrFooterView.m in Sources */,
 				5BF9792821BCE14900D69D54 /* MASViewConstraint.m in Sources */,
@@ -841,7 +830,6 @@
 				5BF9792421BCE14900D69D54 /* MASLayoutConstraint.m in Sources */,
 				5B1DD4301CB552D100C61BED /* NSData+MD5.m in Sources */,
 				5BC8C22C1C90861100FBF149 /* UIScrollView+RefreshAndLoadMore.m in Sources */,
-				5B5BFDB821C1F4FB008069B5 /* TableViewComponent.m in Sources */,
 				5B15A24F1C89E12200764E8C /* TableViewCell.m in Sources */,
 				5BC8C22F1C9087C300FBF149 /* RefreshTableViewController.m in Sources */,
 				5BBE606B1C809EAF006D0595 /* AppDelegate.m in Sources */,

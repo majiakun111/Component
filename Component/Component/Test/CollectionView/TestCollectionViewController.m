@@ -15,13 +15,11 @@
 
 @implementation TestCollectionViewController
 
-
--(void)doRefresh
-{
+-(void)doRefresh {
+    [super doRefresh];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self stopRefreshing];
-        
-        self.sectionItems = [[NSMutableArray alloc] init];
         
         CollectionViewSectionItem *sectionItem = [[CollectionViewSectionItem alloc] init];
         TestReusableViewItem *headerViewItem = [[TestReusableViewItem alloc] init];
@@ -44,14 +42,13 @@
         
         [sectionItem setCellItems:cellItems];
         
-        [self.sectionItems addObject:sectionItem];
-        
-        [self reloadData];
+        [self updateSectionItems:@[sectionItem]];
     });
 }
 
-- (void)loadMore
-{
+- (void)loadMore {
+    [super loadMore];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [self stopLoading];
@@ -61,7 +58,7 @@
             [cellItem setTitle:[NSString stringWithFormat:@"%d", i]];
             cellItem.size = CGSizeMake(80, 80);
             
-            [[[self.sectionItems lastObject] cellItems] addObject:cellItem];
+            [[[self.collectionViewComponent.sectionItems lastObject] cellItems] addObject:cellItem];
         }
         
         [self setHasMore:NO];
@@ -71,12 +68,11 @@
     
 }
 
-- (void)mapItemClassToViewClass;
-{
-    [self mapCellClass:[TestCollectionViewCell class] cellItemClass:[TestCollectionViewCellItem class]];
+- (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent {
+    [collectionViewComponent mapCellClass:[TestCollectionViewCell class] cellItemClass:[TestCollectionViewCellItem class]];
     
-    [self mapReuseableViewClass:[TestReuseableView class] reuseableViewItem:[TestReusableViewItem class] forKind:UICollectionElementKindSectionHeader];
-    [self mapReuseableViewClass:[TestReuseableView class] reuseableViewItem:[TestReusableViewItem class] forKind:UICollectionElementKindSectionFooter];    
+    [collectionViewComponent mapReuseableViewClass:[TestReuseableView class] reuseableViewItemClass:[TestReusableViewItem class] forKind:UICollectionElementKindSectionHeader];
+    [collectionViewComponent mapReuseableViewClass:[TestReuseableView class] reuseableViewItemClass:[TestReusableViewItem class] forKind:UICollectionElementKindSectionFooter];
 }
 
 

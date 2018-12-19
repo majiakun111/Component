@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PageViewController : UIViewController<PageItemProtocol>
 
-@property(nonatomic, readonly) CollectionViewComponent *collectionViewComponent;
+@property(nonatomic, strong, readonly) CollectionViewComponent *collectionViewComponent;
 
 - (void)buildCollectionViewComponent;
 

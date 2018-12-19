@@ -26,8 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
     UITableView *_tableView;
 }
 
-@property(nonatomic, strong) UITableView *tableView;
-@property(nonatomic, strong) NSArray <TableViewSectionItem *> *sectionItems;
+@property(nonatomic, strong, readonly) UITableView *tableView;
+@property(nonatomic, strong, readonly) NSMutableArray <TableViewSectionItem *> *sectionItems;
 @property (nonatomic, weak) id<TableViewCellDelegate> cellDelegate;
 @property (nonatomic, weak) id<HeaderOrFooterViewDelegate> headerOrFooterViewDelegate;
 
@@ -38,12 +38,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) TableViewComponentWillDisplayIndexPathBlock willDisplayIndexPathBlock;
 @property(nonatomic, copy) TableViewComponentDidEndDisplayingIndexPathBlock didEndDisplayingIndexPathBlock;
 
-- (instancetype)initWithSectionItems:(NSArray<__kindof TableViewSectionItem *> *)sectionItems
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof TableViewSectionItem *> *)sectionItems
         mapItemClassToViewClassBlock:(void (^)(__kindof TableViewComponent *tableViewComponent))mapItemClassToViewClassBlock
                        delegateBlock:(void(^)(__kindof TableViewComponent *tableViewComponent))delegateBlock NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)buildTableView;
+
+- (void)updateSectionItems:(NSArray<TableViewSectionItem *> *)sectionItems;
 
 //映射TableViewCell Class和TableViewSectionItem ClassName的关系  以TableViewSectionItem 的ClassName作为key TableViewCell或其子类的class作为值
 - (void)mapCellClass:(Class)cellClass cellItemClass:(Class)cellItemClass;

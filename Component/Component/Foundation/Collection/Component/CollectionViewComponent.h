@@ -33,7 +33,7 @@ typedef void(^CollectionViewComponentDidScrollBlock)(__kindof CollectionViewComp
 
 @property (nonatomic, strong) CollectionViewRelativeSizeHelper *sizeHelper;
 
-@property (nonatomic, strong, readonly) NSArray<__kindof CollectionViewSectionItem *> *sectionItems;
+@property (nonatomic, strong, readonly) NSMutableArray<__kindof CollectionViewSectionItem *> *sectionItems;
 
 @property (nonatomic, copy) CollectionViewComponentDidSelectedIndexPathBlcok didSelectedIndexPathBlcok;
 @property (nonatomic, copy) CollectionViewComponentWillDisplayIndexPathBlock willDisplayIndexPathBlock;
@@ -53,7 +53,7 @@ typedef void(^CollectionViewComponentDidScrollBlock)(__kindof CollectionViewComp
 
 //映射ReuseableView Class和SReuseableViewItem ClassName的关系  以ReuseableViewItem或其子类的ClassName作为key ReuseableView或其子类的class作为值
 //kind  UICollectionElementKindSectionHeader or UICollectionElementKindSectionFooter
-- (void)mapReuseableViewClass:(Class)reuseableViewClass reuseableViewItem:(Class)reuseableViewItem forKind:(NSString *)kind;
+- (void)mapReuseableViewClass:(Class)reuseableViewClass reuseableViewItemClass:(Class)reuseableViewItem forKind:(NSString *)kind;
 
 //section
 - (__kindof CollectionViewSectionItem *)sectionItemForSectionIndex:(NSInteger)sectionIndex;
