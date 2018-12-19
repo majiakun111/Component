@@ -237,7 +237,6 @@ static const CGFloat DefaultCellWidth = 40.0;
     
     NSMutableSet<HorizontalTableViewCell*> *currentVisiableCellSet = [[NSMutableSet alloc] init];
     for (CellInfo *cellInfo in needDisplayCellInfoArray) {
-        
         HorizontalTableViewCell *cell = [self.dataSource tableView:self cellForRowAtIndexPath:cellInfo.indexPath];
         cell.indexPath = cellInfo.indexPath;
         [cell setFrame:cellInfo.frame];

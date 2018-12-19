@@ -281,7 +281,6 @@ NSInteger const DefaultCurrentPageIndex = 0;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"-------scrollViewDidScroll:%@-------", scrollView);
     if (scrollView.tracking || scrollView.decelerating) {
         NSInteger pageIndex = round((scrollView.contentOffset.x / (scrollView.frame.size.width ?: 0.000001)));
         pageIndex = MIN(MAX(0, pageIndex), self.pageViewControllers.count - 1);
