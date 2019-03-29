@@ -35,11 +35,11 @@
 //    UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
 //    self.window.rootViewController = rootNavigationController;
     
-//    ViewController *rootViewController = [[ViewController alloc] init];
-//    self.window.rootViewController = rootViewController;
-//    [self.window makeKeyAndVisible];
-//    [self.window setBackgroundColor:[UIColor whiteColor]];
-//
+    ViewController *rootViewController = [[ViewController alloc] init];
+    self.window.rootViewController = rootViewController;
+    [self.window makeKeyAndVisible];
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+
  
 //    TestPageRootViewController *rootViewController = [[TestPageRootViewController alloc] init];
 //    self.window.rootViewController = rootViewController;
@@ -114,10 +114,10 @@
 //    [self.window makeKeyAndVisible];
 //    [self.window setBackgroundColor:[UIColor whiteColor]];
     
-    TestCollectionViewController *rootViewController =  [[TestCollectionViewController alloc] init];
-    self.window.rootViewController = rootViewController;
-    [self.window makeKeyAndVisible];
-    [self.window setBackgroundColor:[UIColor whiteColor]];
+//    TestCollectionViewController *rootViewController =  [[TestCollectionViewController alloc] init];
+//    self.window.rootViewController = rootViewController;
+//    [self.window makeKeyAndVisible];
+//    [self.window setBackgroundColor:[UIColor whiteColor]];
 
     return YES;
 }

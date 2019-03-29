@@ -339,7 +339,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-
     if (self.didSelectedIndexPathBlcok) {
         self.didSelectedIndexPathBlcok(self, indexPath);
     }
