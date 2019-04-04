@@ -80,6 +80,7 @@ typedef void (^ResponseCallback)(NSString *status, id responseData);
         NSDictionary *webViewArg = @{@"type": @"object", @"value" : webView};
         NSMutableArray *args = [NSMutableArray arrayWithArray:message[@"args"]];
         NSDictionary *arg = [args lastObject];
+        //callback 在最后一个
         if ([arg[@"type"] isEqualToString:@"function"]) {
             [args insertObject:webViewArg atIndex:[args count] -1];
         }

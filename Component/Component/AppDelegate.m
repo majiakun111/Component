@@ -31,14 +31,16 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-//    TestJSWebViewController *rootViewController = [[TestJSWebViewController alloc] init];
-//    UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-//    self.window.rootViewController = rootNavigationController;
-    
-    ViewController *rootViewController = [[ViewController alloc] init];
-    self.window.rootViewController = rootViewController;
+    TestJSWebViewController *rootViewController = [[TestJSWebViewController alloc] init];
+    UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    self.window.rootViewController = rootNavigationController;
     [self.window makeKeyAndVisible];
     [self.window setBackgroundColor:[UIColor whiteColor]];
+    
+//    ViewController *rootViewController = [[ViewController alloc] init];
+//    self.window.rootViewController = rootViewController;
+//    [self.window makeKeyAndVisible];
+//    [self.window setBackgroundColor:[UIColor whiteColor]];
 
  
 //    TestPageRootViewController *rootViewController = [[TestPageRootViewController alloc] init];
