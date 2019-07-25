@@ -19,6 +19,10 @@
 @class NestTableViewBottomSectionHeaderView;
 @class NestTableViewBottomSectionCell;
 
+typedef void(^NestTabelViewBottomCellCanScrollBlock)(BOOL tabelViewBottomCellCanScroll);
+
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol NestTableViewBottomSectionHeaderViewDelegate <HeaderOrFooterViewDelegate>
 
 - (void)headerView:(NestTableViewBottomSectionHeaderView *)headerView pageTitleCurrentIndex:(NSInteger)pageTitleCurrentIndex;
@@ -32,10 +36,6 @@
 - (void)pageContainerViewControllerWillLeaveTopForTableViewCell:(NestTableViewBottomSectionCell *)tableViewCell;
 
 @end
-
-typedef void(^NestTabelViewBottomCellCanScrollBlock)(BOOL tabelViewBottomCellCanScroll);
-
-NS_ASSUME_NONNULL_BEGIN
 
 //总共两个section
 
