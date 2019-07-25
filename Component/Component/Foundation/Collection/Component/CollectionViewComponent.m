@@ -53,11 +53,20 @@
 
 @implementation CollectionViewComponent
 
-- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
-    return [self initWithSectionItems:sectionItems scrollDirection:UICollectionViewScrollDirectionVertical mapItemClassToViewClassBlock:mapItemClassToViewClassBlock];
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
+    return [self initWithSectionItems:sectionItems scrollDirection:UICollectionViewScrollDirectionVertical mapItemClassToViewClassBlock:mapItemClassToViewClassBlock delegateBlock:nil];
 }
 
-- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems scrollDirection:(UICollectionViewScrollDirection)scrollDirection mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock
+                       delegateBlock:(nullable void (^)(__kindof CollectionViewComponent *collectionViewComponent))delegateBlock {
+    return [self initWithSectionItems:sectionItems scrollDirection:UICollectionViewScrollDirectionVertical mapItemClassToViewClassBlock:mapItemClassToViewClassBlock delegateBlock:delegateBlock];
+}
+
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+                     scrollDirection:(UICollectionViewScrollDirection)scrollDirection
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock delegateBlock:(nullable void (^)(__kindof CollectionViewComponent *collectionViewComponent))delegateBlock {
     self = [super init];
     if (self) {
         _sectionItems = [sectionItems mutableCopy];
@@ -68,6 +77,10 @@
             mapItemClassToViewClassBlock(self);
         } else {
             [self mapItemClassToViewClass];
+        }
+        
+        if (delegateBlock) {
+            delegateBlock(self);
         }
     }
     
@@ -160,6 +173,25 @@
 
 - (__kindof UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.collectionView cellForItemAtIndexPath:indexPath];
+}
+
+- (__kindof ReusableViewItem *)reuseableViewItemForSection:(NSInteger)section kind:(NSString *)kind {
+    ReusableViewItem *item = nil;
+    do {
+        if (section >= [self.sectionItems count]) {
+            break;
+        }
+        
+        CollectionViewSectionItem *sectionItem = [self.sectionItems objectAtIndex:section];
+        if ([kind isEqual:UICollectionElementKindSectionHeader]) {
+            item = sectionItem.headerViewItem;
+        } else if ([kind isEqual:UICollectionElementKindSectionFooter]) {
+            item = sectionItem.footerViewItem;
+        }
+        
+    } while (0);
+    
+    return item;
 }
 
 //indexPath
@@ -260,27 +292,8 @@
     return reuseableViewClass == nil ? [ReusableView class] : reuseableViewClass;
 }
 
-- (__kindof ReusableViewItem *)reuseableViewItemForSection:(NSInteger)section kind:(NSString *)kind collectionView:(UICollectionView *)collectionView {
-    ReusableViewItem *item = nil;
-    do {
-        if (section >= [self.sectionItems count]) {
-            break;
-        }
-        
-        CollectionViewSectionItem *sectionItem = [self.sectionItems objectAtIndex:section];
-        if ([kind isEqual:UICollectionElementKindSectionHeader]) {
-            item = sectionItem.headerViewItem;
-        } else if ([kind isEqual:UICollectionElementKindSectionFooter]) {
-            item = sectionItem.footerViewItem;
-        }
-        
-    } while (0);
-    
-    return item;
-}
-
 - (CGSize)reuseableViewSizeForSection:(NSInteger)section kind:(NSString *)kind collectionView:(UICollectionView *)collectionView {
-    ReusableViewItem *item = [self reuseableViewItemForSection:section kind:kind collectionView:collectionView];
+    ReusableViewItem *item = [self reuseableViewItemForSection:section kind:kind];
     Class reuseableViewClass = [self reuseableViewClassWithItem:item];
     
     CGSize size = [self.sizeHelper getReuseableViewSizeWithItem:item reuseableView:reuseableViewClass];
@@ -306,7 +319,8 @@
     
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     [cell setItem:item];
-    [cell setDelegate:self];
+    [cell setDelegate:self.cellDelegate
+     ];
     
     return cell;
 }
@@ -314,11 +328,12 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     static NSString *reuseableViewIdentifier = nil;
     
-    ReusableViewItem *item = [self reuseableViewItemForSection:indexPath.section kind:kind collectionView:collectionView];
+    ReusableViewItem *item = [self reuseableViewItemForSection:indexPath.section kind:kind];
     reuseableViewIdentifier = [self reuseableViewIdentifier:item];
     
     ReusableView *reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:reuseableViewIdentifier forIndexPath:indexPath];
     [reusableView setItem:item];
+    [reusableView setDelegate:self.reusableViewDelegate];
     
     return reusableView ? reusableView : [[ReusableView alloc] initWithFrame:CGRectZero];
 }

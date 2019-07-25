@@ -8,18 +8,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "CollectionViewCell.h"
+#import "ReusableView.h"
 
 @class CollectionViewCellItem;
+@class ReusableViewItem;
 @class CollectionViewSectionItem;
 @class CollectionViewRelativeSizeHelper;
 @class CollectionViewComponent;
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^CollectionViewComponentDidSelectedIndexPathBlcok)(__kindof CollectionViewComponent *collectionViewComponent, NSIndexPath *indexPath);
 typedef void(^CollectionViewComponentWillDisplayIndexPathBlock)(__kindof CollectionViewComponent *collectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath);
 typedef void(^CollectionViewComponentDidEndDisplayingIndexPathBlock)(__kindof CollectionViewComponent *collectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath);
 typedef void(^CollectionViewComponentDidScrollBlock)(__kindof CollectionViewComponent *collectionViewComponent);
 
-@interface CollectionViewComponent : NSObject <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CollectionViewCellDelegate>
+@interface CollectionViewComponent : NSObject <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 {
     @protected
     UICollectionView *_collectionView;
@@ -27,6 +31,8 @@ typedef void(^CollectionViewComponentDidScrollBlock)(__kindof CollectionViewComp
 }
 
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
+@property(nonatomic, weak) id<CollectionViewCellDelegate> cellDelegate;
+@property(nonatomic, weak) id<ReusableViewDelegate> reusableViewDelegate;
 
 //Optional Override Property
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewFlowLayout;
@@ -40,8 +46,15 @@ typedef void(^CollectionViewComponentDidScrollBlock)(__kindof CollectionViewComp
 @property (nonatomic, copy) CollectionViewComponentDidEndDisplayingIndexPathBlock didEndDisplayingIndexPathBlock;
 @property (nonatomic, copy) CollectionViewComponentDidScrollBlock didScrollBlock;
 
-- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock;
-- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems scrollDirection:(UICollectionViewScrollDirection)scrollDirection mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock;
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock
+                       delegateBlock:(nullable void (^)(__kindof CollectionViewComponent *collectionViewComponent))delegateBlock;
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+                     scrollDirection:(UICollectionViewScrollDirection)scrollDirection
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock
+                       delegateBlock:(nullable void (^)(__kindof CollectionViewComponent *collectionViewComponent))delegateBlock NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)buildCollectionView;
@@ -69,6 +82,9 @@ typedef void(^CollectionViewComponentDidScrollBlock)(__kindof CollectionViewComp
 - (__kindof CollectionViewCell *)cellForRow:(NSInteger)row inSection:(NSInteger)section;
 - (__kindof UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 
+//ReusableViewItem
+- (__kindof ReusableViewItem *)reuseableViewItemForSection:(NSInteger)section kind:(NSString *)kind;
+
 //indexPath
 - (NSIndexPath *)indexPathForCellItem:(__kindof CollectionViewCellItem *)cellItem;
 
@@ -79,3 +95,5 @@ typedef void(^CollectionViewComponentDidScrollBlock)(__kindof CollectionViewComp
 - (void)mapItemClassToViewClass;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,9 +10,17 @@
 
 @class ReusableViewItem;
 
+
+@protocol ReusableViewDelegate <NSObject>
+
+@end
+
 //header 和 footer
 @interface ReusableView : UICollectionReusableView
-
+{
+    ReusableViewItem *_item;
+}
+@property(nonatomic, weak) id<ReusableViewDelegate> delegate;
 @property (nonatomic, strong) __kindof ReusableViewItem *item;
 
 - (void)buildUI;

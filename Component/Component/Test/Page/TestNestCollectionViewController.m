@@ -6,15 +6,15 @@
 //  Copyright © 2018 MJK. All rights reserved.
 //
 
-#import "TestNestTableViewController.h"
+#import "TestNestCollectionViewController.h"
 #import "TestCollectionViewCell.h"
 #import "TestCollectionViewCellItem.h"
 
-@implementation TestNestTableViewTopSectionCellItem
+@implementation TestNestCollectionViewTopSectionCellItem
 
 @end
 
-@implementation TestNestTableViewTopSectionCell
+@implementation TestNestCollectionViewTopSectionCell
 
 - (void)buildUI {
     [super buildUI];
@@ -63,22 +63,23 @@
 
 @end
 
-@interface TestNestTableViewController ()
+@interface TestNestCollectionViewController ()
 
 @end
 
-@implementation TestNestTableViewController
+@implementation TestNestCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-#pragma mark - Overrdir
-- (void)mapItemClassToViewClassWithTableViewComponent:(TableViewComponent *)tableViewComponent {
-    [super mapItemClassToViewClassWithTableViewComponent:tableViewComponent];
+#pragma mark - Overrdie
+//majiakun
+- (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent {
+    [super mapItemClassToViewClassWithCollectionViewComponent:collectionViewComponent];
     
-    [tableViewComponent mapCellClass:[TestNestTableViewTopSectionCell class] cellItemClass:[TestNestTableViewTopSectionCellItem class]];
+    [collectionViewComponent mapCellClass:[TestNestCollectionViewTopSectionCell class] cellItemClass:[TestNestCollectionViewTopSectionCellItem class]];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^NotificationCallBack)(NSNotification *notification);
 
 @interface NSNotification (Notification)
@@ -36,3 +38,5 @@ typedef void (^NotificationCallBack)(NSNotification *notification);
 + (void)postNotificationName:(nonnull NSString *)name object:(nullable id)object userInfo:(nullable NSDictionary *)userInfo;
 
 @end
+
+NS_ASSUME_NONNULL_END

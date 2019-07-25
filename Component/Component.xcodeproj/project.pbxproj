@@ -49,11 +49,11 @@
 		5B5223861C9D9A0C0059875B /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5223851C9D9A0C0059875B /* UIView+ViewController.m */; };
 		5B5BFC9121BF4E63008069B5 /* PageTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFC9021BF4E63008069B5 /* PageTitleView.m */; };
 		5B5BFDAC21C0A158008069B5 /* TestPageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDAB21C0A158008069B5 /* TestPageRootViewController.m */; };
-		5B5BFDAF21C1048A008069B5 /* NestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDAE21C1048A008069B5 /* NestTableViewController.m */; };
+		5B5BFDAF21C1048A008069B5 /* NestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDAE21C1048A008069B5 /* NestCollectionViewController.m */; };
 		5B5BFDB521C120DD008069B5 /* PageContainerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDB421C120DD008069B5 /* PageContainerItem.m */; };
 		5B5BFDBB21C21D94008069B5 /* NestPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDBA21C21D94008069B5 /* NestPageViewController.m */; };
 		5B5BFDBE21C21DF9008069B5 /* NestPageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDBD21C21DF9008069B5 /* NestPageContainerViewController.m */; };
-		5B5BFDC121C21EC8008069B5 /* TestNestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDC021C21EC8008069B5 /* TestNestTableViewController.m */; };
+		5B5BFDC121C21EC8008069B5 /* TestNestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5BFDC021C21EC8008069B5 /* TestNestCollectionViewController.m */; };
 		5B7729BB21C37A6100F5CBD2 /* HorizontalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7729B821C37A6100F5CBD2 /* HorizontalTableView.m */; };
 		5B7729BC21C37A6100F5CBD2 /* HorizontalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7729B921C37A6100F5CBD2 /* HorizontalTableViewCell.m */; };
 		5B7B164F21B9140C003C6ACE /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B164E21B9140C003C6ACE /* PageContainerViewController.m */; };
@@ -187,16 +187,16 @@
 		5B5BFC9021BF4E63008069B5 /* PageTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageTitleView.m; sourceTree = "<group>"; };
 		5B5BFDAA21C0A158008069B5 /* TestPageRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestPageRootViewController.h; sourceTree = "<group>"; };
 		5B5BFDAB21C0A158008069B5 /* TestPageRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestPageRootViewController.m; sourceTree = "<group>"; };
-		5B5BFDAD21C1048A008069B5 /* NestTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NestTableViewController.h; sourceTree = "<group>"; };
-		5B5BFDAE21C1048A008069B5 /* NestTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NestTableViewController.m; sourceTree = "<group>"; };
+		5B5BFDAD21C1048A008069B5 /* NestCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NestCollectionViewController.h; sourceTree = "<group>"; };
+		5B5BFDAE21C1048A008069B5 /* NestCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NestCollectionViewController.m; sourceTree = "<group>"; };
 		5B5BFDB321C120DD008069B5 /* PageContainerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageContainerItem.h; sourceTree = "<group>"; };
 		5B5BFDB421C120DD008069B5 /* PageContainerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageContainerItem.m; sourceTree = "<group>"; };
 		5B5BFDB921C21D94008069B5 /* NestPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NestPageViewController.h; sourceTree = "<group>"; };
 		5B5BFDBA21C21D94008069B5 /* NestPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NestPageViewController.m; sourceTree = "<group>"; };
 		5B5BFDBC21C21DF9008069B5 /* NestPageContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NestPageContainerViewController.h; sourceTree = "<group>"; };
 		5B5BFDBD21C21DF9008069B5 /* NestPageContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NestPageContainerViewController.m; sourceTree = "<group>"; };
-		5B5BFDBF21C21EC8008069B5 /* TestNestTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestNestTableViewController.h; sourceTree = "<group>"; };
-		5B5BFDC021C21EC8008069B5 /* TestNestTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestNestTableViewController.m; sourceTree = "<group>"; };
+		5B5BFDBF21C21EC8008069B5 /* TestNestCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestNestCollectionViewController.h; sourceTree = "<group>"; };
+		5B5BFDC021C21EC8008069B5 /* TestNestCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestNestCollectionViewController.m; sourceTree = "<group>"; };
 		5B7729B721C37A6100F5CBD2 /* HorizontalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalTableViewCell.h; sourceTree = "<group>"; };
 		5B7729B821C37A6100F5CBD2 /* HorizontalTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableView.m; sourceTree = "<group>"; };
 		5B7729B921C37A6100F5CBD2 /* HorizontalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableViewCell.m; sourceTree = "<group>"; };
@@ -327,8 +327,8 @@
 				5B5BFDBA21C21D94008069B5 /* NestPageViewController.m */,
 				5B5BFDBC21C21DF9008069B5 /* NestPageContainerViewController.h */,
 				5B5BFDBD21C21DF9008069B5 /* NestPageContainerViewController.m */,
-				5B5BFDAD21C1048A008069B5 /* NestTableViewController.h */,
-				5B5BFDAE21C1048A008069B5 /* NestTableViewController.m */,
+				5B5BFDAD21C1048A008069B5 /* NestCollectionViewController.h */,
+				5B5BFDAE21C1048A008069B5 /* NestCollectionViewController.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -639,8 +639,8 @@
 			children = (
 				5B5BFDAA21C0A158008069B5 /* TestPageRootViewController.h */,
 				5B5BFDAB21C0A158008069B5 /* TestPageRootViewController.m */,
-				5B5BFDBF21C21EC8008069B5 /* TestNestTableViewController.h */,
-				5B5BFDC021C21EC8008069B5 /* TestNestTableViewController.m */,
+				5B5BFDBF21C21EC8008069B5 /* TestNestCollectionViewController.h */,
+				5B5BFDC021C21EC8008069B5 /* TestNestCollectionViewController.m */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -734,6 +734,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -818,7 +819,7 @@
 				5BF9792321BCE14900D69D54 /* MASConstraintMaker.m in Sources */,
 				5B5223831C9D99940059875B /* LoginViewController.m in Sources */,
 				5B24E3451C87D9AE00F1A521 /* SwizzleCollectionMethod.m in Sources */,
-				5B5BFDC121C21EC8008069B5 /* TestNestTableViewController.m in Sources */,
+				5B5BFDC121C21EC8008069B5 /* TestNestCollectionViewController.m in Sources */,
 				5B24E3411C87D8AB00F1A521 /* NSArray+Safe.m in Sources */,
 				5BAC68C12140C88E00A870F9 /* UIImage+Alpha.m in Sources */,
 				5B15A2691C8A85ED00764E8C /* CollectionViewCellItem.m in Sources */,
@@ -830,7 +831,7 @@
 				5BBE61121C85536E006D0595 /* NSObject+SwizzleMethod.m in Sources */,
 				5B24E3421C87D8AB00F1A521 /* NSMutableArray+Safe.m in Sources */,
 				5B4E786B224DFE17008E8C88 /* NSThread+KeepAlive.m in Sources */,
-				5B5BFDAF21C1048A008069B5 /* NestTableViewController.m in Sources */,
+				5B5BFDAF21C1048A008069B5 /* NestCollectionViewController.m in Sources */,
 				5B24E3481C87EC2000F1A521 /* NSMutableDictionary+Safe.m in Sources */,
 				5B1DD4331CB552D100C61BED /* NSString+MD5.m in Sources */,
 				5BF9792421BCE14900D69D54 /* MASLayoutConstraint.m in Sources */,

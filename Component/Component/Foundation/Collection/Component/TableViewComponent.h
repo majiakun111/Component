@@ -14,11 +14,11 @@
 
 @class TableViewComponent;
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^TableViewComponentDidSelectedIndexPathBlcok)(__kindof TableViewComponent *tableViewComponent, NSIndexPath *indexPath);
 typedef void(^TableViewComponentWillDisplayIndexPathBlock)(__kindof TableViewComponent *tableViewComponent, __kindof UITableViewCell *cell, NSIndexPath *indexPath);
 typedef void(^TableViewComponentDidEndDisplayingIndexPathBlock)(__kindof TableViewComponent *tableViewComponent, __kindof UITableViewCell *cell, NSIndexPath *indexPath);
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface TableViewComponent : NSObject <UITableViewDataSource, UITableViewDelegate>
 {

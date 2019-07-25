@@ -6,16 +6,16 @@
 //  Copyright © 2018 MJK. All rights reserved.
 //
 
-#import "NestTableViewController.h"
+#import "NestCollectionViewController.h"
 #import "NestPageViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TestNestTableViewTopSectionCellItem : NestTableViewTopSectionCellItem
+@interface TestNestCollectionViewTopSectionCellItem : NestCollectionViewTopSectionCellItem
 
 @end
 
-@interface TestNestTableViewTopSectionCell : NestTableViewTopSectionCell
+@interface TestNestCollectionViewTopSectionCell : NestCollectionViewTopSectionCell
 
 @end
 
@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface TestNestTableViewController : NestTableViewController
+@interface TestNestCollectionViewController : NestCollectionViewController
 
 @end
 

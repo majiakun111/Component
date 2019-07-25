@@ -13,7 +13,7 @@
 
 #import "TestPageRootViewController.h"
 
-#import "TestNestTableViewController.h"
+#import "TestNestCollectionViewController.h"
 #import "TestCollectionViewCellItem.h"
 
 #import "TestTableViewController.h"
@@ -50,14 +50,14 @@
 //    [self.window setBackgroundColor:[UIColor whiteColor]];
 
     
-    TableViewSectionItem *topSectionItem = [[TableViewSectionItem alloc] init];
-    TestNestTableViewTopSectionCellItem *topSectionCellItem = [[TestNestTableViewTopSectionCellItem alloc] init];
-    topSectionCellItem.height = 500;
+    CollectionViewSectionItem *topSectionItem = [[CollectionViewSectionItem alloc] init];
+    TestNestCollectionViewTopSectionCellItem *topSectionCellItem = [[TestNestCollectionViewTopSectionCellItem alloc] init];
+    topSectionCellItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, 500);
     topSectionItem.cellItems = @[topSectionCellItem].mutableCopy;
 
-    TableViewSectionItem *bottomSectionItem = [[TableViewSectionItem alloc] init];
+    CollectionViewSectionItem *bottomSectionItem = [[CollectionViewSectionItem alloc] init];
 
-    NestTableViewBottomSectionHeaderViewItem *bottomSectionHeaderViewItem = [[NestTableViewBottomSectionHeaderViewItem alloc] init];
+    NestCollectionViewBottomSectionHeaderViewItem *bottomSectionHeaderViewItem = [[NestCollectionViewBottomSectionHeaderViewItem alloc] init];
     NSMutableArray<NSString *> *titles = @[].mutableCopy;
     for (NSInteger index = 0; index < 20; index++) {
         NSString *title = [NSString stringWithFormat:@"title_%d", (int)index];
@@ -67,7 +67,7 @@
 
         [titles addObject:title];
     }
-    bottomSectionHeaderViewItem.height = 40;
+    bottomSectionHeaderViewItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, 40);;
     bottomSectionHeaderViewItem.titles = titles;
     bottomSectionHeaderViewItem.indexProgress = 0;
     bottomSectionItem.headerViewItem = bottomSectionHeaderViewItem;
@@ -75,7 +75,7 @@
     NSMutableArray<__kindof PageItem *> *pageItems = @[].mutableCopy;
     for (int pageIndex = 0; pageIndex < 20; pageIndex++) {
         PageItem *pageItem = [[PageItem alloc] init];
-        pageItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - bottomSectionHeaderViewItem.height);
+        pageItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - bottomSectionHeaderViewItem.size.height);
         CollectionViewSectionItem *sectionItem = [[CollectionViewSectionItem alloc] init];
         sectionItem.cellItems = @[].mutableCopy;
         for (int index = 0; index < 100; index ++) {
@@ -93,15 +93,15 @@
     pageContainerItem.pageItems = pageItems;
     pageContainerItem.pageWidth = [UIScreen mainScreen].bounds.size.width;
 
-    NestTableViewBottomSectionCellItem *bottomSectionCellItem = [[NestTableViewBottomSectionCellItem alloc] init];
+    NestCollectionViewBottomSectionCellItem *bottomSectionCellItem = [[NestCollectionViewBottomSectionCellItem alloc] init];
     bottomSectionCellItem.pageContainerItem = pageContainerItem;
     bottomSectionCellItem.canUpDownScroll = YES;
     bottomSectionCellItem.pageIndex = 0;
-    bottomSectionCellItem.height = [UIScreen mainScreen].bounds.size.height - bottomSectionHeaderViewItem.height;
+    bottomSectionCellItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - bottomSectionHeaderViewItem.size.height);
 
     bottomSectionItem.cellItems = @[bottomSectionCellItem].mutableCopy;
 
-    TestNestTableViewController *rootViewController = [[TestNestTableViewController alloc] initWithSectioItems:@[topSectionItem, bottomSectionItem]];
+    TestNestCollectionViewController *rootViewController = [[TestNestCollectionViewController alloc] initWithSectioItems:@[topSectionItem, bottomSectionItem]];
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     [self.window setBackgroundColor:[UIColor whiteColor]];
