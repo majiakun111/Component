@@ -57,7 +57,7 @@
 
     CollectionViewSectionItem *bottomSectionItem = [[CollectionViewSectionItem alloc] init];
 
-    NestCollectionViewBottomSectionHeaderViewItem *bottomSectionHeaderViewItem = [[NestCollectionViewBottomSectionHeaderViewItem alloc] init];
+    NestCollectionViewPageContainerSectionHeaderViewItem *bottomSectionHeaderViewItem = [[NestCollectionViewPageContainerSectionHeaderViewItem alloc] init];
     NSMutableArray<NSString *> *titles = @[].mutableCopy;
     for (NSInteger index = 0; index < 20; index++) {
         NSString *title = [NSString stringWithFormat:@"title_%d", (int)index];
@@ -93,7 +93,7 @@
     pageContainerItem.pageItems = pageItems;
     pageContainerItem.pageWidth = [UIScreen mainScreen].bounds.size.width;
 
-    NestCollectionViewBottomSectionCellItem *bottomSectionCellItem = [[NestCollectionViewBottomSectionCellItem alloc] init];
+    NestCollectionViewPageContainerSectionCellItem *bottomSectionCellItem = [[NestCollectionViewPageContainerSectionCellItem alloc] init];
     bottomSectionCellItem.pageContainerItem = pageContainerItem;
     bottomSectionCellItem.canUpDownScroll = YES;
     bottomSectionCellItem.pageIndex = 0;

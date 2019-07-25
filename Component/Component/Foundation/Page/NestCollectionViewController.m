@@ -10,30 +10,29 @@
 #import "Masonry.h"
 #import "PageTitleView.h"
 
-NSInteger const NestCollectionViewBottomSection = 1;
-NSInteger const NestCollectionViewBottomCellRow = 0;
+NSInteger const NestCollectionViewPageContainerCellRow = 0;
 
-//Top Section
-@implementation NestCollectionViewTopSectionCellItem
-
-@end
-
-@implementation NestCollectionViewTopSectionCell
+//Header Section
+@implementation NestCollectionViewHeaderSectionCellItem
 
 @end
 
-//Bottom Section header
-@implementation NestCollectionViewBottomSectionHeaderViewItem
+@implementation NestCollectionViewHeaderSectionCell
 
 @end
 
-@interface NestCollectionViewBottomSectionHeaderView ()
+//Page Section header
+@implementation NestCollectionViewPageContainerSectionHeaderViewItem
+
+@end
+
+@interface NestCollectionViewPageContainerSectionHeaderView ()
 
 @property(nonatomic, strong) PageTitleView *pageTitleView;
 
 @end
 
-@implementation NestCollectionViewBottomSectionHeaderView
+@implementation NestCollectionViewPageContainerSectionHeaderView
 
 - (void)dealloc {
     [self removeObserver];
@@ -52,7 +51,7 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 - (void)updateUI {
     [super updateUI];
     
-    NestCollectionViewBottomSectionHeaderViewItem *item = self.item;
+    NestCollectionViewPageContainerSectionHeaderViewItem *item = self.item;
     if (!_pageTitleView) {
         _pageTitleView = [[PageTitleView alloc] initWithTitles:item.titles];
         [self addSubview:_pageTitleView];
@@ -61,8 +60,8 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
         }];
         __weak typeof(self) weakSelf = self;
         [_pageTitleView setCurrentIndexChangedBlock:^(NSUInteger currentIndex) {
-            if ([(id<NestCollectionViewBottomSectionHeaderViewDelegate>)weakSelf.delegate respondsToSelector:@selector(headerView:pageTitleCurrentIndex:)]) {
-                [(id<NestCollectionViewBottomSectionHeaderViewDelegate>)weakSelf.delegate headerView:weakSelf pageTitleCurrentIndex:currentIndex];
+            if ([(id<NestCollectionViewPageContainerSectionHeaderViewDelegate>)weakSelf.delegate respondsToSelector:@selector(headerView:pageTitleCurrentIndex:)]) {
+                [(id<NestCollectionViewPageContainerSectionHeaderViewDelegate>)weakSelf.delegate headerView:weakSelf pageTitleCurrentIndex:currentIndex];
             }
         }];
         [_pageTitleView setBackgroundColor:[UIColor clearColor]];
@@ -74,18 +73,18 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 #pragma mark - PrivateNotification
 
 - (void)addObserver {
-    NestCollectionViewBottomSectionHeaderViewItem *item = self.item;
+    NestCollectionViewPageContainerSectionHeaderViewItem *item = self.item;
     [item addObserver:self forKeyPath:NSStringFromSelector(@selector(indexProgress)) options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)removeObserver {
-    NestCollectionViewBottomSectionHeaderViewItem *item = self.item;
+    NestCollectionViewPageContainerSectionHeaderViewItem *item = self.item;
     [item removeObserver:self forKeyPath:NSStringFromSelector(@selector(indexProgress))];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NestCollectionViewBottomSectionHeaderViewItem *item = self.item;
+        NestCollectionViewPageContainerSectionHeaderViewItem *item = self.item;
         if (object == item) {
             if ([keyPath isEqualToString:NSStringFromSelector(@selector(indexProgress))]) {
                 [self.pageTitleView updateIndexProgress:item.indexProgress animated:YES];
@@ -98,17 +97,17 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 @end
 
 //bottom Section Cell
-@implementation NestCollectionViewBottomSectionCellItem
+@implementation NestCollectionViewPageContainerSectionCellItem
 
 @end
 
-@interface NestCollectionViewBottomSectionCell ()
+@interface NestCollectionViewPageContainerSectionCell ()
 
 @property(nonatomic, strong) NestPageContainerViewController *pageContianerViewController;
 
 @end
 
-@implementation NestCollectionViewBottomSectionCell
+@implementation NestCollectionViewPageContainerSectionCell
 
 - (void)dealloc {
     [self removeObserver];
@@ -162,7 +161,7 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 - (void)updateUI {
     [super updateUI];
     
-    NestCollectionViewBottomSectionCellItem *item = self.item;
+    NestCollectionViewPageContainerSectionCellItem *item = self.item;
     [self.pageContianerViewController setPageContainerItem:item.pageContainerItem];
     [self.pageContianerViewController setPageCanUpDownScroll:item.canUpDownScroll];
     [self.pageContianerViewController setPageIndex:item.pageIndex animated:NO];
@@ -175,13 +174,13 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
         _pageContianerViewController = [[NestPageContainerViewController alloc] initWithPageContainerItem:nil];
         __weak typeof(self) weakSelf = self;
         [_pageContianerViewController setContentOffsetDidChangeBlock:^(CGPoint contentOffset) {
-            if ([(id<NestCollectionViewBottomSectionCellDelegate>)weakSelf.delegate respondsToSelector:@selector(collectionViewCell:pageContainerViewControllerScrollToContentOffset:)]) {
-                [(id<NestCollectionViewBottomSectionCellDelegate>)weakSelf.delegate collectionViewCell:weakSelf pageContainerViewControllerScrollToContentOffset:contentOffset];
+            if ([(id<NestCollectionViewPageContainerSectionCellDelegate>)weakSelf.delegate respondsToSelector:@selector(collectionViewCell:pageContainerViewControllerScrollToContentOffset:)]) {
+                [(id<NestCollectionViewPageContainerSectionCellDelegate>)weakSelf.delegate collectionViewCell:weakSelf pageContainerViewControllerScrollToContentOffset:contentOffset];
             }
         }];
         [_pageContianerViewController setPageContainerWillLeaveTopBlock:^{
-            if ([(id<NestCollectionViewBottomSectionCellDelegate>)weakSelf.delegate respondsToSelector:@selector(pageContainerViewControllerWillLeaveTopForCollectionViewCell:)]) {
-                [(id<NestCollectionViewBottomSectionCellDelegate>)weakSelf.delegate pageContainerViewControllerWillLeaveTopForCollectionViewCell:weakSelf];
+            if ([(id<NestCollectionViewPageContainerSectionCellDelegate>)weakSelf.delegate respondsToSelector:@selector(pageContainerViewControllerWillLeaveTopForCollectionViewCell:)]) {
+                [(id<NestCollectionViewPageContainerSectionCellDelegate>)weakSelf.delegate pageContainerViewControllerWillLeaveTopForCollectionViewCell:weakSelf];
             }
         }];
     }
@@ -192,20 +191,20 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 #pragma mark - PrivateNotification
 
 - (void)addObserver {
-    NestCollectionViewBottomSectionCellItem *item = self.item;
+    NestCollectionViewPageContainerSectionCellItem *item = self.item;
     [item addObserver:self forKeyPath:NSStringFromSelector(@selector(canUpDownScroll)) options:NSKeyValueObservingOptionNew context:nil];
     [item addObserver:self forKeyPath:NSStringFromSelector(@selector(pageIndex)) options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)removeObserver {
-    NestCollectionViewBottomSectionCellItem *item = self.item;
+    NestCollectionViewPageContainerSectionCellItem *item = self.item;
     [item removeObserver:self forKeyPath:NSStringFromSelector(@selector(canUpDownScroll))];
     [item removeObserver:self forKeyPath:NSStringFromSelector(@selector(pageIndex))];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NestCollectionViewBottomSectionCellItem *item = self.item;
+        NestCollectionViewPageContainerSectionCellItem *item = self.item;
         if (object == item) {
             if ([keyPath isEqualToString:NSStringFromSelector(@selector(canUpDownScroll))]) {
                 [self.pageContianerViewController setPageCanUpDownScroll:item.canUpDownScroll];
@@ -267,15 +266,16 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 #pragma mark UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:NestCollectionViewBottomSection]];
+    NSInteger PageContainerSection = [self.sectionItems count] - 1;
+    UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:PageContainerSection > 0 ? PageContainerSection : 0]];
     CGFloat bottomSectionOffset = attributes.frame.origin.y;
     if (self.collectionView.contentOffset.y >= bottomSectionOffset) {
         self.collectionView.contentOffset = CGPointMake(0, bottomSectionOffset);
 
         if (self.canUpDownScroll) {
             self.canUpDownScroll = NO;
-            if (self.collectionViewBottomCellCanScrollBlock) {
-                self.collectionViewBottomCellCanScrollBlock(YES);
+            if (self.collectionViewPageContainerCellCanScrollBlock) {
+                self.collectionViewPageContainerCellCanScrollBlock(YES);
             }
         }
     }else{
@@ -289,7 +289,7 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 
 @end
 
-@interface NestCollectionViewController ()<NestCollectionViewBottomSectionHeaderViewDelegate, NestCollectionViewBottomSectionCellDelegate>
+@interface NestCollectionViewController ()<NestCollectionViewPageContainerSectionHeaderViewDelegate, NestCollectionViewPageContainerSectionCellDelegate>
 
 @property(nonatomic, strong) NestCollectionViewComponent *collectionViewComponent;
 @property(nonatomic, strong) NSArray<__kindof CollectionViewSectionItem *> *sectionItems;
@@ -329,8 +329,8 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
     [self.collectionViewComponent setDidEndDisplayingIndexPathBlock:^(__kindof CollectionViewComponent *CollectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath) {
         [weakSelf collectionViewComponent:CollectionViewComponent didEndDisplayingCell:cell forItemAtIndexPath:indexPath];
     }];
-    [self.collectionViewComponent setCollectionViewBottomCellCanScrollBlock:^(BOOL collectionViewBottomCellCanScroll) {
-        [weakSelf updateCollectionViewBottomCellCanScroll:collectionViewBottomCellCanScroll];
+    [self.collectionViewComponent setCollectionViewPageContainerCellCanScrollBlock:^(BOOL collectionViewPageContainerCellCanScroll) {
+        [weakSelf updateCollectionViewPageContainerCellCanScroll:collectionViewPageContainerCellCanScroll];
     }];
     
     [self.view addSubview:self.collectionViewComponent.collectionView];
@@ -340,40 +340,40 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 }
 
 - (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent {
-    [collectionViewComponent mapCellClass:[NestCollectionViewBottomSectionCell class] cellItemClass:[NestCollectionViewBottomSectionCellItem class]];
+    [collectionViewComponent mapCellClass:[NestCollectionViewPageContainerSectionCell class] cellItemClass:[NestCollectionViewPageContainerSectionCellItem class]];
     
-    [collectionViewComponent mapReuseableViewClass:[NestCollectionViewBottomSectionHeaderView class] reuseableViewItemClass:[NestCollectionViewBottomSectionHeaderViewItem class] forKind:UICollectionElementKindSectionHeader];
+    [collectionViewComponent mapReuseableViewClass:[NestCollectionViewPageContainerSectionHeaderView class] reuseableViewItemClass:[NestCollectionViewPageContainerSectionHeaderViewItem class] forKind:UICollectionElementKindSectionHeader];
 }
 
 - (void)collectionViewComponent:(__kindof CollectionViewComponent *)collectionViewComponent willDisplayCell:(__kindof UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([cell isKindOfClass:[NestCollectionViewBottomSectionCell class]]) {
-        NestCollectionViewBottomSectionCell *bottomCell = cell;
-        [bottomCell setParentViewController:self];
+    if ([cell isKindOfClass:[NestCollectionViewPageContainerSectionCell class]]) {
+        NestCollectionViewPageContainerSectionCell *pageContainerCell = cell;
+        [pageContainerCell setParentViewController:self];
     }
 }
 
 - (void)collectionViewComponent:(__kindof CollectionViewComponent *)collectionViewComponent didEndDisplayingCell:(__kindof UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([cell isKindOfClass:[NestCollectionViewBottomSectionCell class]]) {
-        NestCollectionViewBottomSectionCell *bottomCell = cell;
-        [bottomCell setParentViewController:nil];
+    if ([cell isKindOfClass:[NestCollectionViewPageContainerSectionCell class]]) {
+        NestCollectionViewPageContainerSectionCell *pageContainerCell = cell;
+        [pageContainerCell setParentViewController:nil];
     }
 }
 
-#pragma mark - NestCollectionViewBottomSectionHeaderViewDelegate
+#pragma mark - NestCollectionViewPageContainerSectionHeaderViewDelegate
 
-- (void)headerView:(NestCollectionViewBottomSectionHeaderView *)headerView pageTitleCurrentIndex:(NSInteger)pageTitleCurrentIndex {
-    NestCollectionViewBottomSectionCellItem *cellItem = [self.collectionViewComponent cellItemForRow:NestCollectionViewBottomCellRow inSection:NestCollectionViewBottomSection];
+- (void)headerView:(NestCollectionViewPageContainerSectionHeaderView *)headerView pageTitleCurrentIndex:(NSInteger)pageTitleCurrentIndex {
+    NestCollectionViewPageContainerSectionCellItem *cellItem = [self.collectionViewComponent cellItemForRow:NestCollectionViewPageContainerCellRow inSection:[self.sectionItems count] - 1];
     cellItem.pageIndex = pageTitleCurrentIndex;
 }
 
-#pragma mark - NestCollectionViewBottomSectionCellDelegate
+#pragma mark - NestCollectionViewPageContainerSectionCellDelegate
 
-- (void)collectionViewCell:(NestCollectionViewBottomSectionCell *)collectionViewCell pageContainerViewControllerScrollToContentOffset:(CGPoint)contentOffset {
-    NestCollectionViewBottomSectionHeaderViewItem *headerViewItem = [self.collectionViewComponent reuseableViewItemForSection:NestCollectionViewBottomSection kind:UICollectionElementKindSectionHeader];
+- (void)collectionViewCell:(NestCollectionViewPageContainerSectionCell *)collectionViewCell pageContainerViewControllerScrollToContentOffset:(CGPoint)contentOffset {
+    NestCollectionViewPageContainerSectionHeaderViewItem *headerViewItem = [self.collectionViewComponent reuseableViewItemForSection:[self.sectionItems count] - 1 kind:UICollectionElementKindSectionHeader];
     headerViewItem.indexProgress = contentOffset.x / self.view.bounds.size.width;
 }
 
-- (void)pageContainerViewControllerWillLeaveTopForCollectionViewCell:(NestCollectionViewBottomSectionCell *)collectionViewCell {
+- (void)pageContainerViewControllerWillLeaveTopForCollectionViewCell:(NestCollectionViewPageContainerSectionCell *)collectionViewCell {
     [self.collectionViewComponent setCanUpDownScroll:YES];
 }
 
@@ -388,9 +388,9 @@ NSInteger const NestCollectionViewBottomCellRow = 0;
 
 #pragma mark - PrivateMethod
 
-- (void)updateCollectionViewBottomCellCanScroll:(BOOL)collectionViewBottomCellCanScroll {
-    NestCollectionViewBottomSectionCellItem *item = [self.collectionViewComponent cellItemForRow:NestCollectionViewBottomCellRow inSection:NestCollectionViewBottomSection];
-    item.canUpDownScroll = collectionViewBottomCellCanScroll;
+- (void)updateCollectionViewPageContainerCellCanScroll:(BOOL)collectionViewPageContainerCellCanScroll {
+    NestCollectionViewPageContainerSectionCellItem *item = [self.collectionViewComponent cellItemForRow:NestCollectionViewPageContainerCellRow inSection:[self.sectionItems count] - 1];
+    item.canUpDownScroll = collectionViewPageContainerCellCanScroll;
 }
 
 @end

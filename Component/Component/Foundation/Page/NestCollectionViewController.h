@@ -16,24 +16,24 @@
 #import "PageContainerItem.h"
 #import "NestPageContainerViewController.h"
 
-@class NestCollectionViewBottomSectionHeaderView;
-@class NestCollectionViewBottomSectionCell;
+@class NestCollectionViewPageContainerSectionHeaderView;
+@class NestCollectionViewPageContainerSectionCell;
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^NestCollectionViewBottomCellCanScrollBlock)(BOOL collectionViewBottomCellCanScroll);
+typedef void(^NestCollectionViewPageContainerCellCanScrollBlock)(BOOL collectionViewPageContainerCellCanScroll);
 
-@protocol NestCollectionViewBottomSectionHeaderViewDelegate <ReusableViewDelegate>
+@protocol NestCollectionViewPageContainerSectionHeaderViewDelegate <ReusableViewDelegate>
 
-- (void)headerView:(NestCollectionViewBottomSectionHeaderView *)headerView pageTitleCurrentIndex:(NSInteger)pageTitleCurrentIndex;
+- (void)headerView:(NestCollectionViewPageContainerSectionHeaderView *)headerView pageTitleCurrentIndex:(NSInteger)pageTitleCurrentIndex;
 
 @end
 
-@protocol NestCollectionViewBottomSectionCellDelegate <CollectionViewCellDelegate>
+@protocol NestCollectionViewPageContainerSectionCellDelegate <CollectionViewCellDelegate>
 
-- (void)collectionViewCell:(NestCollectionViewBottomSectionCell *)collectionViewCell pageContainerViewControllerScrollToContentOffset:(CGPoint)contentOffset;
+- (void)collectionViewCell:(NestCollectionViewPageContainerSectionCell *)collectionViewCell pageContainerViewControllerScrollToContentOffset:(CGPoint)contentOffset;
 
-- (void)pageContainerViewControllerWillLeaveTopForCollectionViewCell:(NestCollectionViewBottomSectionCell *)collectionViewCell;
+- (void)pageContainerViewControllerWillLeaveTopForCollectionViewCell:(NestCollectionViewPageContainerSectionCell *)collectionViewCell;
 
 @end
 
@@ -41,29 +41,29 @@ typedef void(^NestCollectionViewBottomCellCanScrollBlock)(BOOL collectionViewBot
 
 //顶部section
 //Top Section Cell 可以有很多个
-@interface NestCollectionViewTopSectionCellItem : CollectionViewCellItem
+@interface NestCollectionViewHeaderSectionCellItem : CollectionViewCellItem
 
 @end
 
-@interface  NestCollectionViewTopSectionCell : CollectionViewCell
+@interface  NestCollectionViewHeaderSectionCell : CollectionViewCell
 
 @end
 
 //低部section
 //Bottom Section HeaderView 只有一个
-@interface NestCollectionViewBottomSectionHeaderViewItem : ReusableViewItem
+@interface NestCollectionViewPageContainerSectionHeaderViewItem : ReusableViewItem
 
 @property(nonatomic, assign) CGFloat indexProgress;
 @property(nonatomic, copy) NSArray<NSString *> *titles;
 
 @end
 
-@interface NestCollectionViewBottomSectionHeaderView : ReusableView
+@interface NestCollectionViewPageContainerSectionHeaderView : ReusableView
 
 @end
 
 //Bottom Section Cell 只有一个
-@interface NestCollectionViewBottomSectionCellItem : CollectionViewCellItem
+@interface NestCollectionViewPageContainerSectionCellItem : CollectionViewCellItem
 
 @property(nonatomic, assign) BOOL canUpDownScroll;
 @property(nonatomic, assign) NSUInteger pageIndex;
@@ -72,7 +72,7 @@ typedef void(^NestCollectionViewBottomCellCanScrollBlock)(BOOL collectionViewBot
 
 @end
 
-@interface NestCollectionViewBottomSectionCell : CollectionViewCell
+@interface NestCollectionViewPageContainerSectionCell : CollectionViewCell
 
 @property(nonatomic, strong, nullable) UIViewController *parentViewController;
 
@@ -86,7 +86,7 @@ typedef void(^NestCollectionViewBottomCellCanScrollBlock)(BOOL collectionViewBot
 
 @property(nonatomic, assign) BOOL canUpDownScroll;
 
-@property(nonatomic, copy) NestCollectionViewBottomCellCanScrollBlock collectionViewBottomCellCanScrollBlock;
+@property(nonatomic, copy) NestCollectionViewPageContainerCellCanScrollBlock collectionViewPageContainerCellCanScrollBlock;
 
 @end
 

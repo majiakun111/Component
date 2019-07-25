@@ -178,7 +178,7 @@
 - (__kindof ReusableViewItem *)reuseableViewItemForSection:(NSInteger)section kind:(NSString *)kind {
     ReusableViewItem *item = nil;
     do {
-        if (section >= [self.sectionItems count]) {
+        if (section >= [self.sectionItems count] || section < 0) {
             break;
         }
         
