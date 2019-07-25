@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PageContainerItem : NSObject
 
-@property(nonatomic, assign) CGFloat pageWidth;
 @property(nonatomic, strong) NSArray<__kindof PageItem *> *pageItems;
 
 @end

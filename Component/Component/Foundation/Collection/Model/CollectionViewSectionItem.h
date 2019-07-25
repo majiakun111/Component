@@ -11,6 +11,8 @@
 @class ReusableViewItem;
 @class CollectionViewCellItem;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CollectionViewSectionItem : NSObject
 
 @property (nonatomic, strong) __kindof ReusableViewItem *headerViewItem;
@@ -22,3 +24,5 @@
 @property (nonatomic, assign) CGFloat minimumLineSpacing; //最小行间距
 
 @end
+
+NS_ASSUME_NONNULL_END

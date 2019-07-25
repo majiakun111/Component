@@ -110,7 +110,6 @@
     
     PageContainerItem *pageContainerItem = [[PageContainerItem alloc] init];
     pageContainerItem.pageItems = pageItems;
-    pageContainerItem.pageWidth = [UIScreen mainScreen].bounds.size.width;
     self.pageContainerViewController = [[PageContainerViewController alloc] initWithPageContainerItem:pageContainerItem];
     [self.pageContainerViewController setContentOffsetDidChangeBlock:^(CGPoint contentOffset) {
         [weakSelf.pageTitleView updateIndexProgress:contentOffset.x / [UIScreen mainScreen].bounds.size.width animated:YES];

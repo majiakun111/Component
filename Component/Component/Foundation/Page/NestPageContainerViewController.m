@@ -10,41 +10,57 @@
 
 @interface NestPageContainerViewController ()
 
+@property(nonatomic, strong) NSMutableSet<UIViewController<PageItemProtocol> *> *pageViewControllers;
+
 @end
 
 @implementation NestPageContainerViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+#pragma mark - Override
+
+- (void)pageViewControllerDidCreated:(UIViewController<PageItemProtocol> *)pageViewController {
+    [super pageViewControllerDidCreated:pageViewController];
+    
+    __weak typeof(self) weakSelf = self;
+    if ([pageViewController respondsToSelector:@selector(setPageWillLeaveTopBlock:)]) {
+        [pageViewController setPageWillLeaveTopBlock:^{
+            if (weakSelf.pageContainerWillLeaveTopBlock) {
+                weakSelf.pageContainerWillLeaveTopBlock();
+            }
+        }];
+    }
+    
+    if ([pageViewController respondsToSelector:@selector(setCanUpDownScroll:)]) {
+        [pageViewController setCanUpDownScroll:self.pageCanUpDownScroll];
+    }
 }
 
 #pragma mark - Property
 
 - (void)setPageContainerItem:(__kindof PageContainerItem *)pageContainerItem {
-    [super setPageContainerItem:pageContainerItem];
+    if (_pageContainerItem != pageContainerItem) {
+        [self.pageViewControllers removeAllObjects];
+    }
     
-    __weak typeof(self) weakSelf = self;
-    [self.pageViewControllers enumerateObjectsUsingBlock:^(UIViewController<PageItemProtocol> * _Nonnull pageViewController, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([pageViewController respondsToSelector:@selector(setPageWillLeaveTopBlock:)]) {
-            [pageViewController setPageWillLeaveTopBlock:^{
-                if (weakSelf.pageContainerWillLeaveTopBlock) {
-                    weakSelf.pageContainerWillLeaveTopBlock();
-                }
-            }];
-        }
-    }];
+    [super setPageContainerItem:pageContainerItem];
 }
 
 - (void)setPageCanUpDownScroll:(BOOL)pageCanUpDownScroll {
     _pageCanUpDownScroll = pageCanUpDownScroll;
     
-    [self.pageViewControllers enumerateObjectsUsingBlock:^(UIViewController<PageItemProtocol> * _Nonnull pageViewController, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.pageViewControllers enumerateObjectsUsingBlock:^(UIViewController<PageItemProtocol> * _Nonnull pageViewController, BOOL * _Nonnull stop) {
         if ([pageViewController respondsToSelector:@selector(setCanUpDownScroll:)]) {
             [pageViewController setCanUpDownScroll:_pageCanUpDownScroll];
         }
     }];
 }
 
+- (NSMutableSet<UIViewController<PageItemProtocol> *> *)pageViewControllers {
+    if (nil == _pageViewControllers) {
+        _pageViewControllers = [[NSMutableSet alloc] init];
+    }
+    
+    return _pageViewControllers;
+}
 
 @end

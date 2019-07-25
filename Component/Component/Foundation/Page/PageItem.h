@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CollectionViewCellItem.h"
 #import "CollectionViewSectionItem.h"
 
 @class PageItem;
@@ -24,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PageItem : CollectionViewCellItem
+@interface PageItem : NSObject
 
 @property(nonatomic, strong) NSArray<__kindof CollectionViewSectionItem *> *sectionItems;
 

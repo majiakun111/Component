@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CollectionViewCellDelegate <NSObject>
 @optional
 
@@ -30,3 +32,5 @@
 - (void)updateUI;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -49,7 +49,6 @@
 //    [self.window makeKeyAndVisible];
 //    [self.window setBackgroundColor:[UIColor whiteColor]];
 
-    
     CollectionViewSectionItem *topSectionItem = [[CollectionViewSectionItem alloc] init];
     TestNestCollectionViewTopSectionCellItem *topSectionCellItem = [[TestNestCollectionViewTopSectionCellItem alloc] init];
     topSectionCellItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, 500);
@@ -75,7 +74,6 @@
     NSMutableArray<__kindof PageItem *> *pageItems = @[].mutableCopy;
     for (int pageIndex = 0; pageIndex < 20; pageIndex++) {
         PageItem *pageItem = [[PageItem alloc] init];
-        pageItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - bottomSectionHeaderViewItem.size.height);
         CollectionViewSectionItem *sectionItem = [[CollectionViewSectionItem alloc] init];
         sectionItem.cellItems = @[].mutableCopy;
         for (int index = 0; index < 100; index ++) {
@@ -91,7 +89,6 @@
     }
     PageContainerItem *pageContainerItem = [[PageContainerItem alloc] init];
     pageContainerItem.pageItems = pageItems;
-    pageContainerItem.pageWidth = [UIScreen mainScreen].bounds.size.width;
 
     NestCollectionViewPageContainerSectionCellItem *bottomSectionCellItem = [[NestCollectionViewPageContainerSectionCellItem alloc] init];
     bottomSectionCellItem.pageContainerItem = pageContainerItem;

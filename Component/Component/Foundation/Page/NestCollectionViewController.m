@@ -244,8 +244,14 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
 
 #pragma mark - Override
 
-- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
-    self = [super initWithSectionItems:sectionItems mapItemClassToViewClassBlock:mapItemClassToViewClassBlock];
+- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+                     scrollDirection:(UICollectionViewScrollDirection)scrollDirection
+        mapItemClassToViewClassBlock:(nonnull void (^)(__kindof CollectionViewComponent * _Nonnull))mapItemClassToViewClassBlock
+                       delegateBlock:(nullable void (^)(__kindof CollectionViewComponent * _Nonnull))delegateBlock {
+    self = [super initWithSectionItems:sectionItems
+                       scrollDirection:scrollDirection
+          mapItemClassToViewClassBlock:mapItemClassToViewClassBlock
+                         delegateBlock:delegateBlock];
     if (self) {
         self.canUpDownScroll = YES;
     }

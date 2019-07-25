@@ -15,9 +15,11 @@ typedef void(^PageContainerViewControllerPageIndexChangeBlock)(NSInteger pageInd
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PageContainerViewController : UIViewController
+{
+    __kindof PageContainerItem *_pageContainerItem;
+}
 
 @property(nonatomic, strong) __kindof PageContainerItem *pageContainerItem;
-@property(nonatomic, strong, readonly) NSArray<UIViewController<PageItemProtocol> *> *pageViewControllers;
 @property(nonatomic, copy) PageContainerViewControllerContentOffsetDidChangeBlock contentOffsetDidChangeBlock;
 @property(nonatomic, copy) PageContainerViewControllerPageIndexChangeBlock pageIndexChangeBlock;
 @property(nonatomic, strong) UIColor *tintColor;
@@ -27,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 
 - (void)setPageIndex:(NSInteger)pageIndex animated:(BOOL)animated;
+
+- (void)pageViewControllerDidCreated:(UIViewController<PageItemProtocol> *)pageViewController;
 
 @end
 
