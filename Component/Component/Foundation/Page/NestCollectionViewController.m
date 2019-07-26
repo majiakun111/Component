@@ -97,6 +97,12 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
 @end
 
 //bottom Section Cell
+@interface NestCollectionViewPageContainerSectionCellItem ()
+
+@property(nonatomic, strong) UIViewController *parentViewController;
+
+@end
+
 @implementation NestCollectionViewPageContainerSectionCellItem
 
 @end
@@ -113,33 +119,13 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
     [self removeObserver];
 }
 
-- (void)setParentViewController:(UIViewController *)parentViewController {
-    if (_parentViewController == parentViewController) {
-        return;
-    }
-    
-    if (_parentViewController) {
-        if (self.pageContianerViewController.isViewLoaded && [self.pageContianerViewController.view superview]) {
-            [self.pageContianerViewController.view removeFromSuperview];
-        }
-        [self.pageContianerViewController removeFromParentViewController];
-    }
-    
-    _parentViewController = parentViewController;
-    
-    if (parentViewController) {
-        [parentViewController addChildViewController:self.pageContianerViewController];
-        [self addSubview:self.pageContianerViewController.view];
-        
-        [self.pageContianerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
-    }
-}
-
 #pragma mark - Override
 
 - (void)setItem:(__kindof CollectionViewCellItem *)item {
+    if (_item == item) {
+        return;
+    }
+    
     [self removeObserver];
     
     _item = item;
@@ -149,19 +135,29 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
     [self updateUI];
 }
 
-- (void)buildUI {
-    [super buildUI];
-    
-    [self.contentView addSubview:self.pageContianerViewController.view];
-    [self.pageContianerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView);
-    }];
-}
-
 - (void)updateUI {
     [super updateUI];
-    
+
     NestCollectionViewPageContainerSectionCellItem *item = self.item;
+    if ([self.pageContianerViewController parentViewController]) {
+        [self.pageContianerViewController willMoveToParentViewController:nil];
+        if (self.pageContianerViewController.isViewLoaded && [self.pageContianerViewController.view superview]) {
+            [self.pageContianerViewController.view removeFromSuperview];
+        }
+        [self.pageContianerViewController removeFromParentViewController];
+        [self.pageContianerViewController didMoveToParentViewController:nil];
+    }
+   
+    if (item.parentViewController) {
+        [self.pageContianerViewController willMoveToParentViewController:item.parentViewController];
+        [item.parentViewController addChildViewController:self.pageContianerViewController];
+        [self.contentView addSubview:self.pageContianerViewController.view];
+        [self.pageContianerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.contentView);
+        }];
+        [self.pageContianerViewController didMoveToParentViewController:item.parentViewController];
+    }
+    
     [self.pageContianerViewController setPageContainerItem:item.pageContainerItem];
     [self.pageContianerViewController setPageCanUpDownScroll:item.canUpDownScroll];
     [self.pageContianerViewController setPageIndex:item.pageIndex animated:NO];
@@ -236,7 +232,7 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
 
 @interface CollectionViewComponent (Private)
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, weak) UICollectionView *collectionView;
 
 @end
 
@@ -284,7 +280,7 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
                 self.collectionViewPageContainerCellCanScrollBlock(YES);
             }
         }
-    }else{
+    } else {
         if (!self.canUpDownScroll) {//子视图没到顶部
             self.collectionView.contentOffset = CGPointMake(0, bottomSectionOffset);
         }
@@ -308,6 +304,13 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _sectionItems = sectionItems;
+        [_sectionItems enumerateObjectsUsingBlock:^(__kindof CollectionViewSectionItem * _Nonnull sectionItem, NSUInteger idx, BOOL * _Nonnull stop) {
+            [sectionItem.cellItems enumerateObjectsUsingBlock:^(__kindof CollectionViewCellItem * _Nonnull cellItem, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([cellItem isKindOfClass:[NestCollectionViewPageContainerSectionCellItem class]]) {
+                    [cellItem setParentViewController:self];
+                }
+            }];
+        }];
     }
     
     return self;
@@ -329,16 +332,6 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
         collectionViewComponent.reusableViewDelegate = weakSelf;
     }];
     
-    [self.collectionViewComponent setWillDisplayIndexPathBlock:^(__kindof CollectionViewComponent *CollectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath) {
-        [weakSelf collectionViewComponent:CollectionViewComponent willDisplayCell:cell forItemAtIndexPath:indexPath];
-    }];
-    [self.collectionViewComponent setDidEndDisplayingIndexPathBlock:^(__kindof CollectionViewComponent *CollectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath) {
-        [weakSelf collectionViewComponent:CollectionViewComponent didEndDisplayingCell:cell forItemAtIndexPath:indexPath];
-    }];
-    [self.collectionViewComponent setCollectionViewPageContainerCellCanScrollBlock:^(BOOL collectionViewPageContainerCellCanScroll) {
-        [weakSelf updateCollectionViewPageContainerCellCanScroll:collectionViewPageContainerCellCanScroll];
-    }];
-    
     [self.view addSubview:self.collectionViewComponent.collectionView];
     [self.collectionViewComponent.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -349,20 +342,6 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
     [collectionViewComponent mapCellClass:[NestCollectionViewPageContainerSectionCell class] cellItemClass:[NestCollectionViewPageContainerSectionCellItem class]];
     
     [collectionViewComponent mapReuseableViewClass:[NestCollectionViewPageContainerSectionHeaderView class] reuseableViewItemClass:[NestCollectionViewPageContainerSectionHeaderViewItem class] forKind:UICollectionElementKindSectionHeader];
-}
-
-- (void)collectionViewComponent:(__kindof CollectionViewComponent *)collectionViewComponent willDisplayCell:(__kindof UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([cell isKindOfClass:[NestCollectionViewPageContainerSectionCell class]]) {
-        NestCollectionViewPageContainerSectionCell *pageContainerCell = cell;
-        [pageContainerCell setParentViewController:self];
-    }
-}
-
-- (void)collectionViewComponent:(__kindof CollectionViewComponent *)collectionViewComponent didEndDisplayingCell:(__kindof UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([cell isKindOfClass:[NestCollectionViewPageContainerSectionCell class]]) {
-        NestCollectionViewPageContainerSectionCell *pageContainerCell = cell;
-        [pageContainerCell setParentViewController:nil];
-    }
 }
 
 #pragma mark - NestCollectionViewPageContainerSectionHeaderViewDelegate

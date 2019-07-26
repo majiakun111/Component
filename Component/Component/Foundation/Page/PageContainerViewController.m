@@ -56,7 +56,6 @@ NSInteger const DefaultCurrentPageIndex = 0;
         [viewController willMoveToParentViewController:cellItem.parentViewController];
         [cellItem.parentViewController addChildViewController:viewController];
         [self.contentView addSubview:viewController.view];
-        
         [viewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
@@ -146,6 +145,10 @@ NSInteger const DefaultCurrentPageIndex = 0;
     }
 }
 
+- (BOOL)shouldAutomaticallyForwardAppearanceMethods {
+    return NO;
+}
+
 - (void)setPageIndex:(NSInteger)pageIndex animated:(BOOL)animated {
     if (_currentPageIndex == pageIndex) {
         return;
@@ -216,14 +219,15 @@ NSInteger const DefaultCurrentPageIndex = 0;
                                                                 [weakSelf mapItemClassToViewClassWithCollectionViewComponent:collectionViewComponent];
                                                             } delegateBlock:nil];
     
-    [self.collectionViewComponent setWillDisplayIndexPathBlock:^(__kindof CollectionViewComponent *CollectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath) {
-        [weakSelf collectionViewComponent:CollectionViewComponent willDisplayCell:cell forItemAtIndexPath:indexPath];
+    [self.collectionViewComponent setWillDisplayIndexPathBlock:^(__kindof CollectionViewComponent *collecctionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath) {
+        [weakSelf collectionViewComponent:collecctionViewComponent willDisplayCell:cell forItemAtIndexPath:indexPath];
     }];
-    [self.collectionViewComponent setDidEndDisplayingIndexPathBlock:^(__kindof CollectionViewComponent *CollectionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath) {
-        [weakSelf collectionViewComponent:CollectionViewComponent didEndDisplayingCell:cell forItemAtIndexPath:indexPath];
+    [self.collectionViewComponent setDidEndDisplayingIndexPathBlock:^(__kindof CollectionViewComponent *collecctionViewComponent, __kindof UICollectionViewCell *cell, NSIndexPath *indexPath) {
+        [weakSelf collectionViewComponent:collecctionViewComponent didEndDisplayingCell:cell forItemAtIndexPath:indexPath];
     }];
     [self.collectionViewComponent.collectionView setPagingEnabled:YES];
-
+    [self.collectionViewComponent.collectionView setPrefetchingEnabled:NO];
+    
     [self.view addSubview:self.collectionViewComponent.collectionView];
     [self.collectionViewComponent.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);

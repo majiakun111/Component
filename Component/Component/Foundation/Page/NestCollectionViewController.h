@@ -74,8 +74,6 @@ typedef void(^NestCollectionViewPageContainerCellCanScrollBlock)(BOOL collection
 
 @interface NestCollectionViewPageContainerSectionCell : CollectionViewCell
 
-@property(nonatomic, strong, nullable) UIViewController *parentViewController;
-
 @end
 
 @interface NestCollectionView : UICollectionView
@@ -97,8 +95,6 @@ typedef void(^NestCollectionViewPageContainerCellCanScrollBlock)(BOOL collection
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 
 - (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent;
-- (void)collectionViewComponent:(__kindof CollectionViewComponent *)collectionViewComponent willDisplayCell:(__kindof UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
-- (void)collectionViewComponent:(__kindof CollectionViewComponent *)collectionViewComponent didEndDisplayingCell:(__kindof UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
