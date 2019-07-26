@@ -11,11 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TestNestCollectionViewTopSectionCellItem : NestCollectionViewHeaderSectionCellItem
+@interface TestNestCollectionViewTopCellItem :CollectionViewCellItem
 
 @end
 
-@interface TestNestCollectionViewTopSectionCell : NestCollectionViewHeaderSectionCell
+@interface TestNestCollectionViewTopCell : CollectionViewCell
 
 @end
 

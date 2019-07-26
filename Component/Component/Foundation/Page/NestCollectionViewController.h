@@ -7,86 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CollectionViewComponent.h"
-#import "CollectionViewSectionItem.h"
-#import "CollectionViewCell.h"
-#import "CollectionViewCellItem.h"
-#import "ReusableView.h"
-#import "ReusableViewItem.h"
-#import "PageContainerItem.h"
-#import "NestPageContainerViewController.h"
-
-@class NestCollectionViewPageContainerSectionHeaderView;
-@class NestCollectionViewPageContainerSectionCell;
+#import "NestCollectionViewComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef void(^NestCollectionViewPageContainerCellCanScrollBlock)(BOOL collectionViewPageContainerCellCanScroll);
-
-@protocol NestCollectionViewPageContainerSectionHeaderViewDelegate <ReusableViewDelegate>
-
-- (void)headerView:(NestCollectionViewPageContainerSectionHeaderView *)headerView pageTitleCurrentIndex:(NSInteger)pageTitleCurrentIndex;
-
-@end
-
-@protocol NestCollectionViewPageContainerSectionCellDelegate <CollectionViewCellDelegate>
-
-- (void)collectionViewCell:(NestCollectionViewPageContainerSectionCell *)collectionViewCell pageContainerViewControllerScrollToContentOffset:(CGPoint)contentOffset;
-
-- (void)pageContainerViewControllerWillLeaveTopForCollectionViewCell:(NestCollectionViewPageContainerSectionCell *)collectionViewCell;
-
-@end
-
-//总共两个section
-
-//顶部section
-//Top Section Cell 可以有很多个
-@interface NestCollectionViewHeaderSectionCellItem : CollectionViewCellItem
-
-@end
-
-@interface  NestCollectionViewHeaderSectionCell : CollectionViewCell
-
-@end
-
-//低部section
-//Bottom Section HeaderView 只有一个
-@interface NestCollectionViewPageContainerSectionHeaderViewItem : ReusableViewItem
-
-@property(nonatomic, assign) CGFloat indexProgress;
-@property(nonatomic, copy) NSArray<NSString *> *titles;
-
-@end
-
-@interface NestCollectionViewPageContainerSectionHeaderView : ReusableView
-
-@end
-
-//Bottom Section Cell 只有一个
-@interface NestCollectionViewPageContainerSectionCellItem : CollectionViewCellItem
-
-@property(nonatomic, assign) BOOL canUpDownScroll;
-@property(nonatomic, assign) NSUInteger pageIndex;
-
-@property(nonatomic, strong) PageContainerItem *pageContainerItem;
-
-@end
-
-@interface NestCollectionViewPageContainerSectionCell : CollectionViewCell
-
-@end
-
-@interface NestCollectionView : UICollectionView
-
-@end
-
-@interface NestCollectionViewComponent : CollectionViewComponent
-
-@property(nonatomic, assign) BOOL canUpDownScroll;
-
-@property(nonatomic, copy) NestCollectionViewPageContainerCellCanScrollBlock collectionViewPageContainerCellCanScrollBlock;
-
-@end
 
 @interface NestCollectionViewController : UIViewController
 

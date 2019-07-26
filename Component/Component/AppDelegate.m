@@ -50,13 +50,13 @@
 //    [self.window setBackgroundColor:[UIColor whiteColor]];
 
     CollectionViewSectionItem *topSectionItem = [[CollectionViewSectionItem alloc] init];
-    TestNestCollectionViewTopSectionCellItem *topSectionCellItem = [[TestNestCollectionViewTopSectionCellItem alloc] init];
+    TestNestCollectionViewTopCellItem *topSectionCellItem = [[TestNestCollectionViewTopCellItem alloc] init];
     topSectionCellItem.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, 500);
     topSectionItem.cellItems = @[topSectionCellItem].mutableCopy;
 
     CollectionViewSectionItem *bottomSectionItem = [[CollectionViewSectionItem alloc] init];
 
-    NestCollectionViewPageContainerSectionHeaderViewItem *bottomSectionHeaderViewItem = [[NestCollectionViewPageContainerSectionHeaderViewItem alloc] init];
+    NestPageContainerReusableViewItem *bottomSectionHeaderViewItem = [[NestPageContainerReusableViewItem alloc] init];
     NSMutableArray<NSString *> *titles = @[].mutableCopy;
     for (NSInteger index = 0; index < 20; index++) {
         NSString *title = [NSString stringWithFormat:@"title_%d", (int)index];
@@ -90,7 +90,7 @@
     PageContainerItem *pageContainerItem = [[PageContainerItem alloc] init];
     pageContainerItem.pageItems = pageItems;
 
-    NestCollectionViewPageContainerSectionCellItem *bottomSectionCellItem = [[NestCollectionViewPageContainerSectionCellItem alloc] init];
+    NestPageContainerCellItem *bottomSectionCellItem = [[NestPageContainerCellItem alloc] init];
     bottomSectionCellItem.pageContainerItem = pageContainerItem;
     bottomSectionCellItem.canUpDownScroll = YES;
     bottomSectionCellItem.pageIndex = 0;

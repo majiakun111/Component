@@ -10,11 +10,11 @@
 #import "TestCollectionViewCell.h"
 #import "TestCollectionViewCellItem.h"
 
-@implementation TestNestCollectionViewTopSectionCellItem
+@implementation TestNestCollectionViewTopCellItem
 
 @end
 
-@implementation TestNestCollectionViewTopSectionCell
+@implementation TestNestCollectionViewTopCell
 
 - (void)buildUI {
     [super buildUI];
@@ -75,11 +75,11 @@
 }
 
 #pragma mark - Overrdie
-//majiakun
+
 - (void)mapItemClassToViewClassWithCollectionViewComponent:(CollectionViewComponent *)collectionViewComponent {
     [super mapItemClassToViewClassWithCollectionViewComponent:collectionViewComponent];
     
-    [collectionViewComponent mapCellClass:[TestNestCollectionViewTopSectionCell class] cellItemClass:[TestNestCollectionViewTopSectionCellItem class]];
+    [collectionViewComponent mapCellClass:[TestNestCollectionViewTopCell class] cellItemClass:[TestNestCollectionViewTopCellItem class]];
 }
 
 @end
