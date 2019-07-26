@@ -77,7 +77,9 @@ NSInteger const DefaultCurrentPageIndex = 0;
 
 @property(nonatomic, assign) NSInteger currentPageIndex;
 
-@property (nonatomic, assign) CGSize viewOldSize;
+@property(nonatomic, assign) CGSize viewOldSize;
+
+@property(nonatomic, assign) BOOL didAppearNeedExecuteEnd;
 
 @end
 
@@ -108,13 +110,19 @@ NSInteger const DefaultCurrentPageIndex = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [[self currentPageViewController] beginAppearanceTransition:YES animated:animated];
+    if ([self currentPageViewController]) {
+        self.didAppearNeedExecuteEnd = YES;
+        [[self currentPageViewController] beginAppearanceTransition:YES animated:animated];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [[self currentPageViewController] endAppearanceTransition];
+    if (self.didAppearNeedExecuteEnd) {
+        self.didAppearNeedExecuteEnd = NO;
+        [[self currentPageViewController] endAppearanceTransition];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
