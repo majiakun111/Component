@@ -8,6 +8,7 @@
 
 #import "PageViewController.h"
 #import "CollectionViewComponent.h"
+#import "PageViewController+Nest.h"
 #import "Masonry.h"
 
 @interface PageViewController ()
@@ -32,6 +33,9 @@
     }];
     [self.collectionViewComponent setDidSelectedIndexPathBlcok:^(CollectionViewComponent *collectionViewComponent, NSIndexPath *indexPath) {
         [weakSelf collectionViewComponent:collectionViewComponent didSelectItemAtIndexPath:indexPath];
+    }];
+    [self.collectionViewComponent setDidScrollBlock:^(__kindof CollectionViewComponent *collectionViewComponent) {
+        [weakSelf scrollViewDidScroll:collectionViewComponent];
     }];
     [self.collectionViewComponent.collectionView setBackgroundColor:[UIColor clearColor]];
     [self.collectionViewComponent.collectionView setShowsVerticalScrollIndicator:YES];

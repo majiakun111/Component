@@ -6,8 +6,9 @@
 //  Copyright © 2018 MJK. All rights reserved.
 //
 
-#import "NestCollectionViewController.h"
-#import "NestPageViewController.h"
+#import "CollectionViewCellItem.h"
+#import "CollectionViewCell.h"
+#import "PageViewController+Nest.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,11 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface TestNestPageViewController : NestPageViewController
+@interface TestNestPageViewController : PageViewController
 
 @end
 
-@interface TestNestCollectionViewController : NestCollectionViewController
+@interface TestNestCollectionViewController : UIViewController
+
+- (instancetype)initWithSectioItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 
 @end
 

@@ -14,6 +14,7 @@
 #import "TestPageRootViewController.h"
 
 #import "TestNestCollectionViewController.h"
+#import "NestCollectionViewComponent.h"
 #import "TestCollectionViewCellItem.h"
 
 #import "TestTableViewController.h"

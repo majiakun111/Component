@@ -7,6 +7,7 @@
 //
 
 #import "PageContainerViewController.h"
+#import "PageContainerViewController+Nest.h"
 #import "CollectionViewComponent.h"
 #import "CollectionViewCell.h"
 #import "CollectionViewCellItem.h"
@@ -177,10 +178,6 @@ NSInteger const DefaultCurrentPageIndex = 0;
     }
 }
 
-- (void)pageViewControllerDidCreated:(UIViewController<PageItemProtocol> *)pageViewController {
-
-}
-
 #pragma mark - Property
 
 - (void)setTintColor:(UIColor *)tintColor {
@@ -195,6 +192,8 @@ NSInteger const DefaultCurrentPageIndex = 0;
     if (_pageContainerItem == pageContainerItem) {
         return;
     }
+    [self willSetPageContainerItem];
+    
     _pageContainerItem = pageContainerItem;
     
     CollectionViewSectionItem *sectionItem = [[CollectionViewSectionItem alloc] init];

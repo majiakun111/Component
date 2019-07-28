@@ -7,8 +7,11 @@
 //
 
 #import "NestCollectionViewComponent.h"
+#import "PageContainerViewController+Nest.h"
 #import "Masonry.h"
 #import "PageTitleView.h"
+
+NSInteger const NestCollectionViewPageContainerCellRow = 0;
 
 //Page Section header
 @implementation NestPageContainerReusableViewItem
@@ -93,7 +96,7 @@
 
 @interface NestPageContainerCell ()
 
-@property(nonatomic, strong) NestPageContainerViewController *pageContianerViewController;
+@property(nonatomic, strong) PageContainerViewController *pageContianerViewController;
 
 @end
 
@@ -149,9 +152,9 @@
 
 #pragma mark - PrivateProperty
 
-- (NestPageContainerViewController *)pageContianerViewController {
+- (PageContainerViewController *)pageContianerViewController {
     if (nil == _pageContianerViewController) {
-        _pageContianerViewController = [[NestPageContainerViewController alloc] initWithPageContainerItem:nil];
+        _pageContianerViewController = [[PageContainerViewController alloc] initWithPageContainerItem:nil];
         __weak typeof(self) weakSelf = self;
         [_pageContianerViewController setContentOffsetDidChangeBlock:^(CGPoint contentOffset) {
             if ([(id<NestPageContainerCellDelegate>)weakSelf.delegate respondsToSelector:@selector(collectionViewCell:pageContainerViewControllerScrollToContentOffset:)]) {
@@ -220,20 +223,24 @@
 
 @end
 
+@interface NestCollectionViewComponent () <NestPageContainerReusableViewDelegate, NestPageContainerCellDelegate>
+
+@end
+
 @implementation NestCollectionViewComponent
 
 #pragma mark - Override
 
-- (instancetype)initWithSectionItems:(NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
-                     scrollDirection:(UICollectionViewScrollDirection)scrollDirection
-        mapItemClassToViewClassBlock:(nonnull void (^)(__kindof CollectionViewComponent * _Nonnull))mapItemClassToViewClassBlock
-                       delegateBlock:(nullable void (^)(__kindof CollectionViewComponent * _Nonnull))delegateBlock {
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
     self = [super initWithSectionItems:sectionItems
-                       scrollDirection:scrollDirection
+                       scrollDirection:UICollectionViewScrollDirectionVertical
           mapItemClassToViewClassBlock:mapItemClassToViewClassBlock
-                         delegateBlock:delegateBlock];
+                         delegateBlock:nil];
     if (self) {
         self.canUpDownScroll = YES;
+        self.cellDelegate = self;
+        self.reusableViewDelegate = self;
     }
     
     return self;
@@ -271,6 +278,24 @@
     }
     
     self.collectionView.showsVerticalScrollIndicator = self.canUpDownScroll;
+}
+
+#pragma mark - NestPageContainerReusableViewDelegate
+
+- (void)reusableView:(NestPageContainerReusableView *)reusableView pageTitleCurrentIndex:(NSInteger)pageTitleCurrentIndex {
+    NestPageContainerCellItem *cellItem = [self cellItemForRow:NestCollectionViewPageContainerCellRow inSection:[self.sectionItems count] - 1];
+    cellItem.pageIndex = pageTitleCurrentIndex;
+}
+
+#pragma mark - NestPageContainerCellDelegate
+
+- (void)collectionViewCell:(NestPageContainerCell *)collectionViewCell pageContainerViewControllerScrollToContentOffset:(CGPoint)contentOffset {
+    NestPageContainerReusableViewItem *headerViewItem = [self reuseableViewItemForSection:[self.sectionItems count] - 1 kind:UICollectionElementKindSectionHeader];
+    headerViewItem.indexProgress = contentOffset.x / self.collectionView.bounds.size.width;
+}
+
+- (void)pageContainerViewControllerWillLeaveTopForCollectionViewCell:(NestPageContainerCell *)collectionViewCell {
+    [self setCanUpDownScroll:YES];
 }
 
 @end

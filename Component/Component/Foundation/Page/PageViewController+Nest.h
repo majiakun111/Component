@@ -1,22 +1,22 @@
 //
-//  NestPageViewController.h
+//  PageViewController+Nest.h
 //  Component
 //
-//  Created by Ansel on 2018/12/13.
-//  Copyright © 2018 MJK. All rights reserved.
+//  Created by Ansel on 2019/7/28.
+//  Copyright © 2019 MJK. All rights reserved.
 //
 
 #import "PageViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NestPageViewController : PageViewController
+@interface PageViewController (Nest)
+
+- (void)scrollViewDidScroll:(__kindof CollectionViewComponent *)collectionViewComponent;
 
 #pragma mark - PageItemProtocol
 @property(nonatomic, assign) BOOL canUpDownScroll;
-/**
- contentOffset.y <= 0
- */
+
 @property(nonatomic, copy) void(^pageWillLeaveTopBlock)(void);
 
 @end

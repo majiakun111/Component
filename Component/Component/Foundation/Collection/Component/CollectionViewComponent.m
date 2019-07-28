@@ -55,13 +55,18 @@
 
 - (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
         mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock {
-    return [self initWithSectionItems:sectionItems scrollDirection:UICollectionViewScrollDirectionVertical mapItemClassToViewClassBlock:mapItemClassToViewClassBlock delegateBlock:nil];
+    return [self initWithSectionItems:sectionItems
+                      scrollDirection:UICollectionViewScrollDirectionVertical
+         mapItemClassToViewClassBlock:mapItemClassToViewClassBlock delegateBlock:nil];
 }
 
 - (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
         mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock
                        delegateBlock:(nullable void (^)(__kindof CollectionViewComponent *collectionViewComponent))delegateBlock {
-    return [self initWithSectionItems:sectionItems scrollDirection:UICollectionViewScrollDirectionVertical mapItemClassToViewClassBlock:mapItemClassToViewClassBlock delegateBlock:delegateBlock];
+    return [self initWithSectionItems:sectionItems
+                      scrollDirection:UICollectionViewScrollDirectionVertical
+         mapItemClassToViewClassBlock:mapItemClassToViewClassBlock
+                        delegateBlock:delegateBlock];
 }
 
 - (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems

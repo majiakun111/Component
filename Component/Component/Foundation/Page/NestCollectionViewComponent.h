@@ -14,7 +14,6 @@
 #import "ReusableView.h"
 #import "ReusableViewItem.h"
 #import "PageContainerItem.h"
-#import "NestPageContainerViewController.h"
 
 @class NestPageContainerReusableView;
 @class NestPageContainerCell;
@@ -80,6 +79,15 @@ typedef void(^NestCollectionViewPageContainerCellCanScrollBlock)(BOOL collection
 @property(nonatomic, assign) BOOL canUpDownScroll;
 
 @property(nonatomic, copy) NestCollectionViewPageContainerCellCanScrollBlock collectionViewPageContainerCellCanScrollBlock;
+
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithSectionItems:(nullable NSArray<__kindof CollectionViewSectionItem *> *)sectionItems
+                     scrollDirection:(UICollectionViewScrollDirection)scrollDirection
+        mapItemClassToViewClassBlock:(void (^)(__kindof CollectionViewComponent *collectionViewComponent))mapItemClassToViewClassBlock
+                       delegateBlock:(nullable void (^)(__kindof CollectionViewComponent *collectionViewComponent))delegateBlock NS_UNAVAILABLE;
+
 
 @end
 

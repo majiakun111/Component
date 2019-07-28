@@ -30,8 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setPageIndex:(NSInteger)pageIndex animated:(BOOL)animated;
 
-- (void)pageViewControllerDidCreated:(UIViewController<PageItemProtocol> *)pageViewController;
-
 @end
 
 NS_ASSUME_NONNULL_END
