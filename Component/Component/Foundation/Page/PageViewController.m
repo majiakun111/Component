@@ -53,8 +53,10 @@
     
 }
 
+#pragma mark PageItemProtocol
+
 - (void)reloadDataWithPageItem:(__kindof PageItem *)pageItem {
-    if ([pageItem isKindOfClass:[PageItem class]]) {
+    if (![pageItem isKindOfClass:[PageItem class]]) {
         return;
     }
     

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) PageItem *pageItem;
 
+- (void)reloadDataWithPageItem:(__kindof PageItem *)pageItem;
+
 @optional
 @property(nonatomic, assign) BOOL canUpDownScroll;
 @property(nonatomic, copy) void(^pageWillLeaveTopBlock)(void);

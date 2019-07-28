@@ -93,11 +93,4 @@ NSInteger const NestCollectionViewPageContainerCellRow = 0;
     [self buildCollectionViewComponent];
 }
 
-#pragma mark - PrivateMethod
-
-- (void)updateCollectionViewPageContainerCellCanScroll:(BOOL)collectionViewPageContainerCellCanScroll {
-    NestPageContainerCellItem *item = [self.collectionViewComponent cellItemForRow:NestCollectionViewPageContainerCellRow inSection:[self.sectionItems count] - 1];
-    item.canUpDownScroll = collectionViewPageContainerCellCanScroll;
-}
-
 @end

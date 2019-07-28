@@ -250,6 +250,7 @@ NSInteger const DefaultCurrentPageIndex = 0;
     PageCollectionViewCellItem *cellItem = [self.collectionViewComponent cellItemForRow:indexPath.row inSection:indexPath.section];
     if (!cellItem.paegVieController) {
         cellItem.paegVieController = [[cellItem.pageItem.viewControllerClass alloc] init];
+        [cellItem.paegVieController reloadDataWithPageItem:cellItem.pageItem];
         [self pageViewControllerDidCreated:cellItem.paegVieController];
     }
     

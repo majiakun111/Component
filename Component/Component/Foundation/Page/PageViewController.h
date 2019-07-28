@@ -22,10 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)collectionViewComponent:(CollectionViewComponent *)collectionViewComponent didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)reloadDataWithPageItem:(__kindof PageItem *)pageItem;
 
 #pragma mark PageItemProtocol
 @property(nonatomic, strong) PageItem *pageItem;
+- (void)reloadDataWithPageItem:(__kindof PageItem *)pageItem;
+
 
 @end
 
