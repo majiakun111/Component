@@ -17,6 +17,7 @@
 		5B15A2C61C8D3DD800764E8C /* TableViewRelativeHeightHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2C51C8D3DD800764E8C /* TableViewRelativeHeightHelper.m */; };
 		5B15A2D21C8D787500764E8C /* HeaderOrFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2D11C8D787500764E8C /* HeaderOrFooterView.m */; };
 		5B15A2DB1C8DB9CD00764E8C /* ReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B15A2DA1C8DB9CD00764E8C /* ReusableView.m */; };
+		5B1D6A8B235EAA6E00518F47 /* hook_cpp_init.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5B1D6A8A235EAA6E00518F47 /* hook_cpp_init.mm */; };
 		5B1DD42E1CB552D100C61BED /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD4231CB552D100C61BED /* NSData+AES.m */; };
 		5B1DD42F1CB552D100C61BED /* NSData+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD4251CB552D100C61BED /* NSData+DES.m */; };
 		5B1DD4301CB552D100C61BED /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1DD4271CB552D100C61BED /* NSData+MD5.m */; };
@@ -125,6 +126,7 @@
 		5B15A2DA1C8DB9CD00764E8C /* ReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableView.m; sourceTree = "<group>"; };
 		5B15A2EC1C8DD66700764E8C /* CommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 		5B15A2ED1C8DD66700764E8C /* SizeDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeDefine.h; sourceTree = "<group>"; };
+		5B1D6A8A235EAA6E00518F47 /* hook_cpp_init.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = hook_cpp_init.mm; sourceTree = "<group>"; };
 		5B1DD4221CB552D100C61BED /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
 		5B1DD4231CB552D100C61BED /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
 		5B1DD4241CB552D100C61BED /* NSData+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+DES.h"; sourceTree = "<group>"; };
@@ -410,6 +412,14 @@
 			path = Define;
 			sourceTree = "<group>";
 		};
+		5B1D6A89235EAA5E00518F47 /* HookStaticInitializers */ = {
+			isa = PBXGroup;
+			children = (
+				5B1D6A8A235EAA6E00518F47 /* hook_cpp_init.mm */,
+			);
+			path = HookStaticInitializers;
+			sourceTree = "<group>";
+		};
 		5B24E33C1C87D8AB00F1A521 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +540,7 @@
 		5BBE60851C81E108006D0595 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				5B1D6A89235EAA5E00518F47 /* HookStaticInitializers */,
 				5B0E2A1021B8D4D7002C6BFA /* Page */,
 				5BFE7DA8219C05090090EC6F /* Media */,
 				5B5223631C9D4C0E0059875B /* JSWebView */,
@@ -815,6 +826,7 @@
 				5BAC68B82140B5C800A870F9 /* UIButton+Highlight.m in Sources */,
 				5BF78E2B1C8F168100648444 /* CollectionViewRelativeSizeHelper.m in Sources */,
 				5BF78E281C8F0DF700648444 /* ReusableViewItem.m in Sources */,
+				5B1D6A8B235EAA6E00518F47 /* hook_cpp_init.mm in Sources */,
 				5BF9792321BCE14900D69D54 /* MASConstraintMaker.m in Sources */,
 				5B5223831C9D99940059875B /* LoginViewController.m in Sources */,
 				5B24E3451C87D9AE00F1A521 /* SwizzleCollectionMethod.m in Sources */,
