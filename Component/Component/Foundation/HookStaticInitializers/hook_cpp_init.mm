@@ -1,9 +1,9 @@
 //
 //  hook_cpp_init.m
-//  QWLoadTrace
+//  Component
 //
-//  Created by everettjf on 2016/11/30.
-//  Copyright © 2016年 Alipay. All rights reserved.
+//  Created by Ansel on 2020/4/13.
+//  Copyright © 2020年 MJK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
